@@ -16,6 +16,14 @@ class CreateListing(models.Model):
         User, on_delete=models.CASCADE, related_name='listed_seller_items')
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.99)
 
+    class Stock(models.IntegerChoices):
+        AVALIBLE = 1, "Avalible"
+        SOLD = 2, "Sold"
+    stock = models.PositiveSmallIntegerField(
+        choices=Stock.choices,
+        default=Stock.AVALIBLE
+    )
+
     class Condition(models.IntegerChoices):
         NEW = 1, "New"
         LNEW = 2, "Like New"
@@ -37,9 +45,13 @@ class CreateListing(models.Model):
         choices=Catagory.choices, default=Catagory.HOMEWARE
     )
 
+    objects = models.Manager()
+
     class Meta:
         ordering = ['-listedtime']
         indexes = [models.Index(fields=['-listedtime']),]
 
     def __str__(self):
         return self.title
+
+
