@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'store:all_listings' %}"> Back to Products</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-12">
+            <h2>
+                <strong>Product:</strong>
+                {{listing_details.title}}
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="listinging-image-container">
+                <img class="listing-image-details" src="{{listing_details.product_image.url }}" alt="{{listing_details.title}}">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class=container-fluid>
+                <div class="row">
+                    <div class="col-12 mb-3"> 
+                        <h3><strong>Description:</strong></h3>
+                        <p>
+                            {{listing_details.description}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <h3>
+                            <strong>Price:</strong>
+                            £{{listing_details.price}}
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <h3> <strong> Condition:</strong>
+                            {{listing_details.condition}}
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <h3>
+                            <strong>Catagory:</strong>
+                            {{listing_details.catagory}}
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <h3>
+                            <strong>Quantity In Stock:</strong>
+                            {{listing_details.stock}}
+                        </h3>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12 mb-2">
+                        <h6>
+                            <strong>Listed Time:</strong>
+                            {{listing_details.listedtime}}
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <h6>
+                            <strong>Seller:</strong>
+                            {{listing_details.sellerID}}
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <button>Add to basket</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
