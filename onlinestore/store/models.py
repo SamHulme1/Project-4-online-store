@@ -7,9 +7,17 @@ from django.contrib.auth.models import User
 # listed items are sorted by the time they are listed newest first
 
 
+class stockManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            stock=CreateListing.Stock.AVALIBLE)
+
+
 class CreateListing(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
+    product_image = models.ImageField(
+        upload_to='product_images/', default='default.jpg')
     description = models.TextField()
     listedtime = models.DateField(auto_now_add=True)
     sellerID = models.ForeignKey(
@@ -46,6 +54,7 @@ class CreateListing(models.Model):
     )
 
     objects = models.Manager()
+    avalible = stockManager()
 
     class Meta:
         ordering = ['-listedtime']
