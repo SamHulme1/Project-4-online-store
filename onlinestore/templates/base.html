@@ -1,0 +1,159 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+  <head>
+
+    {% block meta %}
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% endblock %}
+
+    {% block extra_meta %}
+    {% endblock %}
+
+    {% block corecss %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+    {% block extra_css %}
+    {% endblock %}
+
+    {% block corejs %}
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script src="https://kit.fontawesome.com/bdd19e9f82.js" crossorigin="anonymous"></script>
+    {% endblock %}
+
+    {% block extra_js %}
+    {% endblock %}
+
+    <title>Fruitioo {% block extra_title %}{% endblock %}</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-container">
+        <div class="nav-container container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <span class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Fruitioo</a>
+                    </span>
+                    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                      {% if request.user.is_authenticated %}
+                      <div class="dropdown">
+                        <button class="btn button-colour dropdown-toggle" type="button" id="dropdownMenuButton"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          My Account
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Sell</a>
+                          <a class="dropdown-item" href="#">Saved products</a>
+                          <a class="dropdown-item" href="#">View/ manage orders</a>
+                          <a class="dropdown-item" href="#">Manage Account</a>
+                          <a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a>
+                        </div>
+                      </div>
+                      {% else %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Create Account/Sign-in</a>
+                      </li>
+                      {% endif %}
+                    </ul>
+                    <span class="nav-item">
+                      <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping nav-icon"></i></a>
+                    </span>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="carousel-container container-fluid">
+          <div class="row">
+            <div class="col-12 p-0">
+              <div class="carousel slide" data-ride="carousel">
+                <div class="carousel-item active">
+                  <img class="d-block center-block c-img" src="../media/pexels-andre-william-3010771.jpg"
+                    alt="First slide">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block center-block c-img" src="../media/pexels-cottonbro-studio-3661222.jpg"
+                    alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block center-block c-img" src="../media/pexels-gabriel-freytez-341523.jpg"
+                    alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block center-block c-img" src="../media/pexels-junior-teixeira-2047905.jpg"
+                    alt="forth slide">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block center-block c-img" src="../media/pexels-kai-pilger-996329.jpg" alt="fifth slide">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block center-block c-img" src="../media/pexels-marcelo-moreira-1926620.jpg"
+                    alt="sixth slide">
+                </div>
+              </div>
+            </div>
+            <div class="search-container small-font                                                                                                                                                               ">
+              <form class="d-flex" method="GET">
+                <input class="form-control me-2" type="text" name="q" placeholder="oi search me" aria-label="Search">
+                <button class="btn search-button" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row text-center navbar">
+            <div class="col-2"><a href="#">Homeware</a></div>
+            <div class="col-2"><a href="#">Electronics</a></div>
+            <div class="col-2"><a href="#">Entertainment</a></div>
+            <div class="col-2"><a href="#">Clothing</a></div>
+            <div class="col-2"><a href="#">Toys</a></div>
+            <div class="col-2"><a href="#">Health</a></div>
+          </div>
+        </div>
+
+    </header>
+
+    {% if messages %}
+    <div class="message-container"></div>
+    {% endif %}
+
+    {% block page_hearder %}
+    {% endblock %}
+
+    {% block postloadjs %}
+    {% endblock %}
+
+    <div class="container-fluid">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+  </body>
+</html>
