@@ -67,7 +67,9 @@
                           My Account
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Sell</a>
+                          <span>Hello {{request.user}}</span>
+                          <a class="dropdown-item" href="{% url 'store:add_listing' %}">Sell</a>
+                          <a class="dropdown-item" href="{% url 'store:get_sellers_listings' %}">My Store</a>
                           <a class="dropdown-item" href="#">Saved products</a>
                           <a class="dropdown-item" href="#">View/ manage orders</a>
                           <a class="dropdown-item" href="#">Manage Account</a>
@@ -120,7 +122,7 @@
               </div>
             </div>
             <div class="search-container small-font                                                                                                                                                               ">
-              <form class="d-flex" method="GET">
+              <form class="d-flex" method="GET" action="#">
                 <input class="form-control me-2" type="text" name="q" placeholder="oi search me" aria-label="Search">
                 <button class="btn search-button" type="submit">Search</button>
               </form>
@@ -141,7 +143,11 @@
     </header>
 
     {% if messages %}
-    <div class="message-container"></div>
+    <div class="message-container">
+      {% for message in messages %}
+        <li> {{message}} </li>
+      {% endfor %}
+    </div>
     {% endif %}
 
     {% block page_hearder %}
