@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        {% for listing in sellers_listings %}
+            {% if listing.sellerID == request.user %}
+                <div class="col-6">
+                    <a target="_blank" href="{% url 'store:listing_details' listing.id  %}">
+                        <div class="listinging-image-container">
+                            <img class="d-block center-block listing-image" src="{{ listing.product_image.url }}" alt="{{ listing.title }}">
+                        </div>
+                    </a>
+                    <div class=" container-fluid listing-container mt-2 pb-3 text-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>{{ listing.title }}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-6> <h5>  Price: £{{ listing.price }}</h5></div>
+                            <div class=col-6> <h5> Condition: {{ listing.condition }}</h5> </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-12>
+                                <h5>Quantity in stock: {{ listing.stock }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+        <div class=container-fluid>
+            <div class="row">
+                <div class="col-12">
+                    <p>Not seeing any listings?<a href="{% url 'store:add_listing' %}">click here</a> to to create one</p>
+                </div>
+            </div>
+        </div>
+{% endblock %}
