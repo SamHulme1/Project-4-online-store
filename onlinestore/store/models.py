@@ -1,27 +1,30 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from autoslug import AutoSlugField
 
 # create lsiting model
 # lists appropriate options for the user when they list an item for sale
 # listed items are sorted by the time they are listed newest first
+# stock manager is used to sort listings that are availible and sold
 
 
 class stockManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(
-            stock=CreateListing.Stock.AVALIBLE)
+            stock=Listing.Stock.AVALIBLE)
 
 
-class CreateListing(models.Model):
+class Listing(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200)
+    slug = AutoSlugField(populate_from='title')
     product_image = models.ImageField(
-        upload_to='product_images/', default='default.jpg')
+        upload_to='product_images/')
     description = models.TextField()
     listedtime = models.DateField(auto_now_add=True)
     sellerID = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='listed_seller_items')
+        User, on_delete=models.CASCADE,
+        default=User)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.99)
 
     class Stock(models.IntegerChoices):
@@ -62,5 +65,6 @@ class CreateListing(models.Model):
 
     def __str__(self):
         return self.title
+
 
 

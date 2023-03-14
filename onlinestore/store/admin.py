@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import CreateListing
+from .models import Listing
 
 # listing order for listings on admin site
 # listings can be sorted by catagory, condition, price, sellerID and listedtime
 # listings are searchable by their title, descriptions and catagories
 
 
-@admin.register(CreateListing)
+@admin.register(Listing)
 class CreateListingOrder(admin.ModelAdmin):
     list_display = ["title", "slug", "catagory",
                     "description", "price", "condition",
