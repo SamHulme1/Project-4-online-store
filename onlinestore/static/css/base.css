@@ -124,3 +124,20 @@ a {
 .listing-image-details {
     width: 100%;
 }
+
+input {
+    width: 30%;
+}
+
+textarea {
+    width: 30%;
+    height: 100px;
+}
+
+select {
+    width: 30%;
+}
+
+.create-listing-form{
+    background-color: aquamarine;
+}
