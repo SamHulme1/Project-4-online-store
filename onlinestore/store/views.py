@@ -20,17 +20,24 @@ def all_listings(request):
 def listing_details(request, id):
     listing_details = get_object_or_404(
         Listing, id=id, stock=Listing.Stock.AVALIBLE)
-
     return render(request, 'store/listing_details.html', {
         'listing_details': listing_details})
 
 
 @login_required
+def get_favourite(request):
+    listing_favourites = Listing.objects.filter(favourite=1)
+    return render(request, 'store/listing_favourites.html', {
+        'listing_favourites': listing_favourites})
+
+
+@login_required
 def add_listing(request):
     if request.method == "POST":
-        form = CreateNewListing(request.POST)
+        form = CreateNewListing(request.POST, request.FILES)
         if form.is_valid():
             listing = form.save()
+            messages.success(request, 'listing created successfully')
         else:
             messages.error(request, 'listing not created'
                                     ' please ensure all form data is valid')
