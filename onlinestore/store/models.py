@@ -19,20 +19,31 @@ class Listing(models.Model):
     title = models.CharField(max_length=200)
     slug = AutoSlugField(populate_from='title')
     product_image = models.ImageField(
-        upload_to='product_images/')
+        upload_to='media/product_images/', default='default.jpg')
     description = models.TextField()
     listedtime = models.DateField(auto_now_add=True)
     sellerID = models.ForeignKey(
         User, on_delete=models.CASCADE,
         default=User)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.99)
+    quantity = models.IntegerField(default=1)
 
     class Stock(models.IntegerChoices):
         AVALIBLE = 1, "Avalible"
         SOLD = 2, "Sold"
+
     stock = models.PositiveSmallIntegerField(
         choices=Stock.choices,
         default=Stock.AVALIBLE
+    )
+
+    class Favourite(models.IntegerChoices):
+        SAVED = 1, "saved"
+        NOTSAVED = 2, "Notsaved"
+
+    favourite = models.PositiveSmallIntegerField(
+        choices=Favourite.choices,
+        default=Favourite.NOTSAVED
     )
 
     class Condition(models.IntegerChoices):
@@ -65,6 +76,3 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.title
-
-
-
