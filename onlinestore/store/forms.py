@@ -5,4 +5,5 @@ from .models import Listing
 class CreateNewListing(forms.ModelForm):
     class Meta:
         model = Listing
-        fields = '__all__'
+        fields = ("title", "product_image", "description",
+                  "price", "quantity", "condition", "catagory")
