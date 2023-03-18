@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    {% if searched %}
+        <h2>Showing results for {{ searched }} </h2>
+    {% endif %}
+    <div class="row">
+        {% for listing in results %}
+                <div class="col-6">
+                    <a target="_blank" href="{% url 'store:listing_details' listing.id  %}">
+                        <div class="listinging-image-container">
+                            <img class="d-block center-block listing-image" src="{{ listing.product_image.url }}" alt="{{ listing.title }}">
+                        </div>
+                    </a>
+                    <div class=" container-fluid listing-container mt-2 pb-3 text-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>{{ listing.title }}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-6> <h5>  Price: £{{ listing.price }}</h5></div>
+                            <div class=col-6> <h5> Condition: {{ listing.condition }}</h5> </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-12>
+                                <h5>Quantity in stock: {{ listing.stock }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% empty %}
+            <h2>No results</h2>
+        {% endfor %}
+    </div>
+{% endblock%}
