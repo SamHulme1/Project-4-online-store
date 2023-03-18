@@ -10,4 +10,6 @@ urlpatterns = [
     path('<int:id>/', views.listing_details, name='listing_details'),
     path('add/', views.add_listing, name='add_listing'),
     path('saved/', views.get_favourite, name="get_favourite"),
+    path('search/', views.search_results, name="search_results"),
+    path('catagory/<str:cat>', views.catagory, name="catagory")
 ]
