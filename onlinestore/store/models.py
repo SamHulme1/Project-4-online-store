@@ -19,12 +19,11 @@ class Listing(models.Model):
     title = models.CharField(max_length=200)
     slug = AutoSlugField(populate_from='title')
     product_image = models.ImageField(
-        upload_to='media/product_images/', default='default.jpg')
+        upload_to='product_images/', default='default.jpg')
     description = models.TextField()
     listedtime = models.DateField(auto_now_add=True)
     sellerID = models.ForeignKey(
-        User, on_delete=models.CASCADE,
-        default=User)
+        User, on_delete=models.CASCADE, default=User, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.99)
     quantity = models.IntegerField(default=1)
 
@@ -37,34 +36,34 @@ class Listing(models.Model):
         default=Stock.AVALIBLE
     )
 
-    class Favourite(models.IntegerChoices):
-        SAVED = 1, "saved"
-        NOTSAVED = 2, "Notsaved"
-
-    favourite = models.PositiveSmallIntegerField(
-        choices=Favourite.choices,
-        default=Favourite.NOTSAVED
+    favourites = models.ManyToManyField(
+        User, related_name="favourite", default=None, blank=True
     )
 
-    class Condition(models.IntegerChoices):
-        NEW = 1, "New"
-        LNEW = 2, "Like New"
-        USED = 3, "Used"
-        NONF = 4, "None Functional"
-    condition = models.PositiveSmallIntegerField(
-        choices=Condition.choices, default=Condition.USED
+    class Condition(models.Model):
+        choices = (
+            ("new", "new"),
+            ("like-new", "like-new"),
+            ("used", "used"),
+            ("non-functional", "non-functional"),
+            ("toys", "toys"),
+            ("health", "health"),
+        )
+    condition = models.CharField(
+        choices=Condition.choices, default="used", max_length=15
     )
 
-    class Catagory(models.IntegerChoices):
-        HOMEWARE = 1, "Homeware"
-        ELECTRONICS = 2, "Electronics"
-        ENTERTAINMENT = 3, "Entertainment"
-        CLOTHING = 4, "Clothing"
-        TOYS = 5, "Toys"
-        HEALTH = 6, "Health"
-
-    catagory = models.PositiveSmallIntegerField(
-        choices=Catagory.choices, default=Catagory.HOMEWARE
+    class Catagory(models.Model):
+        choices = (
+            ("homeware", "homeware"),
+            ("electronics", "electronics"),
+            ("entertainment", "entertainment"),
+            ("clothing", "clothing"),
+            ("toys", "toys"),
+            ("health", "health"),
+        )
+    catagory = models.CharField(
+        choices=Catagory.choices, default="homeware", max_length=13
     )
 
     objects = models.Manager()
