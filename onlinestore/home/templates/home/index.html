@@ -9,4 +9,19 @@
     </div>
 {% endblock %}
 {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">
+            Welcome back {{request.user}}
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-12 text-center">
+                <button><a href="{% url 'store:all_listings' %}">Shop Now</a></button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
