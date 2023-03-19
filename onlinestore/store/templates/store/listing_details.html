@@ -83,12 +83,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6 mb-2">
+                    <div class="col-4 mb-2">
                         <button>Add to basket</button>
                     </div>
-                    <div class="col-6 mb-2">
+                    <div class="col-4 mb-2">
                         <button><i class="fa-sharp fa-regular fa-heart"></i></button>
                     </div>
+                    {% if request.user.is_authenticated %}
+                    <div class="col-4 mb-2">
+                        <button><a class="text-danger" href="{% url 'store:delete_listing' listing_details.id %}">Delete</a></button>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
