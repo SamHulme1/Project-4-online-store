@@ -5,7 +5,7 @@
         {% for listing in sellers_listings %}
             {% if listing.sellerID == request.user %}
                 <div class="col-6">
-                    <a target="_blank" href="{% url 'store:listing_details' listing.id  %}">
+                    <a href="{% url 'store:listing_details' listing.id  %}">
                         <div class="listinging-image-container">
                             <img class="d-block center-block listing-image" src="{{ listing.product_image.url }}" alt="{{ listing.title }}">
                         </div>
