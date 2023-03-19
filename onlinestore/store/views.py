@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from .models import Listing
 from django.contrib.auth.decorators import login_required
@@ -24,7 +24,7 @@ def search_results(request):
 
 
 def get_sellers_listings(request):
-    sellers_listings = Listing.avalible.all()
+    sellers_listings = Listing.objects.all()
     return render(request, 'store/sellers_listings.html', {
         'sellers_listings': sellers_listings})
 
@@ -59,6 +59,7 @@ def add_listing(request):
             new_listing.sellerID = user
             new_listing.save()
             messages.success(request, 'listing created successfully')
+            return redirect(reverse('store:get_sellers_listings'))
         else:
             messages.error(request, 'listing not created'
                                     ' please ensure all form data is valid')
@@ -69,3 +70,17 @@ def add_listing(request):
     template = 'store/add_listing.html'
 
     return render(request, template, {'form': form})
+
+
+@login_required
+def delete_listing(request, id):
+    listing = get_object_or_404(Listing, id=id)
+    if request.user == listing.sellerID:
+        messages.success(
+            request, f'{request.user} your listing has been deleted')
+        listing.delete()
+    else:
+        messages.error(
+            request,
+            f"{request.user} this is not your listing! You can't delete it!")
+    return redirect(reverse('store:get_sellers_listings'))
