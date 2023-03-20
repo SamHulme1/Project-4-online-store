@@ -15,23 +15,23 @@
         <div class="col-12">
             <h2>
                 <strong>Product:</strong>
-                {{listing_details.title}}
+                {{listing.title}}
             </h2>
         </div>
     </div>
     <div class="row mb-2">
         <div class="col-6">
             <div class="listinging-image-container">
-                <img class="listing-image-details" src="{{listing_details.product_image.url }}" alt="{{listing_details.title}}">
+                <img class="listing-image-details" src="{{listing.product_image.url }}" alt="{{listing.title}}">
             </div>
         </div>
         <div class="col-6">
-            <div class=container-fluid>
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 mb-3"> 
                         <h3><strong>Description:</strong></h3>
                         <p>
-                            {{listing_details.description}}
+                            {{listing.description}}
                         </p>
                     </div>
                 </div>
@@ -39,14 +39,14 @@
                     <div class="col-12 mb-2">
                         <h3>
                             <strong>Price:</strong>
-                            £{{listing_details.price}}
+                            £{{listing.price}}
                         </h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 mb-2">
                         <h3> <strong> Condition:</strong>
-                            {{listing_details.condition}}
+                            {{listing.condition}}
                         </h3>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <div class="col-12 mb-2">
                         <h3>
                             <strong>Catagory:</strong>
-                            {{listing_details.catagory}}
+                            {{listing.catagory}}
                         </h3>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="col-12 mb-2">
                         <h3>
                             <strong>Quantity In Stock:</strong>
-                            {{listing_details.stock}}
+                            {{listing.stock}}
                         </h3>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="col-12 mb-2">
                         <h6>
                             <strong>Listed Time:</strong>
-                            {{listing_details.listedtime}}
+                            {{listing.listedtime}}
                         </h6>
                     </div>
                 </div>
@@ -78,20 +78,29 @@
                     <div class="col-12 mb-2">
                         <h6>
                             <strong>Seller:</strong>
-                            {{listing_details.sellerID}}
+                            {{listing.sellerID}}
                         </h6>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4 mb-2">
+                    <div class="col-4 mb-2 text-center">
                         <button>Add to basket</button>
                     </div>
-                    <div class="col-4 mb-2">
-                        <button><i class="fa-sharp fa-regular fa-heart"></i></button>
+                    {% if favourite %}
+                    <div class="col-4 mb-2 text-center">
+                        <a href="{% url 'store:favourite_listing' listing.id %}"><i class="fa-solid fa-heart icon-heart-full"></i></a>
                     </div>
+                    {% else %}
+                    <div class="col-4 mb-2 text-center">
+                        <a href="{% url 'store:favourite_listing' listing.id %}"><i class="far-sharp fa-regular fa-heart icon-heart-empty"></i></a>
+                    </div>
+                    {% endif %}
                     {% if request.user.is_authenticated %}
-                    <div class="col-4 mb-2">
-                        <button><a class="text-danger" href="{% url 'store:delete_listing' listing_details.id %}">Delete</a></button>
+                    <div class="col-2 mb-2 text-center">
+                        <button><a class="text-danger" href="{% url 'store:delete_listing' listing.id %}">Delete</a></button>
+                    </div>
+                    <div class="col-2 mb-2 text-center">
+                        <button><a class="text-danger" href="{% url 'store:edit_listing' listing.id %}">Edit</a></button>
                     </div>
                     {% endif %}
                 </div>
