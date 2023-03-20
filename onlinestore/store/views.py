@@ -36,15 +36,23 @@ def all_listings(request):
 
 
 def listing_details(request, id):
-    listing_details = get_object_or_404(
+    # I used https://www.youtube.com/watch?v=1XiJvIuvqhs&t=653s 
+    # to help me build the favourites part
+    favourite = False
+    listing = get_object_or_404(
         Listing, id=id, stock=Listing.Stock.AVALIBLE)
-    return render(request, 'store/listing_details.html', {
-        'listing_details': listing_details})
+    if listing.favourite.filter(id=request.user.id).exists():
+        favourite = True
+    context = {
+        "listing": listing,
+        "favourite": favourite
+    }
+    return render(request, 'store/listing_details.html', context)
 
 
 @login_required
 def get_favourite(request):
-    listing_favourites = Listing.objects.filter(favourites=1)
+    listing_favourites = Listing.objects.filter(favourite=1)
     return render(request, 'store/listing_favourites.html', {
         'listing_favourites': listing_favourites})
 
@@ -84,3 +92,51 @@ def delete_listing(request, id):
             request,
             f"{request.user} this is not your listing! You can't delete it!")
     return redirect(reverse('store:get_sellers_listings'))
+
+
+@login_required
+def edit_listing(request, id):
+    user = request.user
+    listing = get_object_or_404(Listing, id=id)
+    if request.user != listing.sellerID:
+        messages.error(
+            request,
+            f"{user} this is not your listing! You can't change it!")
+        return redirect(reverse('store:get_sellers_listings'))
+    
+    if request.method == "POST":
+        form = CreateNewListing(request.POST, request.FILES, instance=listing)
+        if form.is_valid():
+            listing = form.save()
+            listing.sellerID = user
+            listing.save()
+            messages.success(request, 'listing updated successfully')
+            return redirect(reverse('store:get_sellers_listings'))
+        else:
+            messages.error(request, 'listing not updated'
+                                    ' please ensure all form data is valid')
+
+    else:
+        form = CreateNewListing(instance=listing)
+        messages.info(
+            request, f"{user} you're editing your listing {listing.title}")
+
+    template = 'store/edit_listing.html'
+    context = {
+        'form': form,
+        "listing": listing
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def favourite_listing(request, id):
+    listing = get_object_or_404(Listing, id=id)
+    if listing.favourite.filter(id=request.user.id).exists():
+        listing.favourite.remove(request.user)
+        messages.success(request, "Listing unfavourited")
+    else:
+        listing.favourite.add(request.user)
+        messages.success(request, "Listing favourited")
+    return redirect(reverse("store:listing_details", args=[listing.id]))
