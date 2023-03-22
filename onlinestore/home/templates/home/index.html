@@ -9,12 +9,24 @@
     </div>
 {% endblock %}
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid mt-2">
     <div class="row">
         <div class="col-12">
+            {% if request.user.is_authenticated %}
             <h1 class="text-center">
             Welcome back {{request.user}}
             </h1>
+            {% else %}
+            <h1 class="text-center">
+                Welcome to the store, to get started create an account or browse anonymosly
+            </h1>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button><a href="{% url 'account_signup' %}">Sign up</a></button>
+                </div>
+            </div>
+        </div>
+            {% endif %}
         </div>
     </div>
     <div class="row">
