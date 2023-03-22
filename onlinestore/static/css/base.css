@@ -1,8 +1,85 @@
-.header-container{
-    position: relative;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
+
+.title-txt{
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
+    color:#43948a;
+    font-weight: 800;
+    letter-spacing: -2px;
 }
-a {
+
+.medium-txt{
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-weight: 200;
+    letter-spacing: -2px;
+}
+
+#notification {
+    position: absolute;
+    right: 0;
+    margin-right: 2em;
+    
+}
+
+#notification-status-message {
+    height: 1.5em;
+    width: 1.5em;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#notification-status-none{
+    height: 1.5em;
+    width: 1.5em;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.notification-icon{
+    color: white;
+    font-size: 1.5em;
+}
+.medium-txt-black{
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
     color: black;
+    font-weight: 200;
+    letter-spacing: -2px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+  
+::-webkit-scrollbar-track {
+    background: white;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: #61A3FF;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+button {
+    background-color: #ce5b56;
+    padding: 0.5em;
+    border: none;
+}
+
+a {
+    color: white;
+}
+  
+.small-txt{
+    font-size: 0.5em;
+    font-family: 'Montserrat', sans-serif;
+    color:white;
 }
 
 .search-container{
@@ -12,44 +89,26 @@ a {
   margin: -25px 0 0 -25px;
 }
 
-.nav-container{
+.navbar-expand-lg .navbar-nav .dropdown-menu {
     z-index: 5;
 }
 
 .nav-bg{
-    background-color: #C6AF8Fff;
-    border-radius: 0.5em;
+    background-color: #2C4973;
+    
+}
+
+.control-bar-bg{
+    background-color: #4472B2;
 }
 
 .nav-icon {
     font-size: 2em;
 }
 
-/* #E8D6BEff;
- #E9E8E4ff;
- #D4D38Eff;
-#C6AF8Fff;
- #A88975ff;
-*/
-
-#search-spinner{
-    border: 40px solid #f3f3f3; /* Light grey */
-    border-top: 40px solid red; /* Blue */
-    border-radius: 50%;
-    width:25em;
-    height: 25em;
-    animation: spin 1s cubic-bezier(0.1,0.4,0.5,0.7) infinite;
-}
-
 .button-text {
     margin-top: 3em;
     font-size: 36px;
-}
-.spin-button {
-    width:100%;
-    height: 100%;
-    border-radius: 50%;
-    color: white;
 }
 
 
@@ -65,79 +124,79 @@ a {
 }
 
 .search-button {
-    background-color: lightgray;
-}
-.footer-style {
-    background-color: #A88975ff;
-    font-size: 20px;
+    background-color: #ce5b56;
 }
 
-.button-colour {
-    background-color: white;
+
+.navbar-nav { 
+    margin-right: 3em;
 }
 
-.navbar-nav { margin-right: 3em;}
 .carousel-container{
-    max-height: 65vh;
+    max-height: 60vh;
     position: relative;
     overflow: hidden;
 }
 
 .c-img {
     width: 100%;
-    margin-top: -25vh;
 }
 
-.listing-image {
-    width: 100%;
-    margin-top: -25vh;
-}
 
-.listing-image:hover {
-    transform: scale(1.2);
-}
-
-.small-font {
-    font-size: 1em;
-    color: black;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-.listing-container {
-    background-color: #d3d3d3;
+.listing-info-container {
+    border-radius: 1em;
+    position: relative;
+    height: 25em;
 }
 
 .listinging-image-container {
     width: 100%;
     height: 25em;
     overflow: hidden;
+    position: relative;
+    background-color: #5C9BF2;
 }
 
-.second-nav{ 
-    height: 3em;
+.listing-info{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left:0;
+    right:0;
+    background-color: white;
 }
 
 .listing-image-details {
     width: 100%;
 }
 
-input {
-    width: 30%;
-}
-
-textarea {
-    width: 30%;
-    height: 100px;
-}
-
-select {
-    width: 30%;
-}
-
 .create-listing-form{
-    background-color: aquamarine;
+    background-color: white;
+}
+
+
+.listing-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left:0;
+    right:0;
+}
+
+.content-bg{
+    background-color: #61A3FF;
+}
+
+.breaker {
+    border-top: 3px solid transparent;
+}
+
+body {
+    background-color: #528AD9;
+}
+
+#message-popup {
+    background-color: green;
 }
