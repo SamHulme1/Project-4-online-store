@@ -200,3 +200,19 @@ body {
 #message-popup {
     background-color: green;
 }
+
+#profile-image{
+    border-radius: 50%;
+    border:3px solid #528ad9;
+}
+
+#profile-image-default{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border:3px solid #528ad9;
+}
+
+.title-breaker{
+    border:2px solid #528ad9;
+}
