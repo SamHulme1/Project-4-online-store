@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from .models import Listing
+from user_profiles.models import UserSettings
 from django.contrib.auth.decorators import login_required
 from .forms import CreateNewListing
 from django.db.models import Q
@@ -25,8 +26,10 @@ def search_results(request):
 
 def get_sellers_listings(request):
     sellers_listings = Listing.objects.all()
+    seller_settings = UserSettings.objects.filter(user=request.user)
     return render(request, 'store/sellers_listings.html', {
-        'sellers_listings': sellers_listings})
+        'sellers_listings': sellers_listings,
+        'seller_settings': seller_settings})
 
 
 def all_listings(request):
@@ -52,7 +55,8 @@ def listing_details(request, id):
 
 @login_required
 def get_favourite(request):
-    listing_favourites = Listing.objects.filter(favourite=1)
+    user = request.user
+    listing_favourites = user.favourite.all()
     return render(request, 'store/listing_favourites.html', {
         'listing_favourites': listing_favourites})
 
