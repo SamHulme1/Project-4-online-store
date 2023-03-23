@@ -1,55 +1,55 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-{% for listing in listings_favourites %}
-<div class="container-fluid content-bg">
-    <div class="row">
-        <div class="col-md-6 col-sm-12 p-0">
-            <div class="listinging-image-container text-center">
-                {% load thumbnail %}
-                <a href="{{ listing.product_image.url }}">
-                    <img src='{% thumbnail listing.product_image 400x0 target="20,10" %}' alt="{{ listing.title }}" class="listing-image">
-                </a>
+    {% for listing in listing_favourites %}
+    <div class="container-fluid content-bg">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 p-0">
+                <div class="listinging-image-container text-center">
+                    {% load thumbnail %}
+                    <a href="{{ listing.product_image.url }}">
+                        <img src='{% thumbnail listing.product_image 400x0 target="20,10" %}' alt="{{ listing.title }}" class="listing-image">
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="col-md-6 col-sm-12" >
-            <div class="listing-info-container pb-3 medium-txt-black">
-                <div class="listing-info">
-                    <div class="row pb-2 ml-3 mt-3">
-                        <div class="col-12">
-                            <h3> {{ listing.title }}</h3>
+            <div class="col-md-6 col-sm-12" >
+                <div class="listing-info-container pb-3 medium-txt-black">
+                    <div class="listing-info">
+                        <div class="row pb-2 ml-3 mt-3">
+                            <div class="col-12">
+                                <h3> {{ listing.title }}</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row pt-3 ml-3">
-                        <div class="col-12">
-                            <h5> Condition: {{ listing.condition }}</h5>
+                        <div class="row pt-3 ml-3">
+                            <div class="col-12">
+                                <h5> Condition: {{ listing.condition }}</h5>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row pt-3 ml-3">
-                        <div class=col-12> <h5> Price: £{{ listing.price }}</h5></div>
-                    </div>
-                    <div class="row pt-3 ml-3">
-                        <div class="col-12">
-                            <h5> Quantity in stock: {{ listing.stock }}</h5>
+                        <div class="row pt-3 ml-3">
+                            <div class=col-12> <h5> Price: £{{ listing.price }}</h5></div>
                         </div>
-                    </div>
-                    <div class="row pt-3 ml-3">
-                        <div class="col-12">
-                            <h5> Seller: {{ listing.sellerID }}</h5>
+                        <div class="row pt-3 ml-3">
+                            <div class="col-12">
+                                <h5> Quantity in stock: {{ listing.stock }}</h5>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row pt-3 ml-3">
-                        <div class="col-12">
-                            <a href="{% url 'store:listing_details' listing.id  %}"><button>View</button></a>
+                        <div class="row pt-3 ml-3">
+                            <div class="col-12">
+                                <h5> Seller: {{ listing.sellerID }}</h5>
+                            </div>
+                        </div>
+                        <div class="row pt-3 ml-3">
+                            <div class="col-12">
+                                <a href="{% url 'store:listing_details' listing.id  %}"><button>View</button></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<hr class="breaker">
-{% empty %}
-<h2 class="text-center">No Favourites saved</h2>
-{% endfor %}
+    <hr class="breaker">
+    {% empty %}
+    <h2 class="text-center">No Favourites saved</h2>
+    {% endfor %}
 {% endblock %}
