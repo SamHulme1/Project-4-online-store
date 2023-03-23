@@ -36,8 +36,8 @@ class Listing(models.Model):
         default=Stock.AVALIBLE
     )
 
-    favourites = models.ManyToManyField(
-        User, related_name="favourite", default=None, blank=True
+    favourite = models.ManyToManyField(
+        User, related_name="favourite", blank=True, default=None,
     )
 
     class Condition(models.Model):
