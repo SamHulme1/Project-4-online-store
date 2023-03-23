@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'home',
     'store',
     'easy_thumbnails',
+    'user_profiles',
+    'django_countries'
 ]
 
 MIDDLEWARE = [
