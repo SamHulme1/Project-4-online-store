@@ -42,10 +42,10 @@
 
 <body>
   <nav class="navbar navbar-expand-lg nav-bg">
-    <a class="navbar-brand title-txt" href="{% url 'home' %}">Frooite</a>
+    <a class="navbar-brand title-txt" href="{% url 'home' %}">Frooite <i class="fa-solid fa-lemon"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -61,7 +61,7 @@
             <a class="dropdown-item" href="{% url 'store:get_sellers_listings' %}">My Store</a>
             <a class="dropdown-item" href="{% url 'store:get_favourite' %}">Saved products</a>
             <a class="dropdown-item" href="#">View/ manage orders</a>
-            <a class="dropdown-item" href="#">Manage Account</a>
+            <a class="dropdown-item" href="{% url 'user_profiles:profile_view' %}">Manage Account</a>
             <a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a>
           </div>
         </li>
@@ -73,7 +73,7 @@
         <li class="nav-item dropdown d-sm-block d-md-none">
           <a class="nav-link dropdown-toggle medium-txt" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            Filter
+            Search by catagory
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a  class="dropdown-item" href="{% url 'store:all_listings' %}">All</a>
