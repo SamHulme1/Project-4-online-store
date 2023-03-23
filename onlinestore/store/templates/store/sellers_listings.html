@@ -1,6 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+    {% for settings in seller_settings %}
+    <div class="container-fluid text-center" style="background-color:{{settings.store_background}};">
+        <hr class="breaker">
+        {% load thumbnail %}
+        <a href="{{ settings.profile_picture.url }}">
+            <img src='{% thumbnail settings.profile_picture 300x300 crop %}' alt="users profile picture" id="profile-image" class="mt-2 mb-2">
+        </a>
+        <hr class="title-breaker">
+        <h2 class="title-txt"><strong>{{ settings.user }}'s Store</strong></h2>
+        <hr class="breaker">
+    </div>
+    {% empty %}
+    <div class="container-fluid text-center" style="background-color:white;">
+        <hr class="breaker">
+        <img src='https://images.pexels.com/photos/4194850/pexels-photo-4194850.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt="users profile picture" id="profile-image-default" class="mt-2 mb-2">
+        <hr class="title-breaker">
+        <h2 class="title-txt"><strong>{{ request.user }}'s Store</strong></h2>
+        <hr class="breaker">
+    </div>
+    {% endfor %}
     <div class="row">
         {% for listing in sellers_listings %}
             {% if listing.sellerID == request.user %}
