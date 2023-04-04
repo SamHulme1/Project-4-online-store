@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, HttpResponse
 
 
 def basket_view(request):
@@ -17,6 +17,18 @@ def add_to_basket(request, item_id):
         basket[item_id] = quantity
 
     request.session['basket'] = basket
-    print(request.session['basket'])
     return redirect(redirect_url)
+
+
+def change_basket_qty(request, item_id):
+    quantity = int(request.POST.get('quantity'))
+    basket = request.session.get('basket', {})
+
+    if quantity == 0:
+        basket.pop(item_id)
+    else:
+        basket[item_id] = quantity
+
+    request.session['basket'] = basket
+    return redirect(reverse('basket:basket_view'))
 
