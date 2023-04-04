@@ -100,6 +100,16 @@
           <a class="nav-link medium-txt" href="{% url 'account_signup' %}">Create Account/Sign-in</a>
         </li>
         {% endif %}
+        <li class="text-center nav-item" id="shopping-basket">
+          <a href="{% url 'basket:basket_view' %}"><i class="fa-solid fa-basket-shopping"></i></a>
+          <div>
+            {% if grand_total %}
+            £{{ grand_total|floatformat:2 }}
+            {% else %}
+              £0.00
+            {% endif %}
+          </div>
+        </li>
       </ul>
     </div>
   </nav>
