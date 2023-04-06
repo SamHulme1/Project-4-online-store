@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserInfo, UserSettings
+from .models import UserInfo
 
 
 class UserInfoForm(forms.ModelForm):
@@ -8,10 +8,3 @@ class UserInfoForm(forms.ModelForm):
         model = UserInfo
         fields = ("phone_number", "address", "county",
                   "postcode", "country")
-
-
-class UserSettingsForm(forms.ModelForm):
-
-    class Meta:
-        model = UserSettings
-        fields = ("profile_picture", "store_background")

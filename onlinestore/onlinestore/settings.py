@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'user_profiles',
     'django_countries', 
-    'basket'
+    'basket', 
+    'user_settings',
 ]
 
 MIDDLEWARE = [
