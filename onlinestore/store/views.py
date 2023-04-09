@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from .models import Listing
-from user_profiles.models import UserSettings
+from user_settings.models import UserSetting
 from django.contrib.auth.decorators import login_required
 from .forms import CreateNewListing
 from django.db.models import Q
