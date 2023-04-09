@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <h2>Checkout</h2>
+        </div>
+        <div class="row">
+            <h3>Complete the checkout form for delivery infomation</h3>
+        </div>
+        <form actions="{% url 'checkout:checkout' %}" method="POST" id="payment">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="mb-3" id="card-element"></div>
+            <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+            <span>Payment Amount <strong>${{ grand_total|floatformat:2 }}</strong></span>
+            <button class="btn" type="submit">Submit</button>
+            <button class="btn">Edit Basket</button>
+        </form>
+    </div>
+{% endblock %}
