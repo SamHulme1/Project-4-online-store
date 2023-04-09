@@ -60,6 +60,12 @@
                                     <span>Subtotal:</span>
                                     <p>£{{ item.listed_product.price | subtotal:item.quantity }}</p>
                                 </div>
+                                <a href="{% url 'checkout:checkout' %}" class="btn btn-black rounded-0 btn-lg">
+                                    <span class="text-uppercase">Secure Checkout</span>
+                                    <span class="icon">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </a>
                             </div>
                         {% endfor %}
                     {% else %}
