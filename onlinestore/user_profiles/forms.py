@@ -6,5 +6,5 @@ class UserInfoForm(forms.ModelForm):
 
     class Meta:
         model = UserInfo
-        fields = ("phone_number", "address", "county",
-                  "postcode", "country")
+        fields = ("d_phone_number", "d_address", "d_county",
+                  "d_postcode", "d_country", 'd_first_name', 'd_last_name')

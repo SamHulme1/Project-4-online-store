@@ -39,7 +39,7 @@ def all_listings(request):
 
 
 def listing_details(request, id):
-    # I used https://www.youtube.com/watch?v=1XiJvIuvqhs&t=653s 
+    # I used https://www.youtube.com/watch?v=1XiJvIuvqhs&t=653s
     # to help me build the favourites part
     favourite = False
     listing = get_object_or_404(
@@ -107,7 +107,7 @@ def edit_listing(request, id):
             request,
             f"{user} this is not your listing! You can't change it!")
         return redirect(reverse('store:get_sellers_listings'))
-    
+
     if request.method == "POST":
         form = CreateNewListing(request.POST, request.FILES, instance=listing)
         if form.is_valid():

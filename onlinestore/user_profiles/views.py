@@ -25,7 +25,7 @@ def create_profile_info(request):
                 info = form.save(commit=False)
                 info.user = request.user
                 info.save()
-                messages.success(request, 'profile infomation updated') 
+                messages.success(request, 'profile infomation updated')
                 return redirect(reverse('user_profiles:profile_view'))
             else:
                 messages.error(request, 'Your profile has not been updated')
