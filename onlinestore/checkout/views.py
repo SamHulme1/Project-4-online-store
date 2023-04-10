@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .forms import CustomerOrderForm
 from basket.contexts import basket_contents
@@ -6,6 +7,25 @@ from store.models import Listing
 from .models import OrderLineItem, Order
 from django.conf import settings
 import stripe
+import json
+
+
+@require_POST
+def cache_checkout_session(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'username': request.user,
+            'save_info': request.POST.get('save_info'),
+            'basket': json.dumps(request.session.get("basket", {})),
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(
+            request, 'Your payment cannot be processed'
+                     'at the moment, sorry for any inconvinences')
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
@@ -17,7 +37,7 @@ def checkout(request):
         form_data = {
             'first_name': request.POST['first_name'],
             'last_name': request.POST['last_name'],
-            'email': request.POST['first_name'],
+            'email': request.POST['email'],
             'address': request.POST['address'],
             'city': request.POST['city'],
             'county': request.POST['county'],
@@ -25,8 +45,12 @@ def checkout(request):
             'country': request.POST['country'],
         }
         form = CustomerOrderForm(form_data)
-        if form.is_valid:
-            order = form.save()
+        if form.is_valid():
+            order = form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_basket = json.dumps(basket)
+            order.save()
             for item_id, item_data in basket.items():
                 try:
                     listing = Listing.objects.get(id=item_id)
@@ -38,13 +62,16 @@ def checkout(request):
                         )
                         order_line_item.save()
                 except Listing.DoesNotExist:
-                    messages.error(request, "an item in you basket is no longer avalible")
+                    messages.error(
+                        request, "an item in you basket is no longer avalible")
                     order.delete()
                     return redirect(reverse('basket:basket_view'))
-            request.session['save-info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout:success', args=[order.order_number]))
+            request.session['save_info'] = 'save-info' in request.POST
+            return redirect(
+                reverse('checkout:success', args=[order.order_number]))
         else:
-            messages.error(request, 'form error, make sure all fields are valid')
+            messages.error(
+                request, 'form error, make sure all fields are valid')
     else:
         basket = request.session.get('basket', {})
         if not basket:
@@ -71,11 +98,12 @@ def checkout(request):
 
 
 def success(request, order_number):
+    save_info = request.session.get('save_info')
     basket = request.session.get('basket', {})
-    safe_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
-    basket.clear()
+    if 'basket' in request.session:
+        del request.session['basket']
 
     template = 'checkout/success.html'
     context = {
