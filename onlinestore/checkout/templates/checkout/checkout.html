@@ -17,11 +17,32 @@
             <span>Payment Amount <strong>${{ grand_total|floatformat:2 }}</strong></span>
             {% csrf_token %}
             {{ form.as_p }}
+            <div class="form-check form-check-inline float-right mr-0">
+                {% if user.is_authenticated %}
+                    <label class="form-check-label" for="id-save-info">Save details</label>
+                    <input class="form-check-input" type="checkbox" id="id-save-info" name="save-info" checked>
+                {% else %}
+                    <p>You need to 
+                        <a href="{% url 'account_login' %}">login</a>
+                        or
+                        <a href="{% url 'account_signup' %}">Create an account</a> 
+                        in order to save your infomation
+                    </p> 
+                {% endif %}
+            </div>
             <div id="card-element"></div>
             <button id="submit-btn">
             </button>
             <p id="card-errors" role="alert"></p>
             </p>
+            <input type="hidden" value="{{ client_secret }}" name="client_secret">
+            {% if form.errors %}
+                <ul>
+                {% for error in form.errors %} 
+                    <li>{{ error }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %} 
         </form>
     </div>
 {% endblock %}
