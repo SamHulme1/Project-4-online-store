@@ -1,0 +1,152 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  {% block meta %}
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% endblock %}
+
+  {% block extra_meta %}
+  {% endblock %}
+
+  {% block corecss %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  {% endblock %}
+
+  {% block extra_css %}
+  {% endblock %}
+
+  {% block corejs %}
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="{% static 'scripts/scripts.js' %}"></script>
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+  <script src="https://kit.fontawesome.com/bdd19e9f82.js" crossorigin="anonymous"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  {% endblock %}
+
+  {% block extra_js %}
+  {% endblock %}
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg nav-bg ml-auto main-content-colour stick-top">
+    <a class="navbar-brand title-txt" href="{% url 'home' %}">. . . Tavern  <i class="fa-solid fa-beer-mug-empty"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav m-0">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item dropdown mr-2 ml-2">
+          <a class="nav-link dropdown-toggle medium-txt" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            My Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <span class="ml-4">Hello {{request.user}}</span>
+            <a class="dropdown-item" href="{% url 'catalog:get_favourite' %}">Saved products</a>
+            <a class="dropdown-item" href="#">View/ manage orders</a>
+            <a class="dropdown-item" href="{% url 'user_profiles:profile_view' %}">Manage Account</a>
+            <a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a>
+          </div>
+        </li>
+        <form class="d-flex d-sm-block d-md-none" method="GET" action="{% url 'catalog:search_results'%}">
+          <input class="form-control me-2" type="search" name="searched" placeholder="Search"
+            aria-label="search">
+          <button class="btn search-button" type="submit">Search</button>
+        </form>
+        <li class="nav-item dropdown d-sm-block d-md-none">
+          <a class="nav-link dropdown-toggle medium-txt" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Search by catagory
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a  class="dropdown-item" href="{% url 'catalog:all_products' %}">All</a>
+          {% for catagories in products %}
+            <a  class="medium-txt nav-item" href="{% url 'catalog:catagory' cat=catagories.catagory %}">{{catagories.catagory}}</a>
+          {% endfor %}
+          </div>
+        </li>
+        <li class="text-center nav-item mr-2 ml-2" id="shopping-basket">
+          <a href="{% url 'basket:basket_view' %}"><i class="fa-solid fa-basket-shopping"></i></a>
+          <div>
+            {% if grand_total %}
+            £{{ grand_total|floatformat:2 }}
+            {% else %}
+              £0.00
+            {% endif %}
+          </div>
+        </li>
+        <li class="nav-item mr-2 ml-2" id="notification">
+          <div id="message-button" class="btn">
+            <i class="fa-solid fa-bell notification-icon"></i>
+          </div>
+          {% if messages %}
+          <span id="notification-status-message" class="text-center">{{messages|length}}</span>
+          {% else %}
+          <span id="notification-status-none" class="text-center">0</span>
+          {% endif %}
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link medium-txt" href="{% url 'account_signup' %}">Create Account/Sign-in</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <header>
+    <div class="container-fluid d-none d-lg-block secondary-content-colour">
+      <div class="row text-center navbar">
+        <a class=" medium-txt nav-item" href="{% url 'catalog:all_products' %}">All</a>
+        {% for catagories in products %}
+        <a  class="medium-txt nav-item" href="{% url 'catalog:catagory' cat=catagories.catagory %}">{{catagories.catagory}}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </header>
+
+  {% if messages %}
+  <div id="message-popup" class="container-fluid text-center">
+    <span class="d-none" id="message-area">
+      {% for message in messages %}
+      <span> {{message}} </span>
+      {% endfor %}
+    </span>
+  </div>
+  {% endif %}
+
+  {% block page_hearder %}
+  {% endblock %}
+
+  {% block postloadjs %}
+  {% endblock %}
+
+  {% block content %}
+  {% endblock %}
+
+  <footer class="py-3 mt-2 sticky-bottom">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter footer-icon" aria-hidden="true"></i><span class="sr-only">twitter link</span></a></li>
+      <li class="nav-item"><a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook footer-icon" aria-hidden="true"></i><span class="sr-only">facebook link</span></a></li>
+      <li class="nav-item"><a href="https://www.linkedin.com/" target="_blank" ><i class="fa-brands fa-linkedin footer-icon" aria-hidden="true"></i><span class="sr-only">linkedin link</span></a></li>
+    </ul>
+  </h3>
+    <p class="text-center text-muted"><i class="fa-solid fa-beer-mug-empty"></i> © 2023 Tavern</p>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% include 'home/includes/hero.html' %}
+<div class="container-fluid secondary-content-colour">
+    <div class="row">
+        <div class="col-12">
+            {% if request.user.is_authenticated %}
+            <h2 class="text-center">
+            Welcome back {{request.user}}
+            </h2>
+            {% else %}
+            <h1 class="text-center">
+                Welcome to the store, to get started create an account or browse anonymosly
+            </h1>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button type="button" class="btn btn-secondary btn-lg"><a href="{% url 'account_signup' %}">Sign up</a></button>
+                </div>
+            </div>
+        </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-12 text-center">
+                <p class="text-center"> Here at Tavern, we supply you with quality craft beer from local UK breweries, try browsing our catalogue, 
+                    to checkout products we have in stock, see something you like? head over to the checkout and choose a package that suits you, all our drinks are 
+                    fanasy themed and come in differnet boxing catagories. Box contents are random based off the catagory you choose. Let the die choose whats inside! 
+                </p>
+                <div class="mb-2"><i class="fa-brands fa-d-and-d divider"></i></div>
+                <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalog:all_products' %}"><i class="fa-solid fa-dice-d20"></i> Shop Now</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

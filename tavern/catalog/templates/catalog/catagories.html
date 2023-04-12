@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h2 class="text-center">{{cat}}</h2>
+    {% if catagories %}
+        {% for product in catagories %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 p-0">
+                        <div class="text-center overflow-hidden border">
+                            {% load thumbnail %}
+                            <a href="{{ product.product_image.url }}" target="_blank">
+                                <img src='{% thumbnail product.product_image 400x400 crop %}' alt="{{ product.title }}" class="listing-image">
+                            </a>
+                            <div class="col-12 secondary-content-colour p-0">
+                                <p class="bg-white">{{product.title}}</p>
+                                <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalog:product_details' product.id  %}">View</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <h2 class="text-center">No results</h2>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

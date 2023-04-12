@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid border">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 p-0">
+            <div class="overflow-hidden text-center image-container">
+                {% load thumbnail %}
+                <img src='{% thumbnail product.product_image 600x600 crop %}' alt="{{ product.title }}" class="listing-image">
+            {% if request.user.is_authenticated %}
+                {% if favourite %}
+                <div class="col-6 mb-2 heart-container">
+                    <a href="{% url 'catalog:favourite_product' product.id %}"><i class="fa-solid fa-heart icon-heart-full heart-icon"></i></a>
+                </div>
+                {% else %}
+                <div class="col-6 mb-2 heart-container">
+                    <a href="{% url 'catalog:favourite_product' product.id %}"><i class="far-sharp fa-regular fa-heart icon-heart-empty heart-icon"></i></a>
+                </div>
+                {% endif %}
+            {% endif %}
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 p-0">
+            <div class="container-fluid secondary-content-colour">
+                <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalog:all_products' %}"><i class="fa-solid fa-dice-d20"></i> Back</a></button>
+                <h3>{{product.title}}</h3>
+                <h4>Description:</h4>
+                <p class="bg-white"> {{product.description}}</p>
+                {% if request.user.is_staff %}
+                <div class="text-center mt-2"><i class="fa-brands fa-d-and-d divider"></i><p class="text-muted">{{product.catagory}}</p></div>
+                <div class="row">
+                    <div class="col-12 mb-2 text-right">
+                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalog:delete_product' product.id %}">Delete</a></button>
+                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalog:edit_product' product.id %}">Edit</a></button>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

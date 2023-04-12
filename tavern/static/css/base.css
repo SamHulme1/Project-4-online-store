@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
+
+.light-mode{
+
+}
+
+body {
+    background-image: url(https://images.pexels.com/photos/1151243/pexels-photo-1151243.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-image {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width:40em;
+}
+
+.image-container{
+    overflow: hidden;
+    width: 100%;
+    background-color: black;
+}
+
+.search-container{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    margin: -25px 0 0 -25px;
+  }
+
+.heart-container{
+    position: absolute;
+    top: 35%;
+    left: 26%;
+}
+.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+.content{
+    height: 50vh;
+}
+
+.secondary-content-colour{
+    background-color: #CF9D7C;
+}
+
+.footer-icon{
+    color:black;
+    font-size: 1.2em;
+    margin-right: 3em;
+    margin-left: 3em;
+}
+
+.main-content-colour{
+    background-color: #694F3F;
+}
+
+.title-txt{
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
+    color:#F5BA93;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.navbar.nav-line{
+    display: inline-block;
+}
+
+.search-button{
+    background-color: #c28339;
+    color: black;
+}
+
+.divider{
+    font-size: 5em;
+    margin-top: 2em;
+    color: black;
+}
+.button-style {
+    background-color: #d58c45;
+    color: white;
+}
+footer{
+    background-color: white;
+}
+
+.product-info-area{
+    background-color: white;
+}
+
+.heart-icon{
+    font-size: 10vh;
+}
+
+
+label {
+    color: white;
+    font-size: 1.5em;
+}
+
+
+textarea, label, select, input {
+    width: 100%;
+    border: none;
+    border-radius: 2em;
+    text-align: center;
+}
+
+button {
+    padding: 0.5em;
+    border: none;
+}
+
+a, button {
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.medium-txt{
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+#nav-right {
+    position: absolute;
+    right: 0;
+    margin-right: 2em;
+    
+}
+
+#notification-status-message {
+    height: 1.5em;
+    width: 1.5em;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#notification-status-none{
+    height: 1.5em;
+    width: 1.5em;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.notification-icon{
+    color: white;
+    font-size: 1.5em;
+}
+.medium-txt-black{
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    font-weight: 200;
+    letter-spacing: -2px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+  
+
+.nav-item:hover {
+    background: transparent;
+    text-decoration: none;
+    color:#F5BA93;
+}
+  
+.small-txt{
+    font-size: 0.5em;
+    font-family: 'Montserrat', sans-serif;
+    color:white;
+}
+
+
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    z-index: 5;
+}
+
+
+.nav-icon {
+    font-size: 2em;
+}
+
+.button-text {
+    margin-top: 3em;
+    font-size: 36px;
+}
+
+
+.navbar-nav { 
+    margin-right: 3em;
+}
+
+.c-img {
+    width: 100%;
+}
+
+
+.listing-info-container {
+    border-radius: 1em;
+    position: relative;
+    height: 25em;
+}
+
+.listinging-image-container {
+    width: 100%;
+    height: 25em;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.listing-image-details {
+    width: 100%;
+}
+
+
+.breaker {
+    border-top: 3px solid transparent;
+}
+
+
+#message-popup {
+    background-color: green;
+}
+
+
+.title-breaker{
+    border:2px solid #528ad9;
+}
+
+
+
+.StripeElement,
+.stripe-style-input {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.stripe-style-input::placeholder {
+    color: #aab7c4;
+}

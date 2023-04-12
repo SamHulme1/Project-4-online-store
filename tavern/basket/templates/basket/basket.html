@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% load basket_tools %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-center">
+                <span>Shopping Basket</span>
+                <i class="fa-solid fa-basket-shopping"></i>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    {% if basket_items %}
+                        {% for item in basket_items %}
+                            <div class="row">
+                                <div class="col-2">
+                                    <p>Product Name: </p>
+                                    <p>{{item.listed_product.title}}</p>
+                                </div>
+                                <div class="col-2">
+                                    <p>Product Price: </p>
+                                    <p>{{item.listed_product.price}}</p>
+                                </div>
+                                <span>quantity to buy</span>
+                                <div class="col-1 ml-2 text-right">
+                                    <button class="btn btn-sm btn-black rounded-0"
+                                                                data-item_id="{{ item.item_id }}" id="increase-qty">
+                                                    <span>
+                                                        <i class="fas fa-plus fa-sm"></i>
+                                                    </span>
+                                    </button>
+                                </div>
+                                <div class="col-2 m-0 p-0">
+                                    <form action="{% url 'basket:change_basket_qty' item.item_id %}" method="POST" class="form update-form">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input class="form-control qty_input" type="number" name="quantity" value="{{item.quantity}}" min="0" max="{{ item.listed_product.quantity }}" data-item_id="{{ item.item_id }}" id="value-input">
+                                                <button class="btn btn-primary update-basket float-right">adjust qty</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-1 text-left">
+                                    <button class="btn btn-sm btn-black rounded-0" 
+                                                                data-item_id="{{ item.item_id }}" id="decrease-qty">
+                                        <span>
+                                            <i class="fas fa-minus fa-sm"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="col-1">
+                                    <p>Num availible </p>
+                                    <span>{{ item.listed_product.quantity }}</span>
+                                </div>
+                                <div class="col-1 text-right">
+                                    <span>Subtotal:</span>
+                                    <p>£{{ item.listed_product.price | subtotal:item.quantity }}</p>
+                                </div>
+                                <a href="{% url 'checkout:checkout' %}" class="btn btn-black rounded-0 btn-lg">
+                                    <span class="text-uppercase">Checkout</span>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-center">You have nothing in your basket</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'scripts/basket.js' %}"></script>
+<script type="text/javascript">
+    // Adjust quantity in the basket when the user clicks on the adjust
+    $('.update-basket').click(function(e) {
+        var form = $(this).prev('.update-form');
+        var data = {'csrfmiddlewaretoken': csrfToken};
+        form.submit();
+    });
+</script>
+{% endblock %}
