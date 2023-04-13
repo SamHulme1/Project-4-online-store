@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 class Pricing(models.Model):
     title = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    promo_image = models.ImageField(
+        upload_to='promo_images/', default='default.jpg')
     
     def __str__(self):
         return self.title

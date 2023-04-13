@@ -25,6 +25,12 @@ def search_results(request):
         return render(request, 'catalog/search.html', {})
 
 
+def all_pricings(request):
+    pricings = Pricing.objects.all()
+    return render(request, 'catalog/pricings.html', {
+        'pricings': pricings})
+
+
 def all_products(request):
     products = Product.objects.all()
     return render(request, 'catalog/products.html', {
@@ -43,6 +49,14 @@ def product_details(request, id):
         "favourite": favourite
     }
     return render(request, 'catalog/product_details.html', context)
+
+
+def pricing_details(request, id):
+    pricing = get_object_or_404(Pricing, id=id)
+    context = {
+        "pricing": pricing,
+    }
+    return render(request, 'catalog/pricing_details.html', context)
 
 
 @login_required

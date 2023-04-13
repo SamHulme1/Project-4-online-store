@@ -13,7 +13,7 @@ for catagory in choices:
 class CreateNewPricing(forms.ModelForm):
     class Meta:
         model = Pricing
-        fields = ["title", "price", ]
+        fields = ["title", "price", 'promo_image']
 
 
 class CreateNewProduct(forms.ModelForm):

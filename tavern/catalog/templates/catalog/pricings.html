@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container-fluid">
+        <hr>
+        <div class="row">
+            {% for pricing in pricings %}
+            <div class="col-4">
+                <div class="card bg-dark text-white overflow-hidden" style="height: 40vh;">
+                    <img class="card-img" src="{{pricing.promo_image.url}}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <div class="text-center">
+                            <h5 class="card-title">{{pricing.title}}</h5>
+                            <button type="button" class="btn button-style btn-lg"><a href="{% url 'catalog:pricing_details' pricing.id  %}">View</a></button>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}
+        </div>
+        <hr>
+    </div>
+{% endblock %}
