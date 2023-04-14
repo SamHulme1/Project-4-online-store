@@ -2,12 +2,12 @@ from catalogue.models import Pricing, Product
 
 
 def catagory_management(request):
-    pricing = Pricing.objects.all()
-    products = Product.objects.all()
+    promo = Pricing.objects.all()
+    products_all = Product.objects.all()
 
     context = {
-        "products": products,
-        "pricing": pricing,
+        "products_all": products_all,
+        "promo": promo,
     }
 
     return context
