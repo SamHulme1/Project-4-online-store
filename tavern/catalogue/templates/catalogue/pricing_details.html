@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<hr>
+<div class="container-fluid border secondary-content-colour">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 p-0">
+            <div class="overflow-hidden text-center image-container">
+                {% load thumbnail %}
+                <img src='{% thumbnail pricing.promo_image 600x600 crop %}' alt="{{ pricing.title }}" class="listing-image">
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 p-0 text-center position-relative">
+            <div class="container-fluid">
+                <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_pricings' %}"><i class="fa-solid fa-dice-d20"></i> Back</a></button>
+                <h3>{{pricing.title}} mystery box</h3>
+                <h4>Description:</h4>
+                <hr class="border">
+                <div class="bg-white container">
+                    <p>{{princing.description}}</p>
+                    <p>The contents of this box contains 10 products with the catagory {{pricing.title}}
+                        click add to basket to checkout now! all orders come with a free mystery product from 
+                        any catagory!
+                    </p>
+                    <span>Price: £{{pricing.price}}</span>
+                </div>
+                <div class="row absolute">
+                    <div class="col-4 mb-2">
+                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_products' %}">View products</a></button>
+                    </div>
+                    {% if request.user.is_staff %}
+                    <div class="col-4 mb-2">
+                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:delete_pricing' pricing.id %}">Delete</a></button>
+                    </div>
+                    <div class="col-4 mb-2">
+                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:edit_pricing' pricing.id %}">Edit</a></button>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <form class="form" action="{% url 'basket:add_to_basket' pricing.id %}" method="POST">
+                            {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <span class="d-none"><input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ pricing.id }}" id="id_qty_{{ pricing.id }}"></span>
+                                            <button type="submit" class="btn bg-dark btn-lg" value="Add to Basket">Add To Basket</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mb-2 text-center">
+                <i class="fa-brands fa-d-and-d"></i><p class="text-muted">{{pricing.title}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+{% endblock %}
