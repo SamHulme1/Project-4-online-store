@@ -20,14 +20,14 @@
            
         </div>
         <div class="col-6 mt-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalog:get_favourite' %}"><i class="fa-solid fa-heart"></i>Favourites</a></button>
+            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:get_favourite' %}"><i class="fa-solid fa-heart"></i>Favourites</a></button>
         </div>
         {% if request.user.is_staff %}
         <div class="col-6 mt-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalog:add_product' %}"> Add Product <i class="fa-solid fa-plus"></i></a></button>
+            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:add_product' %}"> Add Product <i class="fa-solid fa-plus"></i></a></button>
         </div>
         <div class="col-6 mt-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalog:add_pricing' %}"> Add Pricing <i class="fa-solid fa-plus"></i></a></button>
+            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:add_pricing' %}"> Add Pricing <i class="fa-solid fa-plus"></i></a></button>
         </div>
         {% endif %}
     </div>
