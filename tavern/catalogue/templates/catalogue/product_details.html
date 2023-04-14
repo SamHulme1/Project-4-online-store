@@ -10,11 +10,11 @@
             {% if request.user.is_authenticated %}
                 {% if favourite %}
                 <div class="col-6 mb-2 heart-container">
-                    <a href="{% url 'catalog:favourite_product' product.id %}"><i class="fa-solid fa-heart icon-heart-full heart-icon"></i></a>
+                    <a href="{% url 'catalogue:favourite_product' product.id %}"><i class="fa-solid fa-heart icon-heart-full heart-icon"></i></a>
                 </div>
                 {% else %}
                 <div class="col-6 mb-2 heart-container">
-                    <a href="{% url 'catalog:favourite_product' product.id %}"><i class="far-sharp fa-regular fa-heart icon-heart-empty heart-icon"></i></a>
+                    <a href="{% url 'catalogue:favourite_product' product.id %}"><i class="far-sharp fa-regular fa-heart icon-heart-empty heart-icon"></i></a>
                 </div>
                 {% endif %}
             {% endif %}
