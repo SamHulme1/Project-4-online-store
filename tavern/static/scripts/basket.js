@@ -6,17 +6,26 @@ window.onload=function(){
     then get the input default value again and assign it the new value 
     
     */
-    let quantityInput = parseInt(document.getElementById("value-input").value);
-    let decreaseButton = document.getElementById("decrease-qty");
-    decreaseButton.addEventListener("click", function() {
-        quantityInput -- ;
-        document.getElementById("value-input").value = quantityInput;
-    });
+    let IncreaseButtons = document.getElementsByClassName("increase-qty");
+    for (let i = 0; i < IncreaseButtons.length; i++) {
+        let current = document.querySelector('.value-input');
+        let nextSibling = current.nextElementSibling;
+        IncreaseButtons[i].addEventListener("click", function() {
+            nextSibling.value ++;
+            console.log(nextSibling.value)
+        });
+      }
 
-    let IncreaseButton = document.getElementById("increase-qty");
-    IncreaseButton.addEventListener("click", function() {
-        quantityInput ++ ;
-        document.getElementById("value-input").value = quantityInput;
-    });
+    let DecreaseButtons = document.getElementsByClassName("decrease-qty");
+    console.log(DecreaseButtons);
+    for (let i = 0; i < DecreaseButtons.length; i++) {
+        let current = document.querySelector('.value-input');
+        let nextSibling = current.nextElementSibling;
+        DecreaseButtons[i].addEventListener("click", function() {
+            console.log(nextSibling.value)
+            nextSibling.value --;
+        });
+      }
+
 
 }

@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
 
-.light-mode{
-
+.absolute{
+    position: absolute;
+    bottom:0;
+    right:0;
+    left:0;
 }
 
 body {
