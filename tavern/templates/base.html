@@ -56,13 +56,13 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <span class="ml-4">Hello {{request.user}}</span>
-            <a class="dropdown-item" href="{% url 'catalog:get_favourite' %}">Saved products</a>
+            <a class="dropdown-item" href="{% url 'catalogue:get_favourite' %}">Saved products</a>
             <a class="dropdown-item" href="#">View/ manage orders</a>
             <a class="dropdown-item" href="{% url 'user_profiles:profile_view' %}">Manage Account</a>
             <a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a>
           </div>
         </li>
-        <form class="d-flex d-sm-block d-md-none" method="GET" action="{% url 'catalog:search_results'%}">
+        <form class="d-flex d-sm-block d-md-none" method="GET" action="{% url 'catalogue:search_results'%}">
           <input class="form-control me-2" type="search" name="searched" placeholder="Search"
             aria-label="search">
           <button class="btn search-button" type="submit">Search</button>
@@ -73,9 +73,9 @@
             Search by catagory
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a  class="dropdown-item" href="{% url 'catalog:all_products' %}">All</a>
+            <a  class="dropdown-item" href="{% url 'catalogue:all_products' %}">All</a>
           {% for catagories in products %}
-            <a  class="medium-txt nav-item" href="{% url 'catalog:catagory' cat=catagories.catagory %}">{{catagories.catagory}}</a>
+            <a  class="medium-txt nav-item" href="{% url 'catalogue:catagory' cat=catagories.catagory %}">{{catagories.catagory}}</a>
           {% endfor %}
           </div>
         </li>
@@ -110,9 +110,9 @@
   <header>
     <div class="container-fluid d-none d-lg-block secondary-content-colour">
       <div class="row text-center navbar">
-        <a class=" medium-txt nav-item" href="{% url 'catalog:all_products' %}">All</a>
+        <a class=" medium-txt nav-item" href="{% url 'catalogue:all_products' %}">All</a>
         {% for catagories in products %}
-        <a  class="medium-txt nav-item" href="{% url 'catalog:catagory' cat=catagories.catagory %}">{{catagories.catagory}}</a>
+        <a  class="medium-txt nav-item" href="{% url 'catalogue:catagory' cat=catagories.catagory %}">{{catagories.catagory}}</a>
         {% endfor %}
       </div>
     </div>

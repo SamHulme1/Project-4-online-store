@@ -3,7 +3,7 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .forms import CustomerOrderForm
 from basket.contexts import basket_contents
-from catalog.models import Pricing
+from catalogue.models import Pricing
 from .models import OrderLineItem, Order
 from django.conf import settings
 import stripe

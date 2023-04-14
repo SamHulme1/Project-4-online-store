@@ -3,4 +3,3 @@ from .models import Pricing, Product
 
 admin.site.register(Pricing)
 admin.site.register(Product)
-# Register your models here.

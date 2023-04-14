@@ -1,4 +1,4 @@
-from catalog.models import Pricing, Product
+from catalogue.models import Pricing, Product
 
 
 def catagory_management(request):

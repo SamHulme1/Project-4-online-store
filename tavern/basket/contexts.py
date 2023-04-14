@@ -1,7 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from catalog.models import Pricing 
+from catalogue.models import Pricing
 
 
 def basket_contents(request):

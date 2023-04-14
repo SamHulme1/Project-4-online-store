@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from .models import Pricing, Product
-from user_settings.models import UserSetting
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from .forms import CreateNewProduct, CreateNewPricing
@@ -10,7 +9,7 @@ from django.db.models import Q
 
 def catagory(request, cat):
     catagories = Product.objects.filter(catagory=cat)
-    return render(request, "catalog/catagories.html", {
+    return render(request, "catalogue/catagories.html", {
         "cat": cat, "catagories": catagories})
 
 
@@ -19,21 +18,21 @@ def search_results(request):
         searched = request.GET["searched"]
         results = Product.objects.filter(Q(title__icontains=searched) |
                                          Q(description__icontains=searched))
-        return render(request, 'catalog/search.html', {
+        return render(request, 'catalogue/search.html', {
             "searched": searched, "results": results})
     else:
-        return render(request, 'catalog/search.html', {})
+        return render(request, 'catalogue/search.html', {})
 
 
 def all_pricings(request):
     pricings = Pricing.objects.all()
-    return render(request, 'catalog/pricings.html', {
+    return render(request, 'catalogue/pricings.html', {
         'pricings': pricings})
 
 
 def all_products(request):
     products = Product.objects.all()
-    return render(request, 'catalog/products.html', {
+    return render(request, 'catalogue/products.html', {
         'products': products})
 
 
@@ -48,7 +47,7 @@ def product_details(request, id):
         "product": product,
         "favourite": favourite
     }
-    return render(request, 'catalog/product_details.html', context)
+    return render(request, 'catalogue/product_details.html', context)
 
 
 def pricing_details(request, id):
@@ -56,14 +55,14 @@ def pricing_details(request, id):
     context = {
         "pricing": pricing,
     }
-    return render(request, 'catalog/pricing_details.html', context)
+    return render(request, 'catalogue/pricing_details.html', context)
 
 
 @login_required
 def get_favourite(request):
     user = request.user
     favourite = user.favourite.all()
-    return render(request, 'catalog/favourites.html', {
+    return render(request, 'catalogue/favourites.html', {
         'favourite': favourite})
 
 
@@ -74,7 +73,7 @@ def add_product(request):
         if form.is_valid():
             new_product = form.save()
             messages.success(request, 'product created successfully')
-            return redirect(reverse('catalog:all_products'))
+            return redirect(reverse('catalogue:all_products'))
         else:
             messages.error(request, 'product not created'
                                     ' please ensure all form data is valid')
@@ -82,7 +81,7 @@ def add_product(request):
     else:
         form = CreateNewProduct()
 
-    template = 'catalog/add_product.html'
+    template = 'catalogue/add_product.html'
 
     return render(request, template, {'form': form})
 
@@ -98,7 +97,7 @@ def delete_product(request, id):
         messages.error(
             request,
             f"{request.user} only staff can delte products!")
-    return redirect(reverse('catalog:all_products'))
+    return redirect(reverse('catalogue:all_products'))
 
 
 @staff_member_required
@@ -109,7 +108,7 @@ def edit_product(request, id):
         if form.is_valid():
             product = form.save()
             messages.success(request, 'product updated successfully')
-            return redirect(reverse('catalog:all_products'))
+            return redirect(reverse('catalogue:all_products'))
         else:
             messages.error(request, 'product not updated'
                                     ' please ensure all form data is valid')
@@ -118,7 +117,7 @@ def edit_product(request, id):
         messages.info(
             request, f"{request.user} you're editing product {product.title}")
 
-    template = 'catalog/edit_product.html'
+    template = 'catalogue/edit_product.html'
     context = {
         'form': form,
         "product": product
@@ -134,7 +133,7 @@ def add_pricing(request):
         if form.is_valid():
             new_pricing = form.save()
             messages.success(request, 'pricing created successfully')
-            return redirect(reverse('catalog:all_products'))
+            return redirect(reverse('catalogue:all_products'))
         else:
             messages.error(request, 'pricing not created'
                                     ' please ensure all form data is valid')
@@ -142,7 +141,7 @@ def add_pricing(request):
     else:
         form = CreateNewPricing()
 
-    template = 'catalog/add_pricing.html'
+    template = 'catalogue/add_pricing.html'
 
     return render(request, template, {'form': form})
 
@@ -158,7 +157,7 @@ def delete_pricing(request, id):
         messages.error(
             request,
             f"{request.user} only staff can delte pricings!")
-    return redirect(reverse('catalog:all_products'))
+    return redirect(reverse('catalogue:all_products'))
 
 
 @staff_member_required
@@ -178,7 +177,7 @@ def edit_pricing(request, id):
         messages.info(
             request, f"{request.user} you're editing pricing {pricing.title}")
 
-    template = 'catalog/edit_pricing.html'
+    template = 'catalogue/edit_pricing.html'
     context = {
         'form': form,
         "pricing": pricing
@@ -196,4 +195,4 @@ def favourite_product(request, id):
     else:
         product.favourite.add(request.user)
         messages.success(request, "product favourited")
-    return redirect(reverse("catalog:product_details", args=[product.id]))
+    return redirect(reverse("catalogue:product_details", args=[product.id]))

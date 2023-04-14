@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from .models import Order, OrderLineItem
-from catalog.models import Pricing
+from catalogue.models import Pricing
 
 import json
 import time
