@@ -1,0 +1,19 @@
+,hr>
+<div class="container-fluid">
+    <div class="row">
+            {% for pricing in promo %}
+            <div class="col-md-4 col-sm-12">
+                <div class="card text-white overflow-hidden" style="height: 10vh;">
+                    <img class="card-img" src="{{pricing.promo_image.url}}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <div class="text-center">
+                            <h5 class="card-title"><button type="button" class="btn button-style btn-lg"><a
+                                href="{% url 'catalogue:pricing_details' pricing.id  %}">{{pricing.title}}</a></button></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+</div>
+21
