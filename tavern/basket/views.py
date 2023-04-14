@@ -1,18 +1,21 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.contrib import messages
+from catalogue.models import Pricing
 
 
 def basket_view(request):
     return render(request, 'basket/basket.html')
-# Create your views here.
 
 
 def add_to_basket(request, item_id):
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     basket = request.session.get('basket', {})
+    pricing = get_object_or_404(Pricing, id=item_id)
 
     if item_id in list(basket.keys()):
         basket[item_id] += quantity
+        messages.success(request, f"{pricing.title} added to basket")
     else:
         basket[item_id] = quantity
 
