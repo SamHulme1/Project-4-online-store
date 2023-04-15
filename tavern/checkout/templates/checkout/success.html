@@ -1,1 +1,52 @@
-<h1>Success</h1>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container-fluid secondary-content-colour">
+        <div class="row">
+            <div class=col>
+                <h2 class="text-center">Thanks for your order {{order.first_name}}</h2>
+                <p>Your order number is {{order.order_number}}</p>
+                <p>A confimation email will be sent to {{order.email}}</p>
+                <p>your items will be posted shortly to </p>
+                <p>{{ order.first_name }} {{ order.last_name }},</p>
+                <p>{{ order.address }},</p>
+                <p>{{ order.city }},</p>
+                <p>{{ order.county }},</p>
+                <p>{{ order.postcode }},</p>
+                <p>{{ order.country }},</p>
+                <h3>Order Summary</h3>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Quantity</th>
+                <th scope="col"> Product Name</th>
+                <th scope="col">Product Price</th>
+            </tr>
+        </thead>
+            {% for item in order.lineitems.all %}
+            <tbody>
+            <tr class="secondary-content-colour">
+                <th scope="row">{{item.quantity}}</th>
+                <td>{{item.pricing.title}}</td>
+                <td>£{{item.pricing.price}}</td>
+            </tr>
+            </tbody>
+            {% endfor %}
+    </table>
+    <div class="container-fluid secondary-content-colour text-center">
+        <div class="row">
+            <div class="col-12">
+                <span>Your order total today is: £{{order.grand_total}}</span>
+            </div>
+            <div class="col-12">
+                feel free to carry on perusing
+                <div class="mb-2"><i class="fa-brands fa-d-and-d divider"></i></div>
+                <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:all_products' %}"><i class="fa-solid fa-dice-d20"></i> Shop Now</a></button>
+                <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'checkout:orders' %}"><i class="fa-solid fa-dice-d20"></i> Orders</a></button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

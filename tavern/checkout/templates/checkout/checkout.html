@@ -6,17 +6,6 @@
         <form actions="{% url 'checkout:checkout' %}" method="POST" id="payment-form">
             {% csrf_token %}
             {{ form.as_p }}
-            {% if user.is_authenticated %}
-                <label for="id-save-info">Save details</label>
-                <input type="checkbox" id="id-save-info" name="save-info" checked>
-            {% else %}
-                <p>You need to 
-                    <a href="{% url 'account_login' %}">login</a>
-                    or
-                    <a href="{% url 'account_signup' %}">Create an account</a> 
-                    in order to save your infomation
-                </p> 
-            {% endif %}
             <div id="card-element"></div>
             <div class="text-center mt-2 mb-2">
                 <button type="submit" class="btn button-style btn-lg mb-2" id="submit-btn">Secure Checkout</button>
