@@ -8,6 +8,7 @@ class UserInfo(models.Model):
     UserInfo model for storing infomation about the user
     in referance to their contact details
     """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     d_first_name = models.CharField(max_length=150, null=True, blank=True)
     d_last_name = models.CharField(max_length=150, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
