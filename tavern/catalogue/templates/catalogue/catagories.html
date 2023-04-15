@@ -4,7 +4,7 @@
 <h2 class="text-center">{{cat}}</h2>
     {% if catagories %}
         {% for product in catagories %}
-            <div class="container-fluid">
+            <div class="container-fluid secondary-content-colour">
                 <div class="row">
                     <div class="col-md-3 col-sm-12 p-0">
                         <div class="text-center overflow-hidden border">
@@ -20,8 +20,8 @@
                     </div>
                 </div>
             </div>
-        {% empty %}
-            <h2 class="text-center">No results</h2>
         {% endfor %}
+    {% else %}
+        <h2 class="text-center">No results</h2>
     {% endif %}
 {% endblock %}
