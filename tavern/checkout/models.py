@@ -5,6 +5,7 @@ from django.conf import settings
 from django_countries.fields import CountryField
 from catalogue.models import Pricing
 from user_profiles.models import UserInfo
+from django.contrib.auth.models import User
 
 
 class Order(models.Model):

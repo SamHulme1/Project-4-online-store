@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid secondary-content-colour">
+    {% for order in previous_orders %}
+    <div class="row text-center">
+        <div class="col-3 mb-2">
+            <span>order number:</span>
+            {{order.order_number}}
+        </div>
+        <div class="col-3 mb-2">
+            <span>total:</span>
+            {{order.grand_total}}
+        </div>
+        <div class="col-3 mb-2">
+            <span>total:</span>
+            {{order.created}}
+        </div>
+        <div class="col-3 mb-2">
+            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'checkout:success' order_number=order.order_number %}"> View</a></button>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="mb-2 text-center"><i class="fa-brands fa-d-and-d divider"></i></div>
+    <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'checkout:orders' %}"><i class="fa-solid fa-dice-d20"></i> Orders</a></button>
+</div>
+{% endblock %}

@@ -10,4 +10,5 @@ urlpatterns = [
     path('success/<order_number>', views.success, name="success"),
     path('cache_checkout_session/', views.cache_checkout_session, name="cache_checkout_session"),
     path('wh/', webhook, name='webhook'),
+    path('orders/', views.orders, name='orders'),
 ]

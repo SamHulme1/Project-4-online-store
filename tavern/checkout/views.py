@@ -5,6 +5,8 @@ from .forms import CustomerOrderForm
 from basket.contexts import basket_contents
 from catalogue.models import Pricing
 from .models import OrderLineItem, Order
+from user_profiles.models import UserInfo
+from user_profiles.forms import UserInfoForm
 from django.conf import settings
 import stripe
 import json
@@ -57,7 +59,7 @@ def checkout(request):
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
-                            listing=listing,
+                            pricing=pricing,
                             quantity=item_data,
                         )
                         order_line_item.save()
@@ -66,7 +68,6 @@ def checkout(request):
                         request, "an item in you basket is no longer avalible")
                     order.delete()
                     return redirect(reverse('basket:basket_view'))
-            request.session['save_info'] = 'save-info' in request.POST
             return redirect(
                 reverse('checkout:success', args=[order.order_number]))
         else:
@@ -75,8 +76,9 @@ def checkout(request):
     else:
         basket = request.session.get('basket', {})
         if not basket:
-            messages.error("oops looks like there's nothing in your basket")
-            return redirect(reverse('store:all_listings'))
+            messages.error(
+                request, "oops looks like there's nothing in your basket")
+            return redirect(reverse('catalogue:all_products'))
         current_basket = basket_contents(request)
         current_basket_total = current_basket['grand_total']
         stripe_total = round(current_basket_total * 100)
@@ -101,6 +103,37 @@ def success(request, order_number):
     save_info = request.session.get('save_info')
     basket = request.session.get('basket', {})
     order = get_object_or_404(Order, order_number=order_number)
+    if request.user.is_authenticated:
+        profile = UserInfo.objects.filter(user=request.user).first()
+        if profile:
+            messages.success(
+                request, "your order has been processed and is on you account")
+        else:
+            new_profile_data = {
+                "d_first_name": order.first_name,
+                "d_last_name": order.last_name,
+                'd_email': order.email,
+                'd_phone_number': order.phone_number,
+                'd_address': order.address,
+                'd_city': order.city,
+                'd_county': order.county,
+                'd_postcode': order.postcode,
+                'd_country': order.country,
+            }
+            form = UserInfoForm(new_profile_data)
+            if form.is_valid():
+                profile = form.save()
+                profile.user = request.user
+                profile.save()
+                messages.success(
+                    request, "your order has been processed,"
+                             "a default account has been set up for you")
+
+        order.user_info = profile
+        order.save()
+
+    messages.success(
+        request, f"order created, your order number is {order.order_number}")
 
     if 'basket' in request.session:
         del request.session['basket']
@@ -108,6 +141,17 @@ def success(request, order_number):
     template = 'checkout/success.html'
     context = {
         'order': order
+    }
+
+    return render(request, template, context)
+
+
+def orders(request):
+    user = get_object_or_404(UserInfo, user=request.user)
+    previous_orders = Order.objects.filter(user_info=user.id)
+    template = 'checkout/orders.html'
+    context = {
+        'previous_orders': previous_orders
     }
 
     return render(request, template, context)
