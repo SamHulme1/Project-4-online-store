@@ -38,9 +38,8 @@
   {% endblock %}
 
 </head>
-
 <body>
-  <nav class="navbar navbar-expand-lg nav-bg ml-auto main-content-colour stick-top">
+  <nav class="navbar navbar-expand-lg nav-bg ml-auto main-content-colour">
     <a class="navbar-brand title-txt" href="{% url 'home' %}">. . . Tavern  <i class="fa-solid fa-beer-mug-empty"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +61,7 @@
             <a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a>
           </div>
         </li>
-        <form class="d-flex d-sm-block d-md-none" method="GET" action="{% url 'catalogue:search_results'%}">
+        <form class="d-flex" method="GET" action="{% url 'catalogue:search_results'%}">
           <input class="form-control me-2" type="search" name="searched" placeholder="Search"
             aria-label="search">
           <button class="btn search-button" type="submit">Search</button>
@@ -107,6 +106,7 @@
       </ul>
     </div>
   </nav>
+  <hr>
   <header>
     <div class="container-fluid d-none d-lg-block secondary-content-colour">
       <div class="row text-center navbar">
@@ -121,8 +121,10 @@
   {% if messages %}
   <div id="message-popup" class="container-fluid text-center">
     <span class="d-none" id="message-area">
+      <ul>
       {% for message in messages %}
-      <span> {{message}} </span>
+        <li>{{message}}</li>
+      </ul>
       {% endfor %}
     </span>
   </div>

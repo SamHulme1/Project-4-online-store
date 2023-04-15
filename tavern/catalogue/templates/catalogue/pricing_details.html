@@ -26,7 +26,7 @@
                 </div>
                 <div class="row absolute">
                     <div class="col-4 mb-2">
-                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_products' %}">View products</a></button>
+                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:catagory' cat=pricing.title %}">View products</a></button>
                     </div>
                     {% if request.user.is_staff %}
                     <div class="col-4 mb-2">

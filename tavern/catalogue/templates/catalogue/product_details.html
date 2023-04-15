@@ -22,19 +22,22 @@
         </div>
         <div class="col-md-6 col-sm-12 p-0">
             <div class="container-fluid secondary-content-colour">
-                <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_products' %}"><i class="fa-solid fa-dice-d20"></i> Back</a></button>
+                <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_products' %}"><i class="fa-solid fa-dice-d20"></i> Veiw products</a></button>
+                <hr class="border">
                 <h3>{{product.title}}</h3>
                 <h4>Description:</h4>
                 <p class="bg-white"> {{product.description}}</p>
-                {% if request.user.is_staff %}
                 <div class="text-center mt-2"><i class="fa-brands fa-d-and-d divider"></i><p class="text-muted">{{product.catagory}}</p></div>
+                <hr class="border-black">
                 <div class="row">
                     <div class="col-12 mb-2 text-right">
+                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:catagory' cat=product.catagory%}">View boxes</a></button>
+                        {% if request.user.is_staff %}
                         <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:delete_product' product.id %}">Delete</a></button>
                         <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:edit_product' product.id %}">Edit</a></button>
+                        {% endif %}
                     </div>
                 </div>
-                {% endif %}
             </div>
         </div>
     </div>
