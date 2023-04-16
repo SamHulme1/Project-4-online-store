@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
 from catalogue.models import Pricing
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def basket_view(request):
     return render(request, 'basket/basket.html')
 

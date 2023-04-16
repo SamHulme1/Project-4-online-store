@@ -31,7 +31,7 @@
                 <hr class="border-black">
                 <div class="row">
                     <div class="col-12 mb-2 text-right">
-                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:catagory' cat=product.catagory%}">View boxes</a></button>
+                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_pricings'%}">View boxes</a></button>
                         {% if request.user.is_staff %}
                         <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:delete_product' product.id %}">Delete</a></button>
                         <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:edit_product' product.id %}">Edit</a></button>

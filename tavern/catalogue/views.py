@@ -52,8 +52,12 @@ def product_details(request, id):
 
 def pricing_details(request, id):
     pricing = get_object_or_404(Pricing, id=id)
+    products = Product.objects.all()
+    product_catagory = products.filter(catagory=pricing.title)
     context = {
         "pricing": pricing,
+        "products": products,
+        "product_catagory": product_catagory,
     }
     return render(request, 'catalogue/pricing_details.html', context)
 

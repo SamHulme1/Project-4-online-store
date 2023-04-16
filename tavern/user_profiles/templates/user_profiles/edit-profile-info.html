@@ -7,7 +7,7 @@
             {% csrf_token %}
             {{form.as_p}}
             <div><i class="fa-brands fa-d-and-d divider"></i></div>
-                <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalog:all_products' %}"><i class="fa-solid fa-dice-d20"></i> Shop Now</a></button>
+                <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:all_products' %}"><i class="fa-solid fa-dice-d20"></i> Shop Now</a></button>
                 <button type="submit" class="btn button-style btn-lg mb-2"> Submit </button>
             {% if form.errors %}
                 <ul>

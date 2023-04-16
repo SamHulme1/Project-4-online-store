@@ -38,6 +38,16 @@
                     {% endif %}
                 </div>
                 <div class="row">
+                    <div class="col ">
+                        <h4 class="text-center">
+                            Products that could be in this box:
+                        </h4>
+                        {% for product in product_catagory %}
+                            <span>{{product.title }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-12 mb-2">
                         <form class="form" action="{% url 'basket:add_to_basket' pricing.id %}" method="POST">
                             {% csrf_token %}
