@@ -12,15 +12,17 @@
             <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'user_profiles:create_profile_info' %}"><i class="fa-regular fa-address-card"></i>Add/edit Profile</a></button>
         </div>
         <div class="col-6 mt-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'user_settings:create_settings' %}"><i class="fa-solid fa-gear"></i></a></button>
-           
-        </div>
-        <div class="col-6 mt-3">
             <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'checkout:orders' %}"><i class="fa-solid fa-sort"></i>Orders</a></button>
            
         </div>
         <div class="col-6 mt-3">
             <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:get_favourite' %}"><i class="fa-solid fa-heart"></i>Favourites</a></button>
+        </div>
+        <div class="col-6 mt-3">
+            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'account_reset_password' %}">Change Password</a></button>
+        </div>
+        <div class="col-6 mt-3">
+            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'account_email' %}">Change Email</a></button>
         </div>
         {% if request.user.is_staff %}
         <div class="col-6 mt-3">

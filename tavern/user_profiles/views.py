@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from .models import UserInfo
-from user_settings.models import UserSetting
 from django.contrib.auth.decorators import login_required
 from .forms import UserInfoForm
 

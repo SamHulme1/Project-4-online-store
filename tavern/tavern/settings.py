@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'catalogue',
     'basket',
     'home',
-    'user_profiles',
-    'user_settings', 
+    'user_profiles', 
     'checkout',
 ]
 
