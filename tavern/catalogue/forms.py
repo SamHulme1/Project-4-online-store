@@ -19,7 +19,7 @@ class CreateNewPricing(forms.ModelForm):
 class CreateNewProduct(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ["title", "product_image", "description", "catagory", ]
+        fields = ["title", "product_image", "description", "catagory"]
 
         widgets = {
             "catagory": forms.Select(

@@ -8,7 +8,7 @@ from django.db.models import Q
 
 
 def catagory(request, cat):
-    catagories = Product.objects.filter(catagory=cat)
+    catagories = Product.objects.filter(catagory_name=cat)
     return render(request, "catalogue/catagories.html", {
         "cat": cat, "catagories": catagories})
 
@@ -18,6 +18,12 @@ def search_results(request):
         searched = request.GET["searched"]
         results = Product.objects.filter(Q(title__icontains=searched) |
                                          Q(description__icontains=searched))
+        if results:
+            results = results
+        else:
+            results = Pricing.objects.filter(Q(title__icontains=searched) |
+                                             Q(description__icontains=searched))
+
         return render(request, 'catalogue/search.html', {
             "searched": searched, "results": results})
     else:
@@ -76,6 +82,8 @@ def add_product(request):
         form = CreateNewProduct(request.POST, request.FILES)
         if form.is_valid():
             new_product = form.save()
+            new_product.catagory_name = str(new_product.catagory)
+            new_product.save()
             messages.success(request, 'product created successfully')
             return redirect(reverse('catalogue:all_products'))
         else:

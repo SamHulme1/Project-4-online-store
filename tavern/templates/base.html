@@ -112,7 +112,7 @@
       <div class="row text-center navbar">
         <a class=" medium-txt nav-item" href="{% url 'catalogue:all_products' %}">All</a>
         {% for catagories in products %}
-        <a  class="medium-txt nav-item" href="{% url 'catalogue:catagory' cat=catagories.catagory %}">{{catagories.catagory}}</a>
+        <a  class="medium-txt nav-item" href="{% url 'catalogue:catagory' cat=catagories.catagory_name %}">{{catagories.catagory_name}}</a>
         {% endfor %}
       </div>
     </div>
