@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <div class="container-fluid secondary-content-colour">
+    <div class="container-fluid secondary-content-colour padding">
         <h3 class="text-center">Complete the checkout form for delivery infomation</h3>
         <form actions="{% url 'checkout:checkout' %}" method="POST" id="payment-form">
             {% csrf_token %}

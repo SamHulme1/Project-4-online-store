@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+{% if searched %}
+    <h2 class="text-center secondary-content-colour">Showing results for {{ searched }} </h2>
     {% for product in results %}
     <div class="container-fluid content-bg">
-        {% if searched %}
-        <h2 class="text-center">Showing results for {{ searched }} </h2>
-        {% endif %}
         <div class="row">
             <div class="col-md-3 col-sm-12 p-0">
-                <div class="text-center overflow-hidden border">
+                <div class="text-center overflow-hidden border image-container">
                     {% load thumbnail %}
                     <a href="{{ product.product_image.url }}" target="_blank">
-                        <img src='{% thumbnail product.product_image 400x400 crop %}' alt="{{ product.title }}" class="listing-image">
+                        <img src='{% thumbnail product.product_image 300x300 crop %}' alt="{{ product.title }}" class="listing-image">
                     </a>
                     <div class="col-12 secondary-content-colour p-0">
                         <p class="bg-white">{{product.title}}</p>
@@ -21,7 +20,8 @@
             </div>
         </div>
     </div>
-    {% empty %}
-        <h2 class="text-center">No results</h2>
     {% endfor %}
+{% else %}
+<h2 class="text-center secondary-content-colour">No results</h2>
+{% endif%}
 {% endblock%}

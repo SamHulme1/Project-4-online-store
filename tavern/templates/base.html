@@ -40,15 +40,26 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg nav-bg ml-auto main-content-colour">
-    <a class="navbar-brand title-txt" href="{% url 'home' %}">. . . Tavern  <i class="fa-solid fa-beer-mug-empty"></i></a>
+    <a class="navbar-brand title-txt d-none d-md-block" href="{% url 'home' %}">. . . Tavern  <i class="fa-solid fa-beer-mug-empty"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
     </button>
+    <span class="nav-item mr-2 ml-2 d-sm-block d-md-none" id="notification-mobile">
+      <div id="message-button-mobile" class="btn">
+        <i class="fa-solid fa-bell notification-icon"></i>
+      </div>
+      {% if messages %}
+      <div id="notification-status-message-mobile" class="text-center">{{messages|length}}</div>
+      {% else %}
+      <div id="notification-status-none-mobile" class="text-center">0</div>
+      {% endif %}
+    </span>
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav m-0">
         {% if request.user.is_authenticated %}
-        <li class="nav-item dropdown mr-2 ml-2">
+        <a class="d-block d-md-none text-center" href="{% url 'home' %}">Home</a>
+        <li class="nav-item dropdown mr-2 ml-2 text-center">
           <a class="nav-link dropdown-toggle medium-txt" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             My Account
@@ -56,17 +67,17 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <span class="ml-4">Hello {{request.user}}</span>
             <a class="dropdown-item" href="{% url 'catalogue:get_favourite' %}">Saved products</a>
-            <a class="dropdown-item" href="#">View/ manage orders</a>
+            <a class="dropdown-item" href="{% url 'checkout:orders' %}">View/ manage orders</a>
             <a class="dropdown-item" href="{% url 'user_profiles:profile_view' %}">Manage Account</a>
             <a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a>
           </div>
         </li>
-        <form class="d-flex" method="GET" action="{% url 'catalogue:search_results'%}">
+        <form class="d-flex mr-2" method="GET" action="{% url 'catalogue:search_results'%}">
           <input class="form-control me-2" type="search" name="searched" placeholder="Search"
             aria-label="search">
           <button class="btn search-button" type="submit">Search</button>
         </form>
-        <li class="nav-item dropdown d-sm-block d-md-none">
+        <li class="nav-item dropdown d-sm-block d-md-none text-center">
           <a class="nav-link dropdown-toggle medium-txt" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Search by catagory
@@ -78,7 +89,7 @@
           {% endfor %}
           </div>
         </li>
-        <li class="text-center nav-item mr-2 ml-2" id="shopping-basket">
+        <li class="text-center nav-item mr-2 ml-2 text-center" id="shopping-basket">
           <a href="{% url 'basket:basket_view' %}"><i class="fa-solid fa-basket-shopping"></i></a>
           <div>
             {% if grand_total %}
@@ -88,7 +99,7 @@
             {% endif %}
           </div>
         </li>
-        <li class="nav-item mr-2 ml-2" id="notification">
+        <li class="nav-item mr-2 ml-2 d-none d-md-block" id="notification">
           <div id="message-button" class="btn">
             <i class="fa-solid fa-bell notification-icon"></i>
           </div>
@@ -106,9 +117,8 @@
       </ul>
     </div>
   </nav>
-  <hr>
   <header>
-    <div class="container-fluid d-none d-lg-block secondary-content-colour">
+    <div class="container-fluid d-none d-lg-block nav-colour">
       <div class="row text-center navbar">
         <a class=" medium-txt nav-item" href="{% url 'catalogue:all_products' %}">All</a>
         {% for catagories in products %}
@@ -139,7 +149,7 @@
   {% block content %}
   {% endblock %}
 
-  <footer class="py-3 mt-2 sticky-bottom">
+  <footer class="py-3 mt-2 fixed-bottom">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
       <li class="nav-item"><a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter footer-icon" aria-hidden="true"></i><span class="sr-only">twitter link</span></a></li>
       <li class="nav-item"><a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook footer-icon" aria-hidden="true"></i><span class="sr-only">facebook link</span></a></li>

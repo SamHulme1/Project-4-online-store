@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <div class="container-fluid text-center secondary-content-colour mt-2">
+    <div class="container-fluid text-center secondary-content-colour mt-2 padding">
         <h2>Create Product</h2>
         <form method="POST" action="{% url 'catalogue:edit_pricing' pricing.id %}" class="form mb-2 text-center" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
             <div class="col-12">
-                    <button class="btn" type="submit">Submit</button>
+                <button type="submit" class="btn button-style btn-lg mb-2">Submit</button>
             </div>
             {% if form.errors %}
                 <ul>

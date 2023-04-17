@@ -7,6 +7,7 @@
     left:0;
 }
 
+
 body {
     background-image: url(https://images.pexels.com/photos/1151243/pexels-photo-1151243.jpeg);
     background-repeat: no-repeat;
@@ -42,8 +43,12 @@ body {
     color: white;
 }
 
-.content{
-    height: 50vh;
+.nav-colour{
+    background-color: #9a5127;
+}
+
+.padding{
+    padding-bottom: 10em;
 }
 
 .secondary-content-colour{
@@ -80,7 +85,6 @@ body {
 
 .divider{
     font-size: 5em;
-    margin-top: 2em;
     color: black;
 }
 .button-style {
@@ -120,8 +124,13 @@ button {
 
 a, button {
     color: white;
+    text-decoration:none;
 }
 
+a:hover {
+    text-decoration:none;
+    color: black;
+}
 
 
 

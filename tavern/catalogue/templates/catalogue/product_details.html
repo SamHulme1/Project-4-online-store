@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div class="container-fluid border">
+<div class="container-fluid border padding secondary-content-colour">
     <div class="row">
         <div class="col-md-6 col-sm-12 p-0">
             <div class="overflow-hidden text-center image-container">
                 {% load thumbnail %}
-                <img src='{% thumbnail product.product_image 600x600 crop %}' alt="{{ product.title }}" class="listing-image">
+                <img src='{% thumbnail product.product_image 500x500 crop %}' alt="{{ product.title }}" class="listing-image">
             {% if request.user.is_authenticated %}
                 {% if favourite %}
                 <div class="col-6 mb-2 heart-container">

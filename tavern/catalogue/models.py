@@ -25,7 +25,8 @@ class Product(models.Model):
         upload_to='product_images/', default='default.jpg')
     description = models.TextField()
     created = models.DateField(auto_now_add=True)
-    catagory_name = models.CharField(max_length=200, default="some name", null=False)
+    catagory_name = models.CharField(
+        max_length=200, default="uncatagorised", null=False)
     catagory = models.ForeignKey(
         Pricing, blank=True, null=True, on_delete=models.CASCADE)
     favourite = models.ManyToManyField(

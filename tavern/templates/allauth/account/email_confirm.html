@@ -15,7 +15,7 @@
 
 <p class="secondary-content-colour m-0 text-center">{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
 
-<form method="post" action="{% url 'account_confirm_email' confirmation.key %}" class="secondary-content-colour text-center">
+<form method="post" action="{% url 'account_confirm_email' confirmation.key %}" class="secondary-content-colour text-center padding">
 {% csrf_token %}
     <button type="submit" class="button-style btn-lg">{% trans 'Confirm' %}</button>
 </form>

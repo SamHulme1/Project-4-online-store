@@ -8,7 +8,7 @@
 
 <p class="secondary-content-colour text-center">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
-<form class="signup secondary-content-colour text-center" id="signup_form" method="post" action="{% url 'account_signup' %}">
+<form class="signup secondary-content-colour text-center padding" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
   {{ form.as_p }}
   {% if redirect_field_value %}
