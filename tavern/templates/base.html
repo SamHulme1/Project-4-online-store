@@ -9,6 +9,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Tavern is a fantasy themed website that sells, fantasy themed drinks">
+  <title>Tavern</title>
   {% endblock %}
 
   {% block extra_meta %}
@@ -43,11 +45,12 @@
     <a class="navbar-brand title-txt d-none d-md-block" href="{% url 'home' %}">. . . Tavern  <i class="fa-solid fa-beer-mug-empty"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+      <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i><span class="sr-only">navbar collapse button</span></span>
     </button>
+    {% if request.user.is_authenticated %}
     <span class="nav-item mr-2 ml-2 d-sm-block d-md-none" id="notification-mobile">
       <div id="message-button-mobile" class="btn">
-        <i class="fa-solid fa-bell notification-icon"></i>
+        <i class="fa-solid fa-bell notification-icon" arria-hidden="true"></i>
       </div>
       {% if messages %}
       <div id="notification-status-message-mobile" class="text-center">{{messages|length}}</div>
@@ -55,6 +58,7 @@
       <div id="notification-status-none-mobile" class="text-center">0</div>
       {% endif %}
     </span>
+    {% endif %}
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav m-0">
         {% if request.user.is_authenticated %}
@@ -99,20 +103,23 @@
             {% endif %}
           </div>
         </li>
-        <li class="nav-item mr-2 ml-2 d-none d-md-block" id="notification">
-          <div id="message-button" class="btn">
-            <i class="fa-solid fa-bell notification-icon"></i>
-          </div>
-          {% if messages %}
-          <span id="notification-status-message" class="text-center">{{messages|length}}</span>
+        {% if request.user.is_authenticated %}
+          <li class="nav-item mr-2 ml-2 d-none d-md-block" id="notification">
+            <div id="message-button" class="btn">
+              <span class="sr-only">notifiaction message button</span>
+              <i class="fa-solid fa-bell notification-icon" arria-hidden="true"></i>
+            </div>
+            {% if messages %}
+            <span id="notification-status-message" class="text-center">{{messages|length}}</span>
+            {% else %}
+            <span id="notification-status-none" class="text-center">0</span>
+            {% endif %}
+          </li>
           {% else %}
-          <span id="notification-status-none" class="text-center">0</span>
+          <li class="nav-item">
+            <a class="nav-link medium-txt" href="{% url 'account_signup' %}">Create Account/Sign-in</a>
+          </li>
           {% endif %}
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link medium-txt" href="{% url 'account_signup' %}">Create Account/Sign-in</a>
-        </li>
         {% endif %}
       </ul>
     </div>
@@ -121,19 +128,18 @@
     <div class="container-fluid d-none d-lg-block nav-colour">
       <div class="row text-center navbar">
         <a class=" medium-txt nav-item" href="{% url 'catalogue:all_products' %}">All</a>
-        {% for catagories in products %}
-        <a  class="medium-txt nav-item" href="{% url 'catalogue:catagory' cat=catagories.catagory_name %}">{{catagories.catagory_name}}</a>
+        {% for catagories in products_all %}
+        <a  class="medium-txt nav-item name-of-catagory" href="{% url 'catalogue:catagory' cat=catagories.catagory_name %}">{{catagories.catagory_name}}</a>
         {% endfor %}
       </div>
     </div>
   </header>
-
   {% if messages %}
   <div id="message-popup" class="container-fluid text-center">
     <span class="d-none" id="message-area">
-      <ul>
+      <ul class="list-group p-0">
       {% for message in messages %}
-        <li>{{message}}</li>
+        <li class="list-group-item">{{message}}</li>
       </ul>
       {% endfor %}
     </span>
@@ -156,7 +162,7 @@
       <li class="nav-item"><a href="https://www.linkedin.com/" target="_blank" ><i class="fa-brands fa-linkedin footer-icon" aria-hidden="true"></i><span class="sr-only">linkedin link</span></a></li>
     </ul>
   </h3>
-    <p class="text-center text-muted"><i class="fa-solid fa-beer-mug-empty"></i> © 2023 Tavern</p>
+    <p class="text-center text-muted"><i class="fa-solid fa-beer-mug-empty" arria-hidden="true"></i> © 2023 Tavern</p>
   </footer>
 
 </body>

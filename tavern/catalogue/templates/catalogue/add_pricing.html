@@ -2,7 +2,8 @@
 {% load static %}
 {% block content %}
     <div class="container-fluid text-center secondary-content-colour mt-2 padding">
-        <h2>Create Product</h2>
+        <h2>Create Product Pricing Box</h2>
+        <span class="sr-only">create pricing box form</span>
         <form method="POST" action="{% url 'catalogue:add_pricing' %}" class="form mb-2 text-center" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}

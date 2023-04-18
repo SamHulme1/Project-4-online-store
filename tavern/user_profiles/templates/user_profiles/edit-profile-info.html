@@ -6,7 +6,7 @@
         <form method="POST" action="{% url 'user_profiles:edit_profile_info' usersInfomation.id %}" class="form mb-2" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
-            <div><i class="fa-brands fa-d-and-d divider"></i></div>
+            <div><i class="fa-brands fa-d-and-d divider" arria-hidden="true"></i></div>
                 <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:all_products' %}"><i class="fa-solid fa-dice-d20"></i> Shop Now</a></button>
                 <button type="submit" class="btn button-style btn-lg mb-2"> Submit </button>
             {% if form.errors %}

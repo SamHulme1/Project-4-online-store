@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
 
 .absolute{
     position: absolute;
@@ -12,6 +12,14 @@ body {
     background-image: url(https://images.pexels.com/photos/1151243/pexels-photo-1151243.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+button, h1, h2, h3, h4 {
+    font-family: 'Aboreto', cursive;
+}
+
+button {
+    font-size: 1em;
 }
 
 .hero-image {
@@ -113,7 +121,6 @@ label {
 textarea, label, select, input {
     width: 100%;
     border: none;
-    border-radius: 2em;
     text-align: center;
 }
 
@@ -142,12 +149,6 @@ a:hover {
 
 
 
-.medium-txt{
-    font-size: 1em;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-}
-
 #nav-right {
     position: absolute;
     right: 0;
@@ -158,7 +159,7 @@ a:hover {
 #notification-status-message {
     height: 1.5em;
     width: 1.5em;
-    background-color: green;
+    color: green;
     border-radius: 50%;
     display: inline-block;
 }
@@ -166,7 +167,7 @@ a:hover {
 #notification-status-none{
     height: 1.5em;
     width: 1.5em;
-    background-color: red;
+    color: red;
     border-radius: 50%;
     display: inline-block;
 }
@@ -175,13 +176,7 @@ a:hover {
     color: white;
     font-size: 1.5em;
 }
-.medium-txt-black{
-    font-size: 1em;
-    font-family: 'Montserrat', sans-serif;
-    color: black;
-    font-weight: 200;
-    letter-spacing: -2px;
-}
+
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -211,10 +206,6 @@ a:hover {
     font-size: 2em;
 }
 
-.button-text {
-    margin-top: 3em;
-    font-size: 36px;
-}
 
 
 .navbar-nav { 
@@ -244,21 +235,17 @@ a:hover {
     width: 100%;
 }
 
-
-.breaker {
-    border-top: 3px solid transparent;
-}
-
-
-#message-popup {
-    background-color: green;
-}
-
-
-.title-breaker{
-    border:2px solid #528ad9;
-}
-
+@media only screen and (max-width: 641px) {
+    body {
+      background: black;
+    }
+    .image-container .detail-image {
+        height: 15em;
+    }
+    button {
+        font-size: 0.5em;
+    }
+  }
 
 
 .StripeElement,

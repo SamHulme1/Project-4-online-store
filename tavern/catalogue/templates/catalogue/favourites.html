@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<h2 class="text-center secondary-content-colour catagory-name m-0">Favourites</h2>
     {% for product in favourite %}
         <div class="container-fluid secondary-content-colour padding">
             <div class="row">
-                <div class="col-md-3 col-sm-12 p-0">
+                <div class="col-lg-3 col-md-4 col-sm-12 p-0">
                     <div class="text-center overflow-hidden border image-container">
                         {% load thumbnail %}
                         <a href="{{ product.product_image.url }}" target="_blank">

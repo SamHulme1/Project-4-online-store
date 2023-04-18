@@ -6,15 +6,15 @@
         <div class="col-md-6 col-sm-12 p-0">
             <div class="overflow-hidden text-center image-container">
                 {% load thumbnail %}
-                <img src='{% thumbnail product.product_image 500x500 crop %}' alt="{{ product.title }}" class="listing-image">
+                <img src='{% thumbnail product.product_image 500x500 crop %}' alt="{{ product.title }}" class="listing-image detail-image">
             {% if request.user.is_authenticated %}
                 {% if favourite %}
                 <div class="col-6 mb-2 heart-container">
-                    <a href="{% url 'catalogue:favourite_product' product.id %}"><i class="fa-solid fa-heart icon-heart-full heart-icon"></i></a>
+                    <a href="{% url 'catalogue:favourite_product' product.id %}"><i class="fa-solid fa-heart icon-heart-full heart-icon" arria-hidden="true"><span class="sr-only">product is favourited icon</span></i></a>
                 </div>
                 {% else %}
                 <div class="col-6 mb-2 heart-container">
-                    <a href="{% url 'catalogue:favourite_product' product.id %}"><i class="far-sharp fa-regular fa-heart icon-heart-empty heart-icon"></i></a>
+                    <a href="{% url 'catalogue:favourite_product' product.id %}"><i class="far-sharp fa-regular fa-heart icon-heart-empty heart-icon" arria-hidden="true"><span class="sr-only">product is unfavourited icon</span></i></a>
                 </div>
                 {% endif %}
             {% endif %}
@@ -22,19 +22,19 @@
         </div>
         <div class="col-md-6 col-sm-12 p-0">
             <div class="container-fluid secondary-content-colour">
-                <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_products' %}"><i class="fa-solid fa-dice-d20"></i> Veiw products</a></button>
+                <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_products' %}"><i class="fa-solid fa-dice-d20" arria-hidden="true"></i> Veiw products</a></button>
                 <hr class="border">
                 <h3>{{product.title}}</h3>
                 <h4>Description:</h4>
                 <p class="bg-white"> {{product.description}}</p>
-                <div class="text-center mt-2"><i class="fa-brands fa-d-and-d divider"></i><p class="text-muted">{{product.catagory}}</p></div>
+                <div class="text-center mt-2"><i class="fa-brands fa-d-and-d divider" arria-hidden="true"></i><p class="text-muted">{{product.catagory}}</p></div>
                 <hr class="border-black">
                 <div class="row">
                     <div class="col-12 mb-2 text-right">
                         <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_pricings'%}">View boxes</a></button>
                         {% if request.user.is_staff %}
-                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:delete_product' product.id %}">Delete</a></button>
-                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:edit_product' product.id %}">Edit</a></button>
+                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:delete_product' product.id %}">Delete</a><span class="sr-only">delete this product</span></button>
+                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:edit_product' product.id %}">Edit</a><span class="sr-only">edit this product</span></button>
                         {% endif %}
                     </div>
                 </div>

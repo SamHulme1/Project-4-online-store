@@ -18,6 +18,33 @@ window.onload=function(){
         `;
         messageDisplay.removeAttribute("class");
         });
+    
+    let messageButtonMobile = document.getElementById("message-button-mobile");
+    let messageDisplayMobile = document.getElementById("message-area");
+    messageButtonMobile.addEventListener("click", function viewMessages(){
+        notificationStatus.innerHTML = 
+        `<div id="message-button-mobile" class="btn">
+        <i class="fa-solid fa-bell notification-icon"></i>
+        </div>
+        <span id="notification-status-none-mobile" class="text-center">0</span>
+        `;
+        messageDisplayMobile.removeAttribute("class");
+        });
+    let catagory = document.getElementsByClassName("name-of-catagory");
+    for (let i = 0; i < catagory.length; i++){
+        if (catagory[i].innerText === "None"){
+            console.log(catagory[i])
+            catagory[i].innerText = "uncatagorised";
+        }
+    }
+    let catagoryTitle = document.getElementsByClassName("catagory-name");
+    for (let i = 0; i < catagoryTitle.length; i++){
+        if (catagoryTitle[i].innerText === "None"){
+            catagoryTitle[i].innerText = "uncatagorised";
+        }
+    }
 }
+
+
 
 
