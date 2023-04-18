@@ -224,7 +224,7 @@ def edit_pricing(request, id):
         if form.is_valid():
             pricing = form.save()
             messages.success(request, 'pricing updated successfully')
-            return redirect(reverse('catalog:all_products'))
+            return redirect(reverse('catalogue:all_products'))
         else:
             messages.error(request, 'pricing not updated'
                                     ' please ensure all form data is valid')

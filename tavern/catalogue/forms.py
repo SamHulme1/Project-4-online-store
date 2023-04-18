@@ -6,8 +6,8 @@ choices = Pricing.objects.all().values_list("title", "title")
 
 catagory_list = []
 # assign them into the empty array
-for catagory in choices:
-    catagory_list.append(catagory)
+# for catagories in choices:
+#     catagory_list.append(catagories)
 
 
 class CreateNewPricing(forms.ModelForm):
