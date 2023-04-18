@@ -13,14 +13,21 @@ class Order(models.Model):
     user_info = models.ForeignKey(
         UserInfo, on_delete=models.SET_NULL,
         null=True, blank=True, related_name='orders')
-    first_name = models.CharField(max_length=150, null=False, blank=True)
-    last_name = models.CharField(max_length=150, null=False, blank=True)
-    phone_number = models.CharField(max_length=20, null=False, blank=True)
-    email = models.EmailField()
-    address = models.CharField(max_length=150, null=False, blank=True)
-    city = models.CharField(max_length=40, null=False, blank=True)
-    county = models.CharField(max_length=80, null=False, blank=True)
-    postcode = models.CharField(max_length=20, null=False, blank=True)
+    first_name = models.CharField(
+        max_length=150, null=False, blank=True, default="first name")
+    last_name = models.CharField(
+        max_length=150, null=False, blank=True, default="last name")
+    phone_number = models.CharField(
+        max_length=20, null=False, blank=True, default="phone number")
+    email = models.EmailField(default="email")
+    address = models.CharField(
+        max_length=150, null=False, blank=True, default="address")
+    city = models.CharField(
+        max_length=40, null=False, blank=True, default="city")
+    county = models.CharField(
+        max_length=80, null=False, blank=True, default="city")
+    postcode = models.CharField(
+        max_length=20, null=False, blank=True, default="postcode")
     country = CountryField(blank_label='Country', null=False, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     delivery_cost = models.DecimalField(
@@ -62,7 +69,7 @@ class OrderLineItem(models.Model):
         Order, null=False, blank=False, on_delete=models.CASCADE,
         related_name='lineitems')
     pricing = models.ForeignKey(
-        Pricing, null=False, blank=False, on_delete=models.CASCADE)
+        Pricing, null=True, blank=False, on_delete=models.SET_NULL)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False,

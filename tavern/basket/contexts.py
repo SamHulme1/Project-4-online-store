@@ -5,6 +5,12 @@ from catalogue.models import Pricing
 
 
 def basket_contents(request):
+    """context processor for the basket so that it can be dispalyed
+    accross the site sets the inital value of the basket and its value
+    iterates through the basket items and changes the price of the basket
+    based upon the value of the boxes in the basket
+    calculates the grandtotal for the basket and the delivery price
+    which update basket total"""
     basket_items = []
     total = 0
     product_count = 0

@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg nav-bg ml-auto main-content-colour">
+    <a class="navbar-brand title-txt d-none d-md-block" href="{% url 'home' %}">. . . Tavern  <i class="fa-solid fa-beer-mug-empty"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i><span class="sr-only">navbar collapse button</span></span>
+    </button>
+    {% if request.user.is_authenticated %}
+    <span class="nav-item mr-2 ml-2 d-sm-block d-md-none" id="notification-mobile">
+      <div id="message-button-mobile" class="btn">
+        <i class="fa-solid fa-bell notification-icon" arria-hidden="true"></i>
+      </div>
+      {% if messages %}
+      <div id="notification-status-message-mobile" class="text-center">{{messages|length}}</div>
+      {% else %}
+      <div id="notification-status-none-mobile" class="text-center">0</div>
+      {% endif %}
+    </span>
+    {% endif %}
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav m-0">
+        {% if request.user.is_authenticated %}
+        <a class="d-block d-md-none text-center" href="{% url 'home' %}">Home</a>
+        <li class="nav-item dropdown mr-2 ml-2 text-center">
+          <a class="nav-link dropdown-toggle medium-txt" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            My Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <span class="ml-4">Hello {{request.user}}</span>
+            <a class="dropdown-item" href="{% url 'catalogue:get_favourite' %}">Saved products</a>
+            <a class="dropdown-item" href="{% url 'checkout:orders' %}">View/ manage orders</a>
+            <a class="dropdown-item" href="{% url 'user_profiles:profile_view' %}">Manage Account</a>
+            <a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a>
+          </div>
+        </li>
+        <form class="d-flex mr-2" method="GET" action="{% url 'catalogue:search_results'%}">
+          <input class="form-control me-2" type="search" name="searched" placeholder="Search"
+            aria-label="search">
+          <button class="btn search-button" type="submit">Search</button>
+        </form>
+        <li class="nav-item dropdown d-sm-block d-md-none text-center">
+          <a class="nav-link dropdown-toggle medium-txt" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Search by catagory
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a  class="dropdown-item" href="{% url 'catalogue:all_products' %}">All</a>
+          {% for catagories in products_all %}
+            <a  class="medium-txt nav-item" href="{% url 'catalogue:catagory' cat=catagories.catagory %}">{{catagories.catagory}}</a>
+          {% endfor %}
+          </div>
+        </li>
+        <li class="text-center nav-item mr-2 ml-2 text-center" id="shopping-basket">
+          <a href="{% url 'basket:basket_view' %}"><i class="fa-solid fa-basket-shopping"></i></a>
+          <div>
+            {% if grand_total %}
+            £{{ grand_total|floatformat:2 }}
+            {% else %}
+              £0.00
+            {% endif %}
+          </div>
+        </li>
+        {% if request.user.is_authenticated %}
+          <li class="nav-item mr-2 ml-2 d-none d-md-block" id="notification">
+            <div id="message-button" class="btn">
+              <span class="sr-only">notifiaction message button</span>
+              <i class="fa-solid fa-bell notification-icon" arria-hidden="true"></i>
+            </div>
+            {% if messages %}
+            <span id="notification-status-message" class="text-center">{{messages|length}}</span>
+            {% else %}
+            <span id="notification-status-none" class="text-center">0</span>
+            {% endif %}
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link medium-txt" href="{% url 'account_signup' %}">Create Account/Sign-in</a>
+          </li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    </div>
+</nav>

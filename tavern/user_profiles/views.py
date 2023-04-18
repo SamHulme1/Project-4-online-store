@@ -7,12 +7,20 @@ from .forms import UserInfoForm
 
 @login_required
 def profile_view(request):
+    """"view for the profile home page"""
     return render(
             request, 'user_profiles/my-profile.html')
 
 
 @login_required
 def create_profile_info(request):
+    """view for creating a profile
+    if a profile already exist with the same user which has a one to many
+    relationship reverse to the edit profie view with the arguments of
+    the users info id
+    else render the create user info view which saves the new object and
+    updates saves the user for the profile hidden user feild as the
+    request user"""
     user_info = UserInfo.objects.filter(user=request.user).first()
     if user_info:
         return redirect(
@@ -36,6 +44,9 @@ def create_profile_info(request):
 
 @login_required
 def edit_profile_info(request, id):
+    """view for editing the users profile, same functionality
+    as the create profile but with the instance as the retrieved user info
+    object """
     usersInfomation = get_object_or_404(
         UserInfo, id=id)
     if request.method == 'POST':

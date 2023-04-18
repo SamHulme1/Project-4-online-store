@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .forms import CustomerOrderForm
@@ -10,10 +10,14 @@ from user_profiles.forms import UserInfoForm
 from django.conf import settings
 import stripe
 import json
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import HttpResponse
 
 
 @require_POST
 def cache_checkout_session(request):
+    """view for caching the checkout session in order to modify the stripe
+    payment intent"""
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -30,7 +34,13 @@ def cache_checkout_session(request):
         return HttpResponse(content=e, status=400)
 
 
+@login_required
 def checkout(request):
+    """View for creating the checkiout takes the stipe payment keys
+    gets the information on the user from the input form
+    and the basket from the session uses the information
+    provided to generate an order form for the user iterates
+    through the items in the basket to create the stipe payment total"""
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_seceret_key = settings.STRIPE_SECRET_KEY
 
@@ -99,8 +109,16 @@ def checkout(request):
     return render(request, template, context)
 
 
+@login_required
 def success(request, order_number):
-    save_info = request.session.get('save_info')
+    """view for successful checkouts
+    takes the order number as an argument
+    gets the order generated
+    if the user has a profile, gets the users info and
+    saves the order to their profile, if the user hasnt created
+    a profile yet, creates a new profile for them based uppon the
+    data provided by them when they created an order saves the user
+    to the profile and removes the basket from the session """
     basket = request.session.get('basket', {})
     order = get_object_or_404(Order, order_number=order_number)
     if request.user.is_authenticated:
@@ -147,6 +165,8 @@ def success(request, order_number):
 
 
 def orders(request):
+    """View for the user to see there orders, links on
+    the page relate to the previous orders"""
     user = get_object_or_404(UserInfo, user=request.user)
     previous_orders = Order.objects.filter(user_info=user.id)
     template = 'checkout/orders.html'

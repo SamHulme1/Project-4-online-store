@@ -3,12 +3,11 @@
 {% load basket_tools %}
 
 {% block content %}
-<hr>
 <div class="container-fluid secondary-content-colour">
     <div class="row">
         <div class="col-12 text-center">
-            <span>Shopping Basket</span>
-            <i class="fa-solid fa-basket-shopping"></i>
+            <h1>Shopping Basket</h1>
+            <i class="fa-solid fa-basket-shopping" arria-hidden="true"></i>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -31,16 +30,16 @@
                                 {% csrf_token %}
                                 <div class="row quantity-control">
                                     <div class="col-3 text-right">
-                                        <button class="btn increase-qty" data-item_id="{{ item.item_id }}" id="increase-qty">
+                                        <button class="btn increase-qty" data-item_id="{{ item.item_id }}">
                                             <span class="bg-white">
-                                                <i class="fas fa-plus fa-sm" arria-hidden="true"></i>
+                                                <i class="fas fa-plus fa-sm" arria-hidden="true"><span class="sr-only">increase quantity</span></i>
                                             </span>
                                         </button>
                                     </div>
                                     <div class="col-3">
                                         <span class="form-group">
                                             <span class="input-group">
-                                                <button class="btn button-style update-basket value-input">adjust qty</button>
+                                                <button class="btn button-style update-basket value-input d-none"></button>
                                                 <input class="form-control qty_input" type="number" name="quantity" value="{{item.quantity}}" min="0" max="{{ item.pricing.quantity }}" data-item_id="{{ item.item_id }}">
                                             </span>
                                         </span>
@@ -48,7 +47,7 @@
                                     <div class="col-3 text-left">
                                         <button class="btn decrease-qty" data-item_id="{{ item.item_id }}">
                                             <span class="bg-white">
-                                                <i class="fas fa-minus fa-sm" arria-hidden="true"></i>
+                                                <i class="fas fa-minus fa-sm" arria-hidden="true"><span class="sr-only">decrease quantity</span></i>
                                             </span>
                                         </button>
                                     </div>
@@ -76,7 +75,7 @@
 {{ block.super }}
 <script type="text/javascript" src="{% static 'scripts/basket.js' %}"></script>
 <script type="text/javascript">
-    // Adjust quantity in the basket when the user clicks on the adjust button
+    // script to update the basket when the user clicks on either the increase or decrease buttons
     $('.update-basket').click(function(e) {
         let form = $(this).prev('.update-form');
         let data = {'csrfmiddlewaretoken': csrfToken};

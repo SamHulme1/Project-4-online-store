@@ -1,6 +1,9 @@
 const stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 const clientSecret = $('#id_client_secret').text().slice(1, -1);
 
+// functionality for this comes from stripe documentation 
+// https://stripe.com/docs
+
 $( document ).ready(function() {
     let stripe = Stripe(stripePublicKey);
     let elements = stripe.elements();
@@ -71,7 +74,7 @@ $( document ).ready(function() {
                 }
             });
         }).fail(function () {
-            location.reload()
-        })
+            location.reload();
+        });
     });
 });

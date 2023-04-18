@@ -9,22 +9,27 @@ window.onload=function(){
     */
     let IncreaseButtons = document.getElementsByClassName("increase-qty");
     let DecreaseButtons = document.getElementsByClassName("decrease-qty");
-    let quantityValue = document.querySelectorAll('.value-input');
 
-    for (let i = 0; i < IncreaseButtons.length; i++) {
-        let nextSibling = quantityValue[i].nextElementSibling;
-        IncreaseButtons[i].addEventListener("click", function() {
-            nextSibling.value ++;
-        });
-      }
+    if(IncreaseButtons===null){
+        return;
+    } else {
+        let quantityValue = document.querySelectorAll('.value-input');
+        for (let i = 0; i < IncreaseButtons.length; i++) {
+            let nextSibling = quantityValue[i].nextElementSibling;
+            IncreaseButtons[i].addEventListener("click", function() {
+                nextSibling.value ++;
+            });
+          }
+    }
 
-    console.log(DecreaseButtons);
-    for (let i = 0; i < DecreaseButtons.length; i++) {
-        let nextSibling = quantityValue[i].nextElementSibling;
-        DecreaseButtons[i].addEventListener("click", function() {
-            nextSibling.value --;
-        });
-      }
+    if(DecreaseButtons===null){
+        let quantityValue = document.querySelectorAll('.value-input');
+        for (let i = 0; i < DecreaseButtons.length; i++) {
+            let nextSibling = quantityValue[i].nextElementSibling;
+            DecreaseButtons[i].addEventListener("click", function() {
+                nextSibling.value --;
+            });
+          }
+    }
 
-
-}
+};

@@ -3,7 +3,7 @@ from .models import UserInfo
 
 
 class UserInfoForm(forms.ModelForm):
-
+    """form for creating a profile, the d represents default"""
     class Meta:
         model = UserInfo
         fields = ["d_phone_number", "d_address", "d_county", 'd_city',

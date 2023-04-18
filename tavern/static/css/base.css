@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
 
+
+/* fixers and spacing */
+
+.navbar-nav { 
+    margin-right: 3em;
+}
+
 .absolute{
     position: absolute;
     bottom:0;
@@ -7,7 +14,27 @@
     left:0;
 }
 
+#nav-right {
+    position: absolute;
+    right: 0;
+    margin-right: 2em;
+    
+}
 
+.padding{
+    padding-bottom: 10em;
+}
+
+a:hover {
+    text-decoration:none;
+    color: black;
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    z-index: 5;
+}
+
+/* body and element styles */
 body {
     background-image: url(https://images.pexels.com/photos/1151243/pexels-photo-1151243.jpeg);
     background-repeat: no-repeat;
@@ -22,6 +49,37 @@ button {
     font-size: 1em;
 }
 
+.navbar.nav-line{
+    display: inline-block;
+}
+
+
+label {
+    color: white;
+    font-size: 1.5em;
+}
+
+textarea, label, select, input {
+    width: 100%;
+    border: none;
+    text-align: center;
+}
+
+button {
+    padding: 0.5em;
+    border: none;
+}
+
+a, button {
+    color: white;
+    text-decoration:none;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Images and containers */
 .hero-image {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -46,44 +104,18 @@ button {
     top: 35%;
     left: 26%;
 }
-.dark-mode {
-    background-color: black;
-    color: white;
+
+.listinging-image-container {
+    width: 100%;
+    height: 25em;
+    overflow: hidden;
+    position: relative;
 }
+
+/* Colours */
 
 .nav-colour{
     background-color: #9a5127;
-}
-
-.padding{
-    padding-bottom: 10em;
-}
-
-.secondary-content-colour{
-    background-color: #CF9D7C;
-}
-
-.footer-icon{
-    color:black;
-    font-size: 1.2em;
-    margin-right: 3em;
-    margin-left: 3em;
-}
-
-.main-content-colour{
-    background-color: #694F3F;
-}
-
-.title-txt{
-    font-size: 2em;
-    font-family: 'Montserrat', sans-serif;
-    color:#F5BA93;
-    font-weight: 800;
-    letter-spacing: -2px;
-}
-
-.navbar.nav-line{
-    display: inline-block;
 }
 
 .search-button{
@@ -91,10 +123,14 @@ button {
     color: black;
 }
 
-.divider{
-    font-size: 5em;
-    color: black;
+.secondary-content-colour{
+    background-color: #CF9D7C;
 }
+
+.main-content-colour{
+    background-color: #694F3F;
+}
+
 .button-style {
     background-color: #d58c45;
     color: white;
@@ -103,58 +139,25 @@ footer{
     background-color: white;
 }
 
-.product-info-area{
-    background-color: white;
+/* Icons */
+
+.footer-icon{
+    color:black;
+    font-size: 1.2em;
+    margin-right: 3em;
+    margin-left: 3em;
+}
+
+.divider{
+    font-size: 5em;
+    color: black;
 }
 
 .heart-icon{
     font-size: 10vh;
 }
 
-
-label {
-    color: white;
-    font-size: 1.5em;
-}
-
-
-textarea, label, select, input {
-    width: 100%;
-    border: none;
-    text-align: center;
-}
-
-button {
-    padding: 0.5em;
-    border: none;
-}
-
-a, button {
-    color: white;
-    text-decoration:none;
-}
-
-a:hover {
-    text-decoration:none;
-    color: black;
-}
-
-
-
-
-
-
-
-
-
-
-
-#nav-right {
-    position: absolute;
-    right: 0;
-    margin-right: 2em;
-    
-}
+/* Notification */
 
 #notification-status-message {
     height: 1.5em;
@@ -176,64 +179,19 @@ a:hover {
     color: white;
     font-size: 1.5em;
 }
-
-
-::-webkit-scrollbar {
-    width: 8px;
-}
   
-
 .nav-item:hover {
     background: transparent;
     text-decoration: none;
     color:#F5BA93;
 }
   
-.small-txt{
-    font-size: 0.5em;
-    font-family: 'Montserrat', sans-serif;
-    color:white;
-}
-
-
-
-.navbar-expand-lg .navbar-nav .dropdown-menu {
-    z-index: 5;
-}
-
 
 .nav-icon {
     font-size: 2em;
 }
 
-
-
-.navbar-nav { 
-    margin-right: 3em;
-}
-
-.c-img {
-    width: 100%;
-}
-
-
-.listing-info-container {
-    border-radius: 1em;
-    position: relative;
-    height: 25em;
-}
-
-.listinging-image-container {
-    width: 100%;
-    height: 25em;
-    overflow: hidden;
-    position: relative;
-}
-
-
-.listing-image-details {
-    width: 100%;
-}
+/* Media Screens */
 
 @media only screen and (max-width: 641px) {
     body {
@@ -242,11 +200,18 @@ a:hover {
     .image-container .detail-image {
         height: 15em;
     }
-    button {
-        font-size: 0.5em;
+
+    button, p, h3, h4 {
+        font-size: 1em;
     }
+
+    h1, h2 {
+        font-size: 1.5em;
+    }
+
   }
 
+/* Stripe Styling */
 
 .StripeElement,
 .stripe-style-input {

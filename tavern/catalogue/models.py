@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 
 
 class Pricing(models.Model):
-    title = models.CharField(max_length=200)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    title = models.CharField(max_length=200, default="title")
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=20)
     promo_image = models.ImageField(
         upload_to='promo_images/', default='default.jpg')
     description = models.TextField(default='description')
@@ -20,10 +20,10 @@ class Pricing(models.Model):
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, default="title")
     product_image = models.ImageField(
         upload_to='product_images/', default='default.jpg')
-    description = models.TextField()
+    description = models.TextField(default='description')
     created = models.DateField(auto_now_add=True)
     catagory_name = models.CharField(
         max_length=200, default="uncatagorised", null=False)

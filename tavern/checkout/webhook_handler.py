@@ -6,6 +6,9 @@ import json
 import time
 
 
+# webhooks for handling stripe payment intents
+
+
 class StripeWH_Handler:
 
     def __init__(self, request):
@@ -17,10 +20,14 @@ class StripeWH_Handler:
             status=200)
 
     def handle_payment_intent_succeeded(self, event):
+        """handler for successful intents
+        checks whether an order intent was created successfully
+        and if an order was created on the db if
+        the order doesn't exist but the intent
+        was successful create a new order"""
         intent = event.data.object
         pid = intent.id
         basket = intent.metadata.basket
-        save_info = intent.metadata.save_info
 
         stripe_charge = stripe.Charge.retrieve(
             intent.latest_charge
@@ -61,7 +68,8 @@ class StripeWH_Handler:
                 time.sleep(1)
         if order_exists:
             return HttpResponse(
-                    content=f'Webhook recieved: {event["type"]} | SUCCESS: order has been verified',
+                    content=f'Webhook recieved: {event["type"]} | SUCCESS:'
+                    'order has been verified',
                     status=200)
         else:
             order = None
@@ -91,13 +99,17 @@ class StripeWH_Handler:
             except Exception as e:
                 if order:
                     order.delete()
-                return HttpResponse(content=f'Webhook recieved: {event["type"]} | ERROR: {e}',
+                return HttpResponse(content=f'Webhook'
+                                    'recieved'
+                                    ':{event["type"]} | ERROR: {e}',
                                     status=500)
         return HttpResponse(
-            content=f'Webhook recieved: {event["type"]} | SUCCESS: webhook created order',
+            content=f'Webhook recieved:'
+            '{event["type"]} | SUCCESS: webhook created order',
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):
+        """webhook for handing failed payment intents"""
         return HttpResponse(
             content=f'Webhook recieved: {event["type"]}',
             status=200)

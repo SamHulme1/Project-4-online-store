@@ -9,8 +9,8 @@ from django.db.models import Q
 
 def catagory(request, cat):
     """view for getting the catagory of a product
-    I used a tutorial to help me build this view, see the
-    readme credits for more information and link"""
+    I used a tutorial to help me build this view,
+    https://www.youtube.com/watch?v=PTsljbR-Cmo"""
     catagories = Product.objects.filter(catagory_name=cat)
     return render(request, "catalogue/catagories.html", {
         "cat": cat, "catagories": catagories})
