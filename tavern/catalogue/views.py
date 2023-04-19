@@ -23,7 +23,7 @@ def search_results(request):
     Finishes by returning the user to the catagory page and
     showing them the results
     of all products in there search,
-    if te results are empty the page will show no results"""
+    if the results are empty the page will show no results"""
     if request.method == "GET":
         searched = request.GET["searched"]
         results = Product.objects.filter(Q(title__icontains=searched) |

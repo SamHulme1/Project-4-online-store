@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
     <div class="container-fluid text-center secondary-content-colour mt-2 padding">
+        <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'user_profiles:profile_view'%}"></a>back</button>
         <h2>Create Product Pricing Box</h2>
         <span class="sr-only">create pricing box form</span>
         <form method="POST" action="{% url 'catalogue:add_pricing' %}" class="form mb-2 text-center" enctype="multipart/form-data">
@@ -9,6 +10,9 @@
             {{form.as_p}}
             <div class="col-12">
                 <button type="submit" class="btn button-style btn-lg mb-2">Submit</button>
+            </div>
+            <div class="col-12">
+                <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'user_profiles:profile_view'%}">Back</a></button>
             </div>
             {% if form.errors %}
                 <ul>

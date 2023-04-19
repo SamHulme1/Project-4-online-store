@@ -88,6 +88,7 @@ a, button {
 
 .image-container{
     overflow: hidden;
+    text-align: center;
     width: 100%;
     background-color: black;
 }
@@ -207,6 +208,37 @@ footer{
 
     h1, h2 {
         font-size: 1.5em;
+    }
+
+  }
+
+
+  @media only screen and (min-width: 1920px) {
+    
+
+    table, button, p, h3, h4, h5, .notification-icon, .logo, span{
+        font-size: 3em;
+    }
+
+    #message-button {
+        vertical-align:top;
+        margin: 0.5em;
+    }
+
+    .notification-status-none{
+        font-size: 3em;
+    }
+
+    .search-field, .search-button{
+        display: none;
+    }
+
+    a {
+        font-size: 2.5em;
+    }
+
+    h1, h2 {
+        font-size: 3em;
     }
 
   }

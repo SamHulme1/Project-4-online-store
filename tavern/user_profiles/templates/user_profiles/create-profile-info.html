@@ -7,7 +7,10 @@
             {% csrf_token %}
             {{form.as_p}}
             <div class="col-12">
-                    <button class="btn" type="submit">Submit</button>
+                    <button class="btn button-style btn-lg mb-2" type="submit">Submit</button>
+            </div>
+            <div class="col-12">
+                <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'user_profiles:profile_view'%}">Back</a></button>
             </div>
             {% if form.errors %}
                 <ul>

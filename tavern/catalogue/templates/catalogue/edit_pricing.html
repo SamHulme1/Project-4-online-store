@@ -10,6 +10,9 @@
             <div class="col-12">
                 <button type="submit" class="btn button-style btn-lg mb-2">Submit</button>
             </div>
+            <div class="col-12">
+                <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:all_pricings'%}"></a>back</button>
+            </div>
             {% if form.errors %}
                 <ul>
                 {% for error in form.errors %} 

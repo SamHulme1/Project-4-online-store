@@ -1,5 +1,5 @@
 # Tavern
-To see the live version of the site click [here!]()
+To see the live version of the site click [here!](https://tavern-app-project.herokuapp.com/)
 
 ![mockup-image]()
 
@@ -26,6 +26,7 @@ To see the live version of the site click [here!]()
 
 - To create a website were users can create, read, upadte and delete data 
 - To create a full stack eccomerce application
+- To build a better understanding of Django
 
 ---
 ### Target Audience: 
@@ -84,10 +85,14 @@ As a returning admin, I need to be able to:
 ---
 
 ### Colors:
+I used the following colour palete of browns, blacks and whites accross the site, I got this colour 
+pallete from one of the images I generated. I used a brown pallete because it is a colour accosiated with
+an old wooden tavern.
 
 ---
 ### Fonts
-
+The font I used accross the site was a google font called Aboreto, becuase I thought that it looked 
+rustic which fitted the theme.
 ---
 ### Imagery
 
@@ -98,9 +103,14 @@ The current prouct and pricing images on the site were created using the AI art 
 
 The site is designed to be responsive accross all screen sizes, different page are store behind appropriate buttons and links which have been named appropriately. I used page breakers to help divide the information on the differnet pages. I made sure that any written infomaion on the site was informative to help guide the users through the site. informative written information is also accompanied by appropriate and related images that are stored on the database
 
-
 ---
 ## WireFrames: 
+
+
+
+
+
+
 
 
 ---
@@ -212,15 +222,17 @@ The database was build using sqlite, The diffent table on the database are as fo
 13. [Jshint](https://jshint.com/) To validate Javascript 
 14. [NightCafe](https://nightcafe.studio/) To create the images used on the site
 15. [Django](https://www.mongodb.com/) To create the apps and project
-16. 
-17. [Bootstrap](https://materializecss.com/) To create site responsiveness and styling
-18. [Balsamiq](https://en.wikipedia.org/wiki/Balsamiq) To create wireframes
-19. [ExtendsClass](https://extendsclass.com/python-tester.html) To validate Python
-20. [django-allauth] To allow user to create and manage accounts 
-21. [django-countries] for the country fields on the forms 
-22. [easy-thumbnails] To render the images at set dimentions 
-23. [Pillow] To allow the admins to upload images to the site
-24. [strip] To create and handle test payments on the site
+16. [Bootstrap](https://materializecss.com/) To create site responsiveness and styling
+17. [Balsamiq](https://en.wikipedia.org/wiki/Balsamiq) To create wireframes
+18. [ExtendsClass](https://extendsclass.com/python-tester.html) To validate Python
+19. [django-allauth](https://django-allauth.readthedocs.io/en/latest/) 
+    To allow user to create and manageaccounts 
+20. [django-countries](https://pypi.org/project/django-countries/) for the country fields on the forms 
+21. [easy-thumbnails](https://easy-thumbnails.readthedocs.io/en/latest/usage/)
+     To render the images at set dimentions 
+22. [Pillow](https://pillow.readthedocs.io/en/stable/) To allow the admins to upload images to the site
+23. [strip](https://stripe.com/en-gb) To create and handle test payments on the site
+24. [pexels](https://www.pexels.com/) For the hero background image
 ---
 ## Deployment
 
@@ -249,47 +261,32 @@ The database was build using sqlite, The diffent table on the database are as fo
 12. After doing so set the enviroment secret keys and public keys. in order to set up the webhook you will need to create a new webhook on Stripe, then setting the url on stirpe to the url of the project, be sure to include the /wh at the end of the link. set the stripe webhook key in the enviroment. 
 
 
-
-
-
-
-
-
-
-
-
 To connect your newly cloned site to Heroku youll need to first
-1. set up an env.py file in the root, make sure to include this file in the gitignore file though
-2. Add the following to the env file:
-    - os.environ.setdefault("IP", "0.0.0.0")
-    - os.environ.setdefault("PORT", "5000")
-    - os.environ.setdefault("SECRET_KEY", "A key of your choice")
-    - os.environ.setdefault("MONGO_URI", "mongodbURIlink")
-    - os.environ.setdefault("MONGO_DBNAME", "your database name")
-3. use the command pip freeze requirements.txt to install create file to contains dependencies
-4. Create a Procfile by entering the command echo web: python app.py
-5. Use git add, commit and push to send your created files across to github
-6. On Heroku create a new app then select deploy from GitHub, find your repository and then click connect 
-7. In the created app go to settings and click on reveal config vars
-8. Set these vars to be equal to the same values you added into your env file
-9. Create a new cluster in mongo db with 3 collections: users, ships and citizens
-10. Get you mongoDB collection string by clicking on connect your application, this is your MONGO_URI link
-11. Back on Heroku click on deploy, automatic deploy and select your branch. Enable automatic deployes
-12. If you see the message app deployed sucessfully well done! You have deployed your site.
-
-
-
+1. create a new database to host your project on elephantsql
+2. create a new app on heroku
+2. sign into heroku using the command heroku signin 
+3. add a remote to the app in the command line by folling the steps defined of heroku, 
+5. Use git add, commit and push to send your created files across to github, then use
+heroku push master to push the files to heroku
+6. In the created app go to settings and click on reveal config vars
+6. Set the vars that are stored in the enviroment on the settings file in gitpod
+8. Back on Heroku click on deploy, automatic deploy and select your branch. Enable automatic deployes
+9. If you see the message app deployed sucessfully well done! You have deployed your site.
 
 
 ## Testing 
 
 ### Testing User's Stories 
 
-#### First Time User
 
 
 
-#### Returning User
+
+
+#### First Time User customer
+#### First Time User staff
+#### Returning User customer
+#### Returning User Staff
 
 
 
@@ -374,8 +371,9 @@ Below are a number of manual tests I've run towards the end of devlopment
 - result: I can change my email
 7. Can I create an order
 - result: can can create an order on the site by using a Stripe test key
-
-
+8. Do my actions on the website cause errors in the console 
+- results: I found errors appeared in the code where the parts of the templates werent beeing rendered due to the user being unauthenticated were still targeted. The notification icon was also causing errors due to the button still being clickable but it having no element to remove due to the message area not existing in the DOM yet.
+-Action: I put all the javascript that targeted elements behind conditional if statemens to which check if the dom element was nulll
 ---
 
 ### Browser testing 
@@ -384,16 +382,29 @@ The site has been tested on Chrome, Firefox and Microsoft Edge
 
 ---
 ## Bugs 
+1. Javascript decrease and increase buttons only increased the top value
+Caused by: I forgot to add the index of the buttons and the elements i wanted to change so it only 
+changed the first
+fixed by: adding indexes to the buttons
+2. navbar item names changed on each page
+Caused by: incorrect naming on the main context processor
+Fixed by: Chaning the names to be unique
+3. when migrating to the elephant database I had an error in my catagory froms code which cased the console
+to throw the error: 
+django.db.utils.ProgrammingError: relation "catalogue_pricing" does not exist
+LINE 1: ...ricing"."title", "catalogue_pricing"."title" FROM "catalogue...
+fixed by: I had to contact student support for this one and they helped to find the route of the issue
+4. Deployment error when deploying the site, the error said that there was no defined buildpack
+fixed by: changing the heroku-22 to heroku 20 and adding a runtime file
 
 
 ---
 ### Bugs Left in Code:
-
+- To my knowledge there arn't any bugs left in the code
 
 ---
 ## Credits 
 
-### Code
 
 ---
 ### Content 
@@ -405,13 +416,13 @@ The site has been tested on Chrome, Firefox and Microsoft Edge
 
 - The images for the site were created using an online AI image generator [NightCafe](https://nightcafe.studio/)
 - The favicon was created using [Favicon Io](https://favicon.io/favicon-converter/)
-- The background image came from [Pexels]()
+- The background image came from [Pexels](https://www.pexels.com/)
 ### Acknowledgements
 
 - Other students on slack for their support 
 - Code Institute for the helpful materials and support, I used the turorials on the checkout page and basket to help me build functionality for these apps as my project was simialr to the Boutique Ado project on the course content
 - I used these tutorials to help me to build the favourites section and catagories section:
-    - 
-    - 
+    - [tutorial link](https://www.youtube.com/watch?v=PTsljbR-Cmo)
+    - [tutorial link](https://www.youtube.com/watch?v=1XiJvIuvqhs&t=653s)
 - W3C for their library of information when I needed a quick refresher on the content I'd learnt about during the course
-- W3C for conent that I had previously not learnt about, mainly for the iexact queries used for the search functionaliy [W3C](https://www.w3schools.com/django/ref_lookups_iexact.php)
+- W3C for conent that I had previously not learnt about, mainly more a more detialed review of the iexact queries used for the search functionaliy [W3C](https://www.w3schools.com/django/ref_lookups_iexact.php)

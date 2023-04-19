@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg nav-bg ml-auto main-content-colour">
-    <a class="navbar-brand title-txt d-none d-md-block" href="{% url 'home' %}">. . . Tavern  <i class="fa-solid fa-beer-mug-empty"></i></a>
+    <a class="navbar-brand logo d-none d-md-block" href="{% url 'home' %}">. . . Tavern  <i class="fa-solid fa-beer-mug-empty"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i><span class="sr-only">navbar collapse button</span></span>
     </button>
-    {% if request.user.is_authenticated %}
+  {% if request.user.is_authenticated %}
     <span class="nav-item mr-2 ml-2 d-sm-block d-md-none" id="notification-mobile">
       <div id="message-button-mobile" class="btn">
         <i class="fa-solid fa-bell notification-icon" arria-hidden="true"></i>
@@ -34,7 +34,7 @@
           </div>
         </li>
         <form class="d-flex mr-2" method="GET" action="{% url 'catalogue:search_results'%}">
-          <input class="form-control me-2" type="search" name="searched" placeholder="Search"
+          <input class="form-control me-2 search-field" type="search" name="searched" placeholder="Search"
             aria-label="search">
           <button class="btn search-button" type="submit">Search</button>
         </form>
@@ -60,7 +60,6 @@
             {% endif %}
           </div>
         </li>
-        {% if request.user.is_authenticated %}
           <li class="nav-item mr-2 ml-2 d-none d-md-block" id="notification">
             <div id="message-button" class="btn">
               <span class="sr-only">notifiaction message button</span>
@@ -72,12 +71,11 @@
             <span id="notification-status-none" class="text-center">0</span>
             {% endif %}
           </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link medium-txt" href="{% url 'account_signup' %}">Create Account/Sign-in</a>
-          </li>
-          {% endif %}
-        {% endif %}
+  {% else %}
+      <li class="nav-item">
+          <a class="nav-link medium-txt" href="{% url 'account_signup' %}">Create Account/Sign-in</a>
+      </li>
+  {% endif %}
       </ul>
     </div>
 </nav>
