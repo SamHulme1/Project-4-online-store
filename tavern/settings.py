@@ -22,11 +22,10 @@ ALLOWED_HOSTS = ['tavern-app-project.herokuapp.com', 'localhost']
 
 
 # cloudinay
-cloudinary.config( 
-  cloud_name=os.environ.get("CLOUD_NAME", ""),
-  api_key=os.environ.get("CLOUD_API_KEY", ""),
-  api_secret=os.environ.get("CLOUD_API_SECRET", ""),
-)
+
+CLOUD_NAME = os.environ.get("CLOUD_NAME", "")
+CLOUD_API_KEY = os.environ.get("CLOUD_API_KEY", "")
+CLOUD_API_SECRET = os.environ.get("CLOUD_API_SECRET", "")
 
 
 # Application definition
