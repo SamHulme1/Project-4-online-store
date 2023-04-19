@@ -1,6 +1,9 @@
 import os
 import dj_database_url
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,12 +13,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', '')
+SECRET_KEY = os.environ.get("SECRET_KEY", "")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = "DEVELOPMENT" in os.environ
 
 ALLOWED_HOSTS = ['tavern-app-project.herokuapp.com', 'localhost']
+
+
+# cloudinay
+cloudinary.config( 
+  cloud_name=os.environ.get("CLOUD_NAME", ""),
+  api_key=os.environ.get("CLOUD_API_KEY", ""),
+  api_secret=os.environ.get("CLOUD_API_SECRET", ""),
+)
 
 
 # Application definition
@@ -34,6 +45,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'django_countries',
     'crispy_forms',
+    'cloudinary',
 
     'catalogue',
     'basket',

@@ -1,13 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 
 class Pricing(models.Model):
     title = models.CharField(max_length=200, default="title")
     price = models.DecimalField(max_digits=6, decimal_places=2, default=20)
-    promo_image = models.ImageField(
-        upload_to='promo_images/', default='default.jpg')
+    promo_image = CloudinaryField('image')
     description = models.TextField(default='description')
     created = models.DateField(default=timezone.now)
 
@@ -21,8 +21,7 @@ class Pricing(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=200, default="title")
-    product_image = models.ImageField(
-        upload_to='product_images/', default='default.jpg')
+    product_image = CloudinaryField('image')
     description = models.TextField(default='description')
     created = models.DateField(auto_now_add=True)
     catagory_name = models.CharField(
