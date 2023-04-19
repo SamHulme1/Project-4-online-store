@@ -1,1 +1,0 @@
-web: gunicorn tavern.tavern.wsgi:application
