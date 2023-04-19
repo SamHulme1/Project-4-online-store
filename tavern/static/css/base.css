@@ -194,10 +194,18 @@ footer{
 
 /* Media Screens */
 
+
+@media only screen and (max-width: 1669px) {
+    .display-extra-large {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 641px) {
     body {
       background: black;
     }
+    
     .image-container .detail-image {
         height: 15em;
     }
@@ -210,14 +218,44 @@ footer{
         font-size: 1.5em;
     }
 
+    .product-image{
+        width:50%;
+    }
+
+    .listing-image{
+        width:100%;
+    }
+
   }
 
+  @media only screen and (max-width: 300px) {
+    .image-container .detail-image {
+        height: 8em;
+    }
+    }
 
-  @media only screen and (min-width: 1920px) {
-    
+  @media only screen and (min-width: 1674px) {
+    .display-small {
+        display: none;
+    }
+    .display-extra-large {
+        display: block;
+    }
 
-    table, button, p, h3, h4, h5, .notification-icon, .logo, span{
-        font-size: 3em;
+    .product-image{
+        width:100%;
+    }
+
+    .listing-image{
+        width:100%;
+    }
+
+    .image-container{
+        background-color: transparent;
+    }
+
+    body {
+        font-size: 2em;
     }
 
     #message-button {
@@ -233,15 +271,70 @@ footer{
         display: none;
     }
 
-    a {
-        font-size: 2.5em;
-    }
 
     h1, h2 {
+        font-size: 4em;
+    }
+
+    p {
+        font-size: 2em;
+    }
+
+    #message-button{
+        font-size: 2em;
+    }
+
+    .logo {
+        font-size: 2em;
+    }
+
+    .button-style {
         font-size: 3em;
     }
 
+    .nav-text {
+        font-size: 2em;
+    }
+
   }
+
+  @media only screen and (min-width: 1800px){
+
+    select {
+        font-size: 3em;
+    }
+     
+    .list-group-item {
+        font-size: 3em;
+    }
+
+    h1, h2 {
+        font-size: 4em;
+    }
+    h3, h4, h5, h6 {
+        font-size: 2em;
+    }
+    #message-button {
+        vertical-align:top;
+        margin: 0px;
+    }
+
+    .pricing-image .listing-image{
+        width: 55%;
+    }
+
+    .pricing-image{
+        background-color: black;
+    }
+
+    #notification-status-none{
+        font-size: 2em;
+    }
+    table, p, h3, h4, h5 {
+        font-size: 2em;
+    }
+  }
+
 
 /* Stripe Styling */
 

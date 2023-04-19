@@ -10,9 +10,9 @@
             </div>
         </div>
         <div class="col-12 p-0 d-none d-lg-block">
-            <div class="overflow-hidden text-center image-container">
+            <div class="overflow-hidden text-center image-container pricing-image">
                 {% load thumbnail %}
-                <img src='{% thumbnail pricing.promo_image 1000x1000 crop %}' alt="{{ pricing.title }}" class="listing-image detail-image">
+                <img src='{% thumbnail pricing.promo_image 800x800 crop %}' alt="{{ pricing.title }}" class="listing-image detail-image">
             </div>
         </div>
         <div class="col-lg-12 col-md-6 col-sm-12 p-0 text-center position-relative">
@@ -23,7 +23,7 @@
                 <hr class="border">
                 <div class="row">
                     <div class="col-12">
-                        <label for="products-inside" class="sr-only">Products that could be in this box:</label>
+                        <label for="products-inside m-0" class="sr-only">Products that could be in this box:</label>
                         <select name="prodcuts-inside">
                             <option value="#">Products that could be in this box:</option>
                             {% for product in product_catagory %}
@@ -32,7 +32,7 @@
                         </select>   
                     </div>
                 </div>
-                <div class="bg-white container">
+                <div class="bg-white container-fluid m-0">
                     <p>{{princing.description}}</p>
                     <p>The contents of this box contains 10 products with the catagory {{pricing.title}}
                         click add to basket to checkout now! all orders come with a free mystery product from 
@@ -75,8 +75,8 @@
                 </div>
                 {% endif %}
             </div>
-            <div class="col-12 mb-2 text-center">
-                <i class="fa-brands fa-d-and-d" arria-hidden="ture"></i><p class="text-muted">{{pricing.title}}</p>
+            <div class="col-12 mb-2 text-center padding">
+                <i class="fa-brands fa-d-and-d d-lg-none" arria-hidden="true"></i><p class="text-muted">{{pricing.title}}</p>
             </div>
         </div>
     </div>

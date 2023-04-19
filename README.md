@@ -83,7 +83,7 @@ As a returning admin, I need to be able to:
 ## Design Choices 
 
 ---
-
+[colour-palete](/tavern/static/readme-images/colour-palette.jpg)
 ### Colors:
 I used the following colour palete of browns, blacks and whites accross the site, I got this colour 
 pallete from one of the images I generated. I used a brown pallete because it is a colour accosiated with
@@ -105,12 +105,16 @@ The site is designed to be responsive accross all screen sizes, different page a
 
 ---
 ## WireFrames: 
-
-
-
-
-
-
+[home-page](/tavern/static/readme-images/index-page.jpg)
+[basket-page](/tavern/static/readme-images/basket-page-wireframe.jpg)
+[checkout-page](/tavern/static/readme-images/checkout-page.jpg)
+[favourite-page](/tavern/static/readme-images/favourites-page-lighthouse.jpg)
+[myaccount-page](/tavern/static/readme-images/my-account-wireframe.jpg)
+[order-history-page](/tavern/static/readme-images/orders-page-wireframe.jpg)
+[pricing-and-product-details-pages](/tavern/static/readme-images/product-and-pricing-details-pages.jpg)
+[product-and-pricing-forms](/tavern/static/readme-images/product-and-pricing-form.jpg)
+[all-products-and-pricing-pages](/tavern/static/readme-images/products-and-pricing-pages.jpg)
+[update-and-create-info-form](/tavern/static/readme-images/update_info_form.jpg)
 
 
 ---
@@ -118,6 +122,7 @@ The site is designed to be responsive accross all screen sizes, different page a
 
 ### Current Features:
 
+[navbar]()
 ### Navbar
 The navbar contains links to all the different pages, it features the logo, searchbar, basket and notification area. 
 - The logo features as a way for the user to return to the home page. 
@@ -125,12 +130,12 @@ The navbar contains links to all the different pages, it features the logo, sear
 - The basket allows the users to navigate to the basket page.
 - The notification bell notifies the user when they have a notification from the site, such as when something goes wrong or is successful
 
-
+[forms]()
 ### Forms
 -  Forms on the site allow ordinary users to accomplish tasks such as creating a profile, making purchaces, changing profile information and modifying there basket contents. 
 - For admin users, forms allow users to add products and pricings, modify information on products and pricings, and delete them. 
 
-
+[second-nav]()
 ### Secondary navigation bar
 - The second navigation bar gives users another way of navigating the products in the catalogue, whenever a adin creates a new pricing, they can update the products to have the catagory of that pricing or add new products with that catagory and then a new link is created on secondary navbar. 
 
@@ -138,36 +143,52 @@ The navbar contains links to all the different pages, it features the logo, sear
 ### Store and pricing catalogues
 - When a user searches the store or clicks on a link in the navigation bar they will be brought to either the pricings page or the products page, dependant on what they click on or search for. on these pages the user can view products or pricings that are currently on the store. They can click the view button to see relavent information on either the product or pricing. 
 
+
+[detail-pages]()
 ### Details pages
 - After the user clicks the view button on either the products or the pricing boxes, they can see the details of that product or pricing, the product details include a link to all the pricings and the pricings include the feature to add to the users basket. The pricing details page also includes products names of what products are included in the box and how much the box is. Whereas the product detail tell the user which box the products are included in. On the product details page, the user can favourite products. 
 - For the admin users, on these pages they can delete products or pricings from the store. 
 
+
+[basket-page]()
 ### Basket Page
 - The basket page allows the user to see what is currently in their cart, they can manipulate the data by clicking on either the increase or decrease buttons, which updates the total for their order, they can then click the checkout button to ender the checkout page
 
+
+[checkout-page]()
 ### Checkout page
 - From the checkout page the users can create orders based uppon the contents of their basket, the page features a card method which the user can enter their card details for an uppon successful enter the order confirmation page. But uppon failure be redirected back to the basket page with a message displayed to them as to what went wrong with their purchace. whenever a user creates a new order, they are attatched to their profile, however, in the instance that the user has not already created a profile, the site creates a profile for the user and attatches the order to it so that they can veiw the successful orders that they have made at a later date. The information for their profile, is generated from the information that they provide in the form. 
 
+
+[order-pages]()
 ### Orders page
 - The orders page contains links to all the orders the user has made , providing them with the order number, how much the total was an on which date they made the order. 
 
 ### Orders Success/Confirmation pages
 - From the orders page the user can view their order details, In essance whenever a user creates an order they can return to the page created and view that order. This page contains more details on that order
 
-
+[saved-products]()
 ### Saved products page
 - This page stores all the products that the user has saved, it uses the same layout as the product catalogue page but only shows results to the user if they have favourited the product. On this page the users can click on the products to veiw the product details for that product. From their they can do the same actions as on the product details page(the same page), and if they wanted to remove the product from their favourites.
 
+
+[profile-page]()
 ### My profile page
 - On this page the user can manage their profile, for ordinay user they are able to edit or add their profile, view their orders and saved products and perform actions such as changing their emails and passwords by clicking on the appropriate buttons. 
 - For the admin users, they are able to created new products and pricing from clicking the links to the approprate pages, they can also edit them from this page. 
 
+
+[footer]()
 ### Footer
 -The footer sits at the bottom of each page, it contains external links for the user
 
+
+[hero-image]()
 ### Hero image
 - On the home page the site has a hero image, on larger screens the hero contains a search bar, however on smaller screens the search bar is hidden. 
 
+
+[homepage]()
 ### Home page
 - The home page contains the hero image and informatin as to what the website is all about
 
@@ -278,17 +299,23 @@ heroku push master to push the files to heroku
 
 ### Testing User's Stories 
 
-
-
-
-
-
 #### First Time User customer
-#### First Time User staff
-#### Returning User customer
-#### Returning User Staff
+- As a new user I can successfully created an account on the site by registering my email and creating a password, I can search the store for products, see products that I like and add them to my favourites, I can 
+find the appropriate pricing boxes for those category of products and add them to my basket, I can change the amount of items in my basket and create and order and pay for my order. I can see my order history on my orders page and if I want to print take a physical reciet of the order by printing it.
 
+### Returning users customer:
+When i return to the site I can log back into my account, view my previous orders,
+make orders and view the products I have favourited if they still remain on the database
 
+### First-Time Users Admin:
+As a first time admin, i can log into the site using the account created for me
+from their I can view update and delete products and pricings in the store, 
+creating new pricing boxes for products and creating new proudcts that I 
+want in those boxes
+
+### Returning users Admin:
+As a returning admin, I can view the information that I had previously created, 
+and add new products and pricings, if i want to i can also make purchaces from the site
 
 ---
 ### Developer goals have been met by
@@ -346,13 +373,15 @@ The final validator results:
 
 ---
 ### CSS Validation
-
+[css-validation](/tavern/static/readme-images/css-validation.jpg)
 
 ### HTML Validation
 
 ---
 ### Javascript Validation
-
+[stripe-management](/tavern/static/readme-images/javascipt-validation-stripe-management.jpg)
+[orders](/tavern/static/readme-images/javascipt-validation-orders.jpg)
+[basket](/tavern/static/readme-images/javascipt-validation-basket.jpg)
 ---
 ### Manual Tests run on site
 
@@ -373,7 +402,7 @@ Below are a number of manual tests I've run towards the end of devlopment
 - result: can can create an order on the site by using a Stripe test key
 8. Do my actions on the website cause errors in the console 
 - results: I found errors appeared in the code where the parts of the templates werent beeing rendered due to the user being unauthenticated were still targeted. The notification icon was also causing errors due to the button still being clickable but it having no element to remove due to the message area not existing in the DOM yet.
--Action: I put all the javascript that targeted elements behind conditional if statemens to which check if the dom element was nulll
+-Action: I put all the javascript that targeted elements behind conditional if statemens to which check if the dom element is null
 ---
 
 ### Browser testing 
@@ -400,7 +429,7 @@ fixed by: changing the heroku-22 to heroku 20 and adding a runtime file
 
 ---
 ### Bugs Left in Code:
-- To my knowledge there arn't any bugs left in the code
+- To my knowledge there arn't any bugs left in the code, there might be a few css bugs hanging around.
 
 ---
 ## Credits 

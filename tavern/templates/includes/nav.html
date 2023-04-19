@@ -21,16 +21,16 @@
         {% if request.user.is_authenticated %}
         <a class="d-block d-md-none text-center" href="{% url 'home' %}">Home</a>
         <li class="nav-item dropdown mr-2 ml-2 text-center">
-          <a class="nav-link dropdown-toggle medium-txt" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle nav-text" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             My Account
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <span class="ml-4">Hello {{request.user}}</span>
-            <a class="dropdown-item" href="{% url 'catalogue:get_favourite' %}">Saved products</a>
-            <a class="dropdown-item" href="{% url 'checkout:orders' %}">View/ manage orders</a>
-            <a class="dropdown-item" href="{% url 'user_profiles:profile_view' %}">Manage Account</a>
-            <a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a>
+            <span class="ml-4 nav-text">Hello {{request.user}}</span>
+            <a class="dropdown-item nav-text" href="{% url 'catalogue:get_favourite' %}">Saved products</a>
+            <a class="dropdown-item nav-text" href="{% url 'checkout:orders' %}">View/ manage orders</a>
+            <a class="dropdown-item nav-text" href="{% url 'user_profiles:profile_view' %}">Manage Account</a>
+            <a class="dropdown-item nav-text" href="{% url 'account_logout' %}">Sign out</a>
           </div>
         </li>
         <form class="d-flex mr-2" method="GET" action="{% url 'catalogue:search_results'%}">
@@ -50,7 +50,7 @@
           {% endfor %}
           </div>
         </li>
-        <li class="text-center nav-item mr-2 ml-2 text-center" id="shopping-basket">
+        <li class="text-center nav-item mr-2 ml-2 text-center nav-text" id="shopping-basket">
           <a href="{% url 'basket:basket_view' %}"><i class="fa-solid fa-basket-shopping"></i></a>
           <div>
             {% if grand_total %}

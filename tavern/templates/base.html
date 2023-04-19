@@ -46,9 +46,9 @@
   <header>
     <div class="container-fluid d-none d-lg-block nav-colour">
       <div class="row text-center navbar">
-        <a class=" medium-txt nav-item" href="{% url 'catalogue:all_products' %}">All</a>
+        <a class=" medium-txt nav-item nav-text" href="{% url 'catalogue:all_products' %}">All</a>
         {% for catagories in products_all %}
-          <a  class="medium-txt nav-item name-of-catagory" href="{% url 'catalogue:catagory' cat=catagories.catagory_name %}">{{catagories.catagory_name}}</a>
+          <a  class="medium-txt nav-item name-of-catagory nav-text" href="{% url 'catalogue:catagory' cat=catagories.catagory_name %}">{{catagories.catagory_name}}</a>
         {% endfor %}
       </div>
     </div>

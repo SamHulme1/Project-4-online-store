@@ -3,10 +3,11 @@
 {% block content %}
 <div class="container-fluid border padding secondary-content-colour">
     <div class="row">
-        <div class="col-md-6 col-sm-12 p-0">
+        <div class="col-md-6 col-sm-12 col-lg-6 p-0">
             <div class="overflow-hidden text-center image-container">
                 {% load thumbnail %}
-                <img src='{% thumbnail product.product_image 500x500 crop %}' alt="{{ product.title }}" class="listing-image detail-image">
+                <img src='{% thumbnail product.product_image 800x800 crop %}' alt="{{ product.title }}" class="listing-image display-extra-large-none display-small">
+                <img src='{% thumbnail product.product_image 1800x1800 crop %}' alt="{{ product.title }}" class="listing-image display-extra-large">
             {% if request.user.is_authenticated %}
                 {% if favourite %}
                 <div class="col-6 mb-2 heart-container">
@@ -20,7 +21,7 @@
             {% endif %}
             </div>
         </div>
-        <div class="col-md-6 col-sm-12 p-0">
+        <div class="col-md-6 col-sm-12 col-lg-6 p-0">
             <div class="container-fluid secondary-content-colour">
                 <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_products' %}"><i class="fa-solid fa-dice-d20" arria-hidden="true"></i> Veiw products</a></button>
                 <hr class="border">
