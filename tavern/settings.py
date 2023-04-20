@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "pt@7$rf9$**_+_f_x-u6s3ont7)h$fxb@f*n775)#t&z1-t0r@"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['tavern-app-project.herokuapp.com', 'localhost']
 
