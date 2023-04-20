@@ -7,6 +7,10 @@
     margin-right: 3em;
 }
 
+.pricing-image, .listing-image, .product-image {
+    width: 100%;
+}
+
 .absolute{
     position: absolute;
     bottom:0;
@@ -240,14 +244,6 @@ footer{
     }
     .display-extra-large {
         display: block;
-    }
-
-    .product-image{
-        width:100%;
-    }
-
-    .listing-image{
-        width:100%;
     }
 
     .image-container{

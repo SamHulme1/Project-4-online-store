@@ -3,16 +3,9 @@
 {% block content %}
 <div class="container-fluid border secondary-content-colour padding">
     <div class="row">
-        <div class="col-md-6 col-sm-12 p-0 d-lg-none">
+        <div class="col-lg-12 col-md-6 col-sm-12 p-0 ">
             <div class="overflow-hidden text-center image-container">
-                {% load thumbnail %}
-                <img src='{% thumbnail pricing.promo_image 600x600 crop %}' alt="{{ pricing.title }}" class="listing-image detail-image">
-            </div>
-        </div>
-        <div class="col-12 p-0 d-none d-lg-block">
-            <div class="overflow-hidden text-center image-container pricing-image">
-                {% load thumbnail %}
-                <img src='{% thumbnail pricing.promo_image 800x800 crop %}' alt="{{ pricing.title }}" class="listing-image detail-image">
+                <img src='{{ pricing.promo_image.url }}' alt="{{ pricing.title }}" class="listing-image detail-image">
             </div>
         </div>
         <div class="col-lg-12 col-md-6 col-sm-12 p-0 text-center position-relative">
