@@ -1,28 +1,32 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
-<div class="container-fluid secondary-content-colour padding">
-    {% for order in previous_orders %}
-    <div class="row text-center">
-        <div class="mb-2 col-sm-12 col-md-3">
-            <span>order number:</span>
-            {{order.order_number}}
+<h2 class="text-center secondary-content-colour catagory-name m-0">My Orders</h2>
+    {% if previous_orders %}
+        <div class="container-fluid secondary-content-colour padding">
+            {% for order in previous_orders %}
+            <div class="row text-center">
+                <div class="mb-2 col-sm-12 col-md-3">
+                    <span>order number:</span>
+                    {{order.order_number}}
+                </div>
+                <div class="mb-2 col-sm-12 col-md-3">
+                    <span>total:</span>
+                    {{order.grand_total}}
+                </div>
+                <div class="mb-2 col-sm-12 col-md-3">
+                    <span>total:</span>
+                    {{order.created}}
+                </div>
+                <div class="mb-2 col-sm-12 col-md-3">
+                    <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'checkout:success' order_number=order.order_number %}"> View</a></button>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="mb-2 text-center"><i class="fa-brands fa-d-and-d divider" arria-hidden="true"></i></div>
+            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'user_profiles:profile_view' %}"><i class="fa-solid fa-dice-d20"></i> Profile</a></button>
         </div>
-        <div class="mb-2 col-sm-12 col-md-3">
-            <span>total:</span>
-            {{order.grand_total}}
-        </div>
-        <div class="mb-2 col-sm-12 col-md-3">
-            <span>total:</span>
-            {{order.created}}
-        </div>
-        <div class="mb-2 col-sm-12 col-md-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'checkout:success' order_number=order.order_number %}"> View</a></button>
-        </div>
-    </div>
-    {% endfor %}
-    <div class="mb-2 text-center"><i class="fa-brands fa-d-and-d divider" arria-hidden="true"></i></div>
-    <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'user_profiles:profile_view' %}"><i class="fa-solid fa-dice-d20"></i> Profile</a></button>
-</div>
+    {% else %}
+    <h3 class="text-center secondary-content-colour catagory-name m-0">No orders </h3>
+    {% endif %}
 {% endblock %}

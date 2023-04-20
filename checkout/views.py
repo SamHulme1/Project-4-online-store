@@ -43,6 +43,7 @@ def checkout(request):
     through the items in the basket to create the stipe payment total"""
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_seceret_key = settings.STRIPE_SECRET_KEY
+    profile = UserInfo.objects.filter(user=request.user).first()
 
     if request.method == "POST":
         basket = request.session.get('basket', {})
@@ -56,7 +57,16 @@ def checkout(request):
             'postcode': request.POST['postcode'],
             'country': request.POST['country'],
         }
-        form = CustomerOrderForm(form_data)
+        form = CustomerOrderForm(form_data, initial={
+                "first_name": profile.d_first_name,
+                "last_name": profile.d_last_name,
+                'phone_number': profile.d_phone_number,
+                'address': profile.d_address,
+                'city': profile.d_city,
+                'county': profile.d_county,
+                'postcode': profile.d_postcode,
+                'country': profile.d_country,
+                 })
         if form.is_valid():
             order = form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
@@ -98,7 +108,16 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY
         )
 
-        form = CustomerOrderForm()
+        form = CustomerOrderForm(initial={
+                "first_name": profile.d_first_name,
+                "last_name": profile.d_last_name,
+                'phone_number': profile.d_phone_number,
+                'address': profile.d_address,
+                'city': profile.d_city,
+                'county': profile.d_county,
+                'postcode': profile.d_postcode,
+                'country': profile.d_country,
+                 })
     template = 'checkout/checkout.html'
     context = {
         'form': form,
@@ -126,6 +145,8 @@ def success(request, order_number):
         if profile:
             messages.success(
                 request, "your order has been processed and is on you account")
+            order.user_info = profile
+            order.save()
         else:
             new_profile_data = {
                 "d_first_name": order.first_name,
@@ -140,15 +161,14 @@ def success(request, order_number):
             }
             form = UserInfoForm(new_profile_data)
             if form.is_valid():
-                profile = form.save()
-                profile.user = request.user
-                profile.save()
+                new_profile = form.save(commit=False)
+                new_profile.user = request.user
+                new_profile.save()
+                order.user_info = new_profile
+                order.save()
                 messages.success(
                     request, "your order has been processed,"
                              "a default account has been set up for you")
-
-        order.user_info = profile
-        order.save()
 
     messages.success(
         request, f"order created, your order number is {order.order_number}")
@@ -168,7 +188,12 @@ def orders(request):
     """View for the user to see there orders, links on
     the page relate to the previous orders"""
     user = get_object_or_404(UserInfo, user=request.user)
-    previous_orders = Order.objects.filter(user_info=user.id)
+    if user:
+        previous_orders = Order.objects.filter(user_info=user.id)
+    else:
+        messages.error(
+            request, 'You dont have any orders on your account')
+        return (redirect(reverse("user_profiles:profile_view")))
     template = 'checkout/orders.html'
     context = {
         'previous_orders': previous_orders

@@ -33,7 +33,7 @@
             <a class="dropdown-item nav-text" href="{% url 'account_logout' %}">Sign out</a>
           </div>
         </li>
-        <form class="d-flex mr-2" method="GET" action="{% url 'catalogue:search_results'%}">
+        <form class="d-flex mr-2 d-block d-lg-none" method="GET" action="{% url 'catalogue:search_results'%}">
           <input class="form-control me-2 search-field" type="search" name="searched" placeholder="Search"
             aria-label="search">
           <button class="btn search-button" type="submit">Search</button>
@@ -46,7 +46,7 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a  class="dropdown-item" href="{% url 'catalogue:all_products' %}">All</a>
           {% for catagories in products_all %}
-            <a  class="medium-txt nav-item" href="{% url 'catalogue:catagory' cat=catagories.catagory %}">{{catagories.catagory}}</a>
+            <a  class=" dropdown-item nav-item name-of-catagory nav-text text-muted" href="{% url 'catalogue:catagory' cat=catagories.catagory_name %}">{{catagories.catagory_name}}</a>
           {% endfor %}
           </div>
         </li>

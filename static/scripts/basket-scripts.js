@@ -23,6 +23,8 @@ window.onload=function(){
     }
 
     if(DecreaseButtons===null){
+        return;
+    } else { 
         let quantityValue = document.querySelectorAll('.value-input');
         for (let i = 0; i < DecreaseButtons.length; i++) {
             let nextSibling = quantityValue[i].nextElementSibling;

@@ -3,9 +3,9 @@
 {% block content %}
 <div class="container-fluid border padding secondary-content-colour">
     <div class="row">
-        <div class="col-md-6 col-sm-12 col-lg-6 p-0">
-            <div class="overflow-hidden text-center image-container">
-                <img src='{{ product.product_image.url }}' alt="{{ product.title }}" class="listing-image">
+        <div class="col-md-12 col-sm-12 col-lg-6 p-0">
+            <div class="overflow-hidden text-center details-image-container">
+                <img src='{{ product.product_image.url }}' alt="{{ product.title }}">
             {% if request.user.is_authenticated %}
                 {% if favourite %}
                 <div class="col-6 mb-2 heart-container">
@@ -19,7 +19,7 @@
             {% endif %}
             </div>
         </div>
-        <div class="col-md-6 col-sm-12 col-lg-6 p-0">
+        <div class="col-md-12 col-sm-12 col-lg-6 p-0">
             <div class="container-fluid secondary-content-colour">
                 <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_products' %}"><i class="fa-solid fa-dice-d20" arria-hidden="true"></i> Veiw products</a></button>
                 <hr class="border">
