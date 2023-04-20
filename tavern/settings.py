@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "pt@7$rf9$**_+_f_x-u6s3ont7)h$fxb@f*n775)#t&z1-t0r@"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['tavern-app-project.herokuapp.com', 'localhost']
 
@@ -94,7 +94,6 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 WSGI_APPLICATION = 'tavern.wsgi.application'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
@@ -156,6 +155,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+# https://pypi.org/project/django-cloudinary-storage/
 CLOUDINARY_STORAGE = {
     "CLOUDINARY_CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME", ""),
     "CLOUDINARY_API_SECRET": os.environ.get("CLOUDINARY_API_SECRET", ""),

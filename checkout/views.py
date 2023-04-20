@@ -12,6 +12,7 @@ import stripe
 import json
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponse
+from django.core.mail import send_mail
 
 
 @require_POST
@@ -163,6 +164,13 @@ def success(request, order_number):
 
     messages.success(
         request, f"order created, your order number is {order.order_number}")
+    send_mail(
+        f"{order.order_number}",
+        f"Your order for {order.order_total} was successful",
+        settings.EMAIL_HOST_USER,
+        [f"{order.email}"],
+        fail_silently=False,
+    )
 
     if 'basket' in request.session:
         del request.session['basket']
