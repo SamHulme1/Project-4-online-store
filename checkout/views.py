@@ -108,16 +108,7 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY
         )
 
-        form = CustomerOrderForm(initial={
-                "first_name": profile.d_first_name,
-                "last_name": profile.d_last_name,
-                'phone_number': profile.d_phone_number,
-                'address': profile.d_address,
-                'city': profile.d_city,
-                'county': profile.d_county,
-                'postcode': profile.d_postcode,
-                'country': profile.d_country,
-                 })
+        form = CustomerOrderForm()
     template = 'checkout/checkout.html'
     context = {
         'form': form,
