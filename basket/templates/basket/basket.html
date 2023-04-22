@@ -30,7 +30,7 @@
                                 {% csrf_token %}
                                 <div class="row quantity-control">
                                     <div class="col-3 text-right">
-                                        <button class="btn increase-qty" data-item_id="{{ item.item_id }}">
+                                        <button class="btn increase-qty" data-item_id="{{ item.item_id }}" aria-label="increase">
                                             <span class="bg-white">
                                                 <i class="fas fa-plus fa-sm" arria-hidden="true"><span class="sr-only">increase quantity</span></i>
                                             </span>
@@ -40,12 +40,12 @@
                                         <span class="form-group">
                                             <span class="input-group">
                                                 <button class="btn button-style update-basket value-input d-none"></button>
-                                                <input class="form-control qty_input" type="number" name="quantity" value="{{item.quantity}}" min="0" max="{{ item.pricing.quantity }}" data-item_id="{{ item.item_id }}">
+                                                <input class="form-control qty_input d-none d-md-block" type="number" name="quantity" value="{{item.quantity}}" min="0" max="{{ item.pricing.quantity }}" data-item_id="{{ item.item_id }}">
                                             </span>
                                         </span>
                                     </div>
                                     <div class="col-3 text-left">
-                                        <button class="btn decrease-qty" data-item_id="{{ item.item_id }}">
+                                        <button class="btn decrease-qty" data-item_id="{{ item.item_id }}" aria-label="decrease">
                                             <span class="bg-white">
                                                 <i class="fas fa-minus fa-sm" arria-hidden="true"><span class="sr-only">decrease quantity</span></i>
                                             </span>

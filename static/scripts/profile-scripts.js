@@ -7,4 +7,4 @@ window.onload=function(){
         profileInfoInput[i].innerText = removeDefault;
         profileInfoInput[i].nextElementSibling.placeholder = removeDefault;
       }
-}
+};
