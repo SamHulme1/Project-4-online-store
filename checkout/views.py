@@ -12,7 +12,6 @@ import stripe
 import json
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponse
-from django.core.mail import send_mail
 
 
 @require_POST
@@ -44,8 +43,7 @@ def checkout(request):
     through the items in the basket to create the stipe payment total"""
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_seceret_key = settings.STRIPE_SECRET_KEY
-    profile = UserInfo.objects.filter(user=request.user).first()
-
+    profile = UserInfo.objects.filter(user_id=request.user.id).first()
     if request.method == "POST":
         basket = request.session.get('basket', {})
         form_data = {
@@ -58,16 +56,20 @@ def checkout(request):
             'postcode': request.POST['postcode'],
             'country': request.POST['country'],
         }
-        form = CustomerOrderForm(form_data, initial={
-                "first_name": profile.d_first_name,
-                "last_name": profile.d_last_name,
-                'phone_number': profile.d_phone_number,
-                'address': profile.d_address,
-                'city': profile.d_city,
-                'county': profile.d_county,
-                'postcode': profile.d_postcode,
-                'country': profile.d_country,
-                 })
+        if profile:
+            form = CustomerOrderForm(form_data, initial={
+                    "first_name": profile.d_first_name,
+                    "last_name": profile.d_last_name,
+                    'phone_number': profile.d_phone_number,
+                    'address': profile.d_address,
+                    'city': profile.d_city,
+                    'county': profile.d_county,
+                    'postcode': profile.d_postcode,
+                    'country': profile.d_country,
+                    })
+        else:
+            form = CustomerOrderForm(form_data)
+            
         if form.is_valid():
             order = form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
@@ -164,13 +166,6 @@ def success(request, order_number):
 
     messages.success(
         request, f"order created, your order number is {order.order_number}")
-    send_mail(
-        f"{order.order_number}",
-        f"Your order for {order.order_total} was successful",
-        settings.EMAIL_HOST_USER,
-        [f"{order.email}"],
-        fail_silently=False,
-    )
 
     if 'basket' in request.session:
         del request.session['basket']
@@ -183,6 +178,7 @@ def success(request, order_number):
     return render(request, template, context)
 
 
+@login_required
 def orders(request):
     """View for the user to see there orders, links on
     the page relate to the previous orders"""

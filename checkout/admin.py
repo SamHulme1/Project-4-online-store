@@ -32,4 +32,4 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = ['created']
 
     inlines = [OrderLineItemAdminInline]
-# Register your models here.
+

@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "pt@7$rf9$**_+_f_x-u6s3ont7)h$fxb@f*n775)#t&z1-t0r@"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['tavern-app-project.herokuapp.com', 'localhost']
 
@@ -96,7 +96,7 @@ LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'tavern.wsgi.application'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 

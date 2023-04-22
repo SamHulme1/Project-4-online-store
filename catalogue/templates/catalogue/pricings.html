@@ -12,7 +12,9 @@
                         <!------------------bootstrap cards --------------------->
                         <div class="text-center">
                             <h5 class="card-title">{{pricing.title}}</h5>
-                            <button type="button" class="btn button-style btn-lg"><a href="{% url 'catalogue:pricing_details' pricing.id  %}">View</a></button>
+                            <a href="{% url 'catalogue:pricing_details' pricing.id  %}">
+                                <div class="btn button-style btn-lg">View</div>
+                            </a>
                         </div>
                     </div>
                   </div>

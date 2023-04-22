@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 {% include 'home/includes/hero.html' %}
-<div class="container-fluid secondary-content-colour">
+<div class="container-fluid secondary-content-colour padding">
     <div class="row">
         <div class="col-12">
             {% if request.user.is_authenticated %}
@@ -15,7 +15,9 @@
             </h1>
             <div class="row">
                 <div class="col-12 text-center">
-                    <button type="button" class="btn btn-secondary btn-lg"><a href="{% url 'account_signup' %}">Sign up</a></button>
+                    <a href="{% url 'account_signup' %}">
+                        Sign Up
+                    </a>
                 </div>
             </div>
         </div>
@@ -27,10 +29,9 @@
                     to checkout products we have in stock, see something you like? head over to the checkout and choose a package that suits you, all our drinks are 
                     fanasy themed and come in differnet boxing catagories. Box contents are random based off the catagory you choose. Let the die choose whats inside! 
                 </p>
-                <div class="mb-2"><i class="fa-brands fa-d-and-d divider" arria-hidden="true"></i></div>
-                <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:all_products' %}"><i class="fa-solid fa-dice-d20"></i> Shop Now</a></button>
+                <div class="mb-2"><i class="fa-brands fa-d-and-d divider"></i><span class=sr-only>divider</span></div>
+                <a href="{% url 'catalogue:all_products' %}">Shop Now</a>
             </div>
-        </div>
     </div>
 </div>
 {% endblock %}

@@ -8,28 +8,41 @@
         </div>
     </div>
     <div class="row text-center">
-        <div class="col-sm-12 col-md-6 mt-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'user_profiles:create_profile_info' %}"><i class="fa-regular fa-address-card" arria-hidden="true"></i>Add/edit Profile</a></button>
+        <div class="col-12 col-md-3 mt-1">
+            <a href="{% url 'user_profiles:create_profile_info' %}">
+                <div class="btn button-style btn-lg mb-2"><i class="fa-regular fa-address-card" arria-hidden="true"></i>Add/edit Profile</div>
+            </a>
         </div>
-        <div class="col-sm-12 col-md-6 mt-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'checkout:orders' %}"><i class="fa-solid fa-sort" arria-hidden="true"></i>Orders</a></button>
-           
+        <div class="col-12 col-md-3 mt-1">
+            <a href="{% url 'checkout:orders' %}">
+                <div class="btn button-style btn-lg mb-2"><i class="fa-solid fa-sort" arria-hidden="true"></i>Orders</div>
+            </a>
         </div>
-        <div class="col-sm-12 col-md-6 mt-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:get_favourite' %}"><i class="fa-solid fa-heart" arria-hidden="true"></i>Favourites</a></button>
+        <div class="col-12 col-md-3 mt-1">
+            <a href="{% url 'catalogue:get_favourite' %}">
+                <div class="btn button-style btn-lg mb-2"><i class="fa-solid fa-heart" arria-hidden="true"></i>Favourites</div>
+            </a> 
         </div>
-        <div class="col-sm-12 col-md-6 mt-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'account_reset_password' %}">Change Password</a></button>
+        <div class="col-12 col-md-3 mt-1">
+            <a href="{% url 'account_reset_password' %}">
+                <div class="btn button-style btn-lg mb-2">Change Password</div>
+            </a>
         </div>
-        <div class="col-sm-12 col-md-6 mt-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'account_email' %}">Change Email</a></button>
+        <div class="col-12 col-md-3 mt-1">
+            <a href="{% url 'account_email' %}">
+                <div class="btn button-style btn-lg mb-2">Change Email</div>
+            </a>
         </div>
         {% if request.user.is_staff %}
-        <div class="col-sm-12 col-md-6 mt-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:add_product' %}"> Add Product <i class="fa-solid fa-plus" arria-hidden="true"></i></a></button>
+        <div class="col-12 col-md-3 mt-1">
+            <a href="{% url 'catalogue:add_product' %}">
+                <div class="btn button-style btn-lg mb-2">Add Product <i class="fa-solid fa-plus" arria-hidden="true"></i></div>
+            </a>
         </div>
-        <div class="col-sm-12 col-md-6 mt-3 mb-3">
-            <button type="button" class="btn button-style btn-lg mb-2"><a href="{% url 'catalogue:add_pricing' %}"> Add Pricing <i class="fa-solid fa-plus" arria-hidden="true"></i></a></button>
+        <div class="col-12 col-md-3 mt-1">
+            <a href="{% url 'catalogue:add_pricing' %}">
+                <div class="btn button-style btn-lg mb-2"> Add Pricing <i class="fa-solid fa-plus" arria-hidden="true"></i></div>
+            </a>
         </div>
         {% endif %}
     </div>

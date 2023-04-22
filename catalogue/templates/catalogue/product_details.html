@@ -21,19 +21,23 @@
         </div>
         <div class="col-md-12 col-sm-12 col-lg-6 p-0">
             <div class="container-fluid secondary-content-colour">
-                <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_products' %}"><i class="fa-solid fa-dice-d20" arria-hidden="true"></i> Veiw products</a></button>
+                <a href="{% url 'catalogue:all_products' %}">
+                    <div class="btn button-style btn-lg mt-2"><i class="fa-solid fa-dice-d20"></i> Veiw products</div>
+                </a>
                 <hr class="border">
                 <h3>{{product.title}}</h3>
                 <h4>Description:</h4>
                 <p class="bg-white"> {{product.description}}</p>
-                <div class="text-center mt-2"><i class="fa-brands fa-d-and-d divider" arria-hidden="true"></i><p class="text-muted">{{product.catagory}}</p></div>
+                <div class="text-center mt-2"><i class="fa-brands fa-d-and-d divider"></i><p class="text-muted">{{product.catagory}}</p></div>
                 <hr class="border-black">
                 <div class="row">
                     <div class="col-12 mb-2 text-right">
-                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_pricings'%}">View boxes</a></button>
+                        <a href="{% url 'catalogue:all_pricings'%}">
+                            <div class="btn button-style btn-lg mt-2">View Boxes</div>
+                        </a>
                         {% if request.user.is_staff %}
-                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:delete_product' product.id %}">Delete</a><span class="sr-only">delete this product</span></button>
-                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:edit_product' product.id %}">Edit</a><span class="sr-only">edit this product</span></button>
+                        <a href="{% url 'catalogue:delete_product' product.id %}"><div class="btn button-style btn-lg mt-2"><span class="sr-only">delete this product</span>Delete</div></a>
+                        <a href="{% url 'catalogue:edit_product' product.id %}"><div class="btn button-style btn-lg mt-2"><span class="sr-only">edit this product</span>Edit</div></a>
                         {% endif %}
                     </div>
                 </div>

@@ -10,14 +10,16 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 p-0 text-center position-relative">
             <div class="container-fluid">
-                <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:all_pricings' %}"><i class="fa-solid fa-dice-d20"></i> All Boxes</a></button>
+                <a href="{% url 'catalogue:all_pricings' %}">
+                    <div class="btn button-style btn-lg mt-2"><i class="fa-solid fa-dice-d20"></i>All Boxes</div>
+                </a>
                 <h3>{{pricing.title}} mystery box</h3>
                 <h4>Description:</h4>
                 <hr class="border">
                 <div class="row">
                     <div class="col-12">
-                        <label for="products-inside m-0" class="sr-only">Products that could be in this box:</label>
-                        <select name="prodcuts-inside">
+                        <span class="sr-only">Products that could be in this box:</span>
+                        <select name="products-inside">
                             <option value="#">Products that could be in this box:</option>
                             {% for product in product_catagory %}
                             <option value="#">{{product.title }}</option>
@@ -35,14 +37,20 @@
                 </div>
                 <div class="row">
                     <div class="col-12 mb-2">
-                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:catagory' cat=pricing.title %}">Products for this box</a></button>
+                        <a href="{% url 'catalogue:catagory' cat=pricing.title %}">
+                            <div class="btn button-style btn-lg mt-2">Products for this box</div>
+                        </a>
                     </div>
                     {% if request.user.is_staff %}
                     <div class="col-12 col-sm-12">
-                        <button type="button" class="btn button-style btn-lg"><a href="{% url 'catalogue:delete_pricing' pricing.id %}">Delete</a><span class="sr-only">delte this pricing box</span></button>
+                        <a href="{% url 'catalogue:delete_pricing' pricing.id %}">
+                            <div class="btn button-style btn-lg"><span class="sr-only">delete this pricing box</span>Delete</div>
+                        </a>
                     </div>
                     <div class="col-12 col-sm-12 mb-2">
-                        <button type="button" class="btn button-style btn-lg mt-2"><a href="{% url 'catalogue:edit_pricing' pricing.id %}">Edit</a><span class="sr-only">edit this pricing bow</span></button>
+                        <a href="{% url 'catalogue:edit_pricing' pricing.id %}">
+                            <div class="btn button-style btn-lg mt-2"><span class="sr-only">edit this pricing bow</span>Edit</div>
+                        </a>
                     </div>
                     {% endif %}
                 </div>
@@ -63,13 +71,15 @@
                 <div class="row">
                     <div class="col-12 text-center">
                         <p>Please create an account if you want to add items to your basket and checkout</p>
-                        <button type="button" class="btn btn-secondary btn-lg mb-2"><a href="{% url 'account_signup' %}">Sign up</a></button>
+                        <a href="{% url 'account_signup' %}">
+                            <div class="btn btn-secondary btn-lg mb-2">Sign up</div>
+                        </a>
                     </div>
                 </div>
                 {% endif %}
             </div>
             <div class="col-12 mb-2 text-center padding">
-                <i class="fa-brands fa-d-and-d d-lg-none" arria-hidden="true"></i><p class="text-muted">{{pricing.title}}</p>
+                <i class="fa-brands fa-d-and-d d-lg-none"><span class="sr-only">divider</span></i><p class="text-muted">{{pricing.title}}</p>
             </div>
         </div>
     </div>
