@@ -341,6 +341,15 @@ footer{
 
   }
 
+  @media only screen and (min-width: 2300px){
+    .search, .search-button, a {
+        font-size: 2em;
+    }
+    .hero-image {
+        width: 85em;
+    }
+  }
+
 
 /* Stripe Styling */
 
