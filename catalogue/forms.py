@@ -1,13 +1,10 @@
 from django import forms
 from .models import Pricing, Product
 
-# get all the titles from the products
+
 choices = Pricing.objects.all().values_list("title", "title")
 
 catagory_list = []
-# assign them into the empty array
-# for catagories in choices:
-#     catagory_list.append(catagories)
 
 
 class CreateNewPricing(forms.ModelForm):
