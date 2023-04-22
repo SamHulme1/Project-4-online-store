@@ -482,6 +482,7 @@ Below are several manual tests I've run towards the end of the development
 8. Do my actions on the website cause errors in the console 
 - results: I found errors that appeared in the code where the parts of the templates weren't being rendered due to the user being unauthenticated but were still targeted. The notification icon was also causing errors due to the button still being clickable but it had no element to remove due to the message area not existing in the DOM yet.
 -Action: I put all the javascript that targeted elements behind conditional if statements to which check if the dom element is null
+9. In google chrome Hero gives a strange page not found error, however, it doesn't give the error if you use a private session or try another browser such as firefox.
 ---
 
 ### Browser testing 
