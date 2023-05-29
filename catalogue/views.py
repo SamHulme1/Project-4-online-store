@@ -8,10 +8,10 @@ from django.db.models import Q
 
 
 def catagory(request, cat):
-    """view for getting the catagory of a product
+    """view for getting the catagory of a pricing
     I used a tutorial to help me build this view,
     https://www.youtube.com/watch?v=PTsljbR-Cmo"""
-    catagories = Product.objects.filter(catagory_name=cat)
+    catagories = Pricing.objects.filter(title=cat)
     return render(request, "catalogue/catagories.html", {
         "cat": cat, "catagories": catagories})
 
@@ -57,11 +57,13 @@ def product_details(request, id):
     """
     favourite = False
     product = get_object_or_404(Product, id=id)
+    pricing = get_object_or_404(Pricing, id=id)
     if product.favourite.filter(id=request.user.id).exists():
         favourite = True
     context = {
         "product": product,
-        "favourite": favourite
+        "favourite": favourite,
+        "pricing": pricing,
     }
     return render(request, 'catalogue/product_details.html', context)
 

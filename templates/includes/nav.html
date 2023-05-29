@@ -44,9 +44,9 @@
             Search by catagory
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a  class="dropdown-item" href="{% url 'catalogue:all_products' %}">All</a>
-          {% for catagories in products_all %}
-            <a  class=" dropdown-item nav-item name-of-catagory nav-text text-muted" href="{% url 'catalogue:catagory' cat=catagories.catagory_name %}">{{catagories.catagory_name}}</a>
+            <a  class="dropdown-item" href="{% url 'catalogue:all_pricings' %}">All</a>
+          {% for catagories in promo %}
+            <a  class=" dropdown-item nav-item name-of-catagory nav-text text-muted" href="{% url 'catalogue:catagory' cat=catagories.title %}">{{catagories.title}}</a>
           {% endfor %}
           </div>
         </li>
