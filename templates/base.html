@@ -47,7 +47,7 @@
       <div class="row text-center navbar">
         <a class=" medium-txt nav-item nav-text" href="{% url 'catalogue:all_pricings' %}">All</a>
         {% for catagories in promo %}
-          <a  class="medium-txt nav-item name-of-catagory nav-text" href="{% url 'catalogue:catagory' cat=catagories.title %}">{{catagories.title}}</a>
+          <a  class="medium-txt nav-item name-of-catagory nav-text" href="{% url 'catalogue:pricing_details' catagories.id %}">{{catagories.title}}</a>
         {% endfor %}
       </div>
     </div>
