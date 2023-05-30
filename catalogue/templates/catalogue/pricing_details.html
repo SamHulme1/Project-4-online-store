@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div class="container-fluid border secondary-content-colour padding">
+<div class="container-fluid borderpadding">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 p-0 ">
             <div class="overflow-hidden text-center details-image-container">
@@ -13,7 +13,7 @@
                 <h3>{{pricing.title}} mystery box</h3>
                 <h4>Description:</h4>
                 <hr class="border">
-                <div class="bg-white container-fluid m-0">
+                <div class="container-fluid m-0">
                     <p>{{princing.description}}</p>
                     <p>The contents of this box contains 10 products with the catagory {{pricing.title}}
                         click add to basket to checkout now! all orders come with a free mystery product from 
@@ -30,9 +30,9 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content overflow-hidden">
                                 <div class="row">
-                                    <div class="col-6 secondary-content-colour">
+                                    <div class="col-6">
                                     </div>
-                                    <div class="col-6 secondary-content-colour">
+                                    <div class="col-6">
                                         <button type="button" class="close pt-1 pr-3" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -104,4 +104,7 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block postloadjs %}
+    <script src="{% static 'scripts/settings.js' %}"></script>
 {% endblock %}

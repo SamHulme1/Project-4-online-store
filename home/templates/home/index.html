@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 {% include 'home/includes/hero.html' %}
-<div class="container-fluid secondary-content-colour padding">
+<div class="container-fluid padding">
     <div class="row">
         <div class="col-12">
             {% if request.user.is_authenticated %}
@@ -34,4 +34,7 @@
             </div>
     </div>
 </div>
+{% endblock %}
+{% block postloadjs %}
+    <script src="{% static 'scripts/settings.js' %}"></script>
 {% endblock %}

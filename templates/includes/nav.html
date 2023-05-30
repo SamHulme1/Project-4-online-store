@@ -6,13 +6,13 @@
     </button>
   {% if request.user.is_authenticated %}
     <span class="nav-item mr-2 ml-2 d-sm-block d-md-none" id="notification-mobile">
-      <div id="message-button-mobile" class="btn">
+      <div id="message-button-mobile" class="btn bg-transparent">
         <i class="fa-solid fa-bell notification-icon" arria-hidden="true"></i>
       </div>
       {% if messages %}
       <div id="notification-status-message-mobile" class="text-center">{{messages|length}}</div>
       {% else %}
-      <div id="notification-status-none-mobile" class="text-center">0</div>
+      <div id="notification-status-none-mobile" class="text-center text-light">0</div>
       {% endif %}
     </span>
     {% endif %}
@@ -41,18 +41,18 @@
         <li class="nav-item dropdown d-sm-block d-md-none text-center">
           <a class="nav-link dropdown-toggle medium-txt" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            Search by catagory
+            boxes
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a  class="dropdown-item" href="{% url 'catalogue:all_pricings' %}">All</a>
           {% for catagories in promo %}
-            <a  class=" dropdown-item nav-item name-of-catagory nav-text text-muted" href="{% url 'catalogue:catagory' cat=catagories.title %}">{{catagories.title}}</a>
+            <a  class=" dropdown-item nav-item name-of-catagory nav-text text-muted" href="{% url 'catalogue:pricing_details' catagories.id %}">{{catagories.title}}</a>
           {% endfor %}
           </div>
         </li>
         <li class="text-center nav-item mr-2 ml-2 text-center nav-text" id="shopping-basket">
           <a href="{% url 'basket:basket_view' %}"><i class="fa-solid fa-basket-shopping"></i></a>
-          <div>
+          <div class="text-light">
             {% if grand_total %}
             £{{ grand_total|floatformat:2 }}
             {% else %}
@@ -61,7 +61,7 @@
           </div>
         </li>
           <li class="nav-item mr-2 ml-2 d-none d-md-block" id="notification">
-            <div id="message-button" class="btn">
+            <div id="message-button" class="btn bg-transparent">
               <span class="sr-only">notifiaction message button</span>
               <i class="fa-solid fa-bell notification-icon" arria-hidden="true"></i>
             </div>

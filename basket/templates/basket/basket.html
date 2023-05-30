@@ -3,7 +3,7 @@
 {% load basket_tools %}
 
 {% block content %}
-<div class="container-fluid secondary-content-colour">
+<div class="container-fluid">
     <div class="row">
         <div class="col-12 text-center">
             <h1>Shopping Basket</h1>
@@ -21,7 +21,7 @@
                 {% if basket_items %}
                     {% for item in basket_items %}
                     <tbody>
-                    <tr class="secondary-content-colour">
+                    <tr>
                         <th scope="row">{{item.quantity}}</th>
                         <td>{{item.pricing.title}}</td>
                         <td>£{{item.pricing.price}}</td>
@@ -56,7 +56,7 @@
                         </td>
                         <td>£{{ item.pricing.price | subtotal:item.quantity }}</td>
                     </tr>
-                    </tbody>>
+                    </tbody>
                     {% endfor %}
                 {% else %}
                     <p class="text-center">You have nothing in your basket</p>
@@ -82,4 +82,5 @@
         form.submit();
     });
 </script>
+<script type="text/javascript" src="{% static 'scripts/settings.js' %}"></script>
 {% endblock %}

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<h2 class="text-center secondary-content-colour catagory-name m-0">{{cat}}</h2>
+<h2 class="text-center catagory-name m-0">{{cat}}</h2>
     {% if catagories %}
-    <div class="container-fluid secondary-content-colour padding">
+    <div class="container-fluid padding">
         <div class="row">
         {% for product in catagories %}
             <div class="col-md-4 col-sm-12 padding">
@@ -24,6 +24,9 @@
         </div>
     </div>
     {% else %}
-    <h2 class="text-center secondary-content-colour">No results</h2>
+    <h2 class="text-center">No results</h2>
     {% endif %}
+{% endblock %}
+{% block postloadjs %}
+    <script src="{% static 'scripts/settings.js' %}"></script>
 {% endblock %}

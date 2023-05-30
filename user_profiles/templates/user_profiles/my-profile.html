@@ -1,27 +1,31 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div class="container-fluid secondary-content-colour padding">
+<div class="container-fluid padding">
     <div class="row text-center">
         <div class="col-12">
             <h2>{{request.user}}'s Account</h2>
+            <span class="d-none" id="settings-darkmode-value">{{user_settings.dark_mode}}</span>
         </div>
     </div>
     <div class="row text-center">
         <div class="col-12 col-md-3 mt-1">
             <a href="{% url 'user_profiles:create_profile_info' %}">
-                <div class="btn button-style btn-lg mb-2"><i class="fa-regular fa-address-card" arria-hidden="true"></i>Add/edit Profile</div>
+                <div class="btn button-style btn-lg mb-2"><i class="fa-regular fa-address-card"
+                        arria-hidden="true"></i>Add/edit Profile</div>
             </a>
         </div>
         <div class="col-12 col-md-3 mt-1">
             <a href="{% url 'checkout:orders' %}">
-                <div class="btn button-style btn-lg mb-2"><i class="fa-solid fa-sort" arria-hidden="true"></i>Orders</div>
+                <div class="btn button-style btn-lg mb-2"><i class="fa-solid fa-sort" arria-hidden="true"></i>Orders
+                </div>
             </a>
         </div>
         <div class="col-12 col-md-3 mt-1">
             <a href="{% url 'catalogue:get_favourite' %}">
-                <div class="btn button-style btn-lg mb-2"><i class="fa-solid fa-heart" arria-hidden="true"></i>Favourites</div>
-            </a> 
+                <div class="btn button-style btn-lg mb-2"><i class="fa-solid fa-heart"
+                        arria-hidden="true"></i>Favourites</div>
+            </a>
         </div>
         <div class="col-12 col-md-3 mt-1">
             <a href="{% url 'account_reset_password' %}">
@@ -36,15 +40,37 @@
         {% if request.user.is_staff %}
         <div class="col-12 col-md-3 mt-1">
             <a href="{% url 'catalogue:add_product' %}">
-                <div class="btn button-style btn-lg mb-2">Add Product <i class="fa-solid fa-plus" arria-hidden="true"></i></div>
+                <div class="btn button-style btn-lg mb-2">Add Product <i class="fa-solid fa-plus"
+                        arria-hidden="true"></i></div>
             </a>
         </div>
         <div class="col-12 col-md-3 mt-1">
             <a href="{% url 'catalogue:add_pricing' %}">
-                <div class="btn button-style btn-lg mb-2"> Add Pricing <i class="fa-solid fa-plus" arria-hidden="true"></i></div>
+                <div class="btn button-style btn-lg mb-2"> Add Pricing <i class="fa-solid fa-plus"
+                        arria-hidden="true"></i></div>
             </a>
+        </div>
+        <div class="col-12 col-md-3 mt-1">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Settings</button>
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <a href="{% url 'user_settings:set_dark_mode' %}">
+                            <div class="btn button-style btn-lg mb-2"> Toggle Dark Mode <i class="fa-solid fa-plus"
+                                    arria-hidden="true"></i></div>
+                        </a>
+                        <a href="{% url 'user_settings:set_larger_fonts_mode' %}">
+                            <div class="btn button-style btn-lg mb-2"> Toggle Larger Fonts <i class="fa-solid fa-plus"
+                                    arria-hidden="true"></i></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         {% endif %}
     </div>
-</div> 
+</div>
+{% endblock %}
+{% block postloadjs %}
+    <script src="{% static 'scripts/settings.js' %}"></script>
 {% endblock %}

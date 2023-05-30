@@ -69,19 +69,20 @@
 
   {% block postloadjs %}
   {% endblock %}
-
-  {% block content %}
-  {% endblock %}
+  <div class="container-fluid secondary-content-colour main-content">
+    {% block content %}
+    {% endblock %}
+  </div>
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 p-5"></div>
     </div>
   </div>
-  <footer class="fixed-bottom">
+  <footer class="fixed-bottom" id="footer">
     <ul class="nav justify-content-center">
-      <li class="nav-item"><a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter footer-icon" aria-hidden="true"></i><span class="sr-only">twitter link</span></a></li>
-      <li class="nav-item"><a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook footer-icon" aria-hidden="true"></i><span class="sr-only">facebook link</span></a></li>
-      <li class="nav-item"><a href="https://www.linkedin.com/" target="_blank" ><i class="fa-brands fa-linkedin footer-icon" aria-hidden="true"></i><span class="sr-only">linkedin link</span></a></li>
+      <li class="nav-item"><a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter footer-icon bg-transparent" aria-hidden="true"></i><span class="sr-only">twitter link</span></a></li>
+      <li class="nav-item"><a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook footer-icon bg-transparent" aria-hidden="true"></i><span class="sr-only">facebook link</span></a></li>
+      <li class="nav-item"><a href="https://www.linkedin.com/" target="_blank" ><i class="fa-brands fa-linkedin footer-icon bg-transparent" aria-hidden="true"></i><span class="sr-only">linkedin link</span></a></li>
     </ul>
     <p class="text-center text-muted"><i class="fa-solid fa-beer-mug-empty"> <span class="sr-only">copyright info</span></i> © 2023 Tavern</p>
   </footer>

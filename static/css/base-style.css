@@ -34,7 +34,7 @@ select{
 
 a:hover {
     text-decoration:none;
-    color: black;
+    color: white;
 }
 
 .navbar-expand-lg .navbar-nav .dropdown-menu {
@@ -133,6 +133,7 @@ a, button {
 
 /* Colours */
 
+
 .nav-colour{
     background-color: #9a5127;
 }
@@ -157,6 +158,25 @@ a, button {
 footer{
     background-color: white;
 }
+
+.dark-mode-colour-secondary{
+    background-color: #212121 !important;
+    color: white !important;
+}
+
+.dark-mode-colour-nav{
+    background-color:#121212 !important;
+}
+
+.dark-mode-colour-footer{
+    background-color:#121212 !important;
+}
+
+.tertiary-dark-colour{
+    background-color: #3700b3;
+    color: white !important;
+}
+
 
 /* Icons */
 

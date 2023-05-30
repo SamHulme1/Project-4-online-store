@@ -13,7 +13,6 @@ window.onload = function () {
     let messageDisplayMobile = document.getElementById("message-area");
     let catagoryTitle = document.getElementsByClassName("catagory-name");
 
-
     if (messageButton === null){
         return;
     }else{

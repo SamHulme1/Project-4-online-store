@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 {% if searched %}
-<h2 class="text-center secondary-content-colour m-0">Showing results for {{ searched }} </h2>
+<h2 class="text-center m-0">Showing results for {{ searched }} </h2>
     {% for product in results %}
         <div class="col-lg-4 col-md-4 col-sm-12 padding">
             <div class="text-center overflow-hidden border image-container">
@@ -19,9 +19,12 @@
             </div>
         </div>
         {% empty %}
-            <h3 class="text-center secondary-content-colour m-0 p-0"> No sesults for {{ searched }} </h3>
+            <h3 class="text-center m-0 p-0"> No sesults for {{ searched }} </h3>
         {% endfor %}
 {% else %}
-<h2 class="text-center secondary-content-colour">No results</h2>
+<h2 class="text-center">No results</h2>
 {% endif%}
 {% endblock%}
+{% block postloadjs %}
+    <script src="{% static 'scripts/settings.js' %}"></script>
+{% endblock %}

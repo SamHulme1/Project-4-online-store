@@ -3,7 +3,7 @@
 {% block content %}
 <span class="float-right"><button type="button" aria-label="print" class="btn button-style btn-lg" id="print-button"><i class="fa-solid fa-print"></i></button></span>
 <div id="print-area">
-    <div class="container-fluid secondary-content-colour">
+    <div class="container-fluid">
         <div class="row">
             <div class=col>
                 <h2 class="text-center">Thanks for your order {{order.first_name}}</h2>
@@ -30,7 +30,7 @@
         </thead>
             {% for item in order.lineitems.all %}
             <tbody>
-            <tr class="secondary-content-colour">
+            <tr>
                 <th scope="row">{{item.quantity}}</th>
                 <td>{{item.pricing.title}}</td>
                 <td>£{{item.pricing.price}}</td>
@@ -39,13 +39,13 @@
             {% endfor %}
     </table>
     <!------------------bootstrap table --------------------->
-    <div class="row secondary-content-colour text-center pt-2">
+    <div class="row text-center pt-2">
         <div class="col-12">
             <span>Your order total today is: £{{order.grand_total}}</span>
         </div>
     </div>
 </div>
-<div class="container-fluid secondary-content-colour text-center padding">
+<div class="container-fluid text-center padding">
     <div class="row">
         <div class="col-12">
             feel free to carry on perusing
@@ -58,4 +58,5 @@
 {% endblock %}
 {% block postloadjs %}
     <script src="{% static 'scripts/orders-scripts.js' %}"></script>
+    <script src="{% static 'scripts/settings.js' %}"></script>
 {% endblock %}

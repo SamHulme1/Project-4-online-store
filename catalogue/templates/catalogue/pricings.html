@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<h2 class="text-center secondary-content-colour catagory-name m-0">Pricing boxes</h2>
+<h2 class="text-center catagory-name m-0">Pricing boxes</h2>
     <div class="container-fluid padding">
         <div class="row">
             {% for pricing in pricings %}
@@ -23,4 +23,7 @@
         </div>
         <hr>
     </div>
+{% endblock %}
+{% block postloadjs %}
+    <script src="{% static 'scripts/settings.js' %}"></script>
 {% endblock %}

@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<h2 class="text-center secondary-content-colour catagory-name m-0">Favourites</h2>
-<div class="container-fluid secondary-content-colour padding">
+<h2 class="text-center catagory-name m-0">Favourites</h2>
+<div class="container-fluid padding">
     <div class="row">
         {% for product in favourite %}
         <div class="col-lg-4 col-md-4 col-sm-12 p-0">
@@ -20,8 +20,11 @@
             </div>
         </div>
         {% empty %}
-        <h2 class="text-center secondary-content-colour"> No results </h2>
+        <h2 class="text-center"> No results </h2>
         {% endfor %}
     </div>
 </div>
+{% endblock %}
+{% block postloadjs %}
+    <script src="{% static 'scripts/settings.js' %}"></script>
 {% endblock %}

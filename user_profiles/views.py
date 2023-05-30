@@ -1,15 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from .models import UserInfo
+from user_settings.models import AccountSettings
 from django.contrib.auth.decorators import login_required
 from .forms import UserInfoForm
 
 
 @login_required
 def profile_view(request):
+    user_settings = AccountSettings.objects.get(user=request.user)
     """"view for the profile home page"""
+
+    context = {
+        "user_settings": user_settings,
+    }
     return render(
-            request, 'user_profiles/my-profile.html')
+            request, 'user_profiles/my-profile.html', context)
 
 
 @login_required
