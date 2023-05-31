@@ -1,4 +1,4 @@
-window.onload = function () {
+window.addEventListener("load",function(){ 
     /*
     onload find the elements with the ids of message button, message-area and notification
     add an event lister to the message button, when a message is displayed in the template let the
@@ -56,7 +56,7 @@ window.onload = function () {
         }
     }
     
-};
+});
 
 
 

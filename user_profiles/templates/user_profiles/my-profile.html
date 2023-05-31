@@ -5,7 +5,6 @@
     <div class="row text-center">
         <div class="col-12">
             <h2>{{request.user}}'s Account</h2>
-            <span class="d-none" id="settings-darkmode-value">{{user_settings.dark_mode}}</span>
         </div>
     </div>
     <div class="row text-center">
@@ -72,5 +71,16 @@
 </div>
 {% endblock %}
 {% block postloadjs %}
-    <script src="{% static 'scripts/settings.js' %}"></script>
+{{ block.super }}
+<script type="text/javascript">
+    function setLocal(){
+        let darkModeValue = document.getElementById("settings-darkmode-value").innerText;
+        if (darkModeValue === null){
+        return;
+        }else{      
+        localStorage.setItem("darkModeValue", darkModeValue);
+    }
+    }
+    setLocal();
+</script>
 {% endblock %}

@@ -22,16 +22,16 @@
                     {% for item in basket_items %}
                     <tbody>
                     <tr>
-                        <th scope="row">{{item.quantity}}</th>
-                        <td>{{item.pricing.title}}</td>
-                        <td>£{{item.pricing.price}}</td>
+                        <th scope="row" class="text-light">{{item.quantity}}</th>
+                        <td class="text-light">{{item.pricing.title}}</td>
+                        <td class="text-light">£{{item.pricing.price}}</td>
                         <td class="ml-2">
                             <form action="{% url 'basket:change_basket_qty' item.item_id %}" method="POST" class="form update-form">
                                 {% csrf_token %}
                                 <div class="row quantity-control">
                                     <div class="col-3 text-right">
                                         <button class="btn increase-qty" data-item_id="{{ item.item_id }}" aria-label="increase">
-                                            <span class="bg-white">
+                                            <span class="bg-transparent">
                                                 <i class="fas fa-plus fa-sm" arria-hidden="true"><span class="sr-only">increase quantity</span></i>
                                             </span>
                                         </button>
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-3 text-left">
                                         <button class="btn decrease-qty" data-item_id="{{ item.item_id }}" aria-label="decrease">
-                                            <span class="bg-white">
+                                            <span class="bg-transparent">
                                                 <i class="fas fa-minus fa-sm" arria-hidden="true"><span class="sr-only">decrease quantity</span></i>
                                             </span>
                                         </button>
@@ -54,7 +54,7 @@
                                 </div>
                             </form>
                         </td>
-                        <td>£{{ item.pricing.price | subtotal:item.quantity }}</td>
+                        <td class="text-light">£{{ item.pricing.price | subtotal:item.quantity }}</td>
                     </tr>
                     </tbody>
                     {% endfor %}
@@ -82,5 +82,4 @@
         form.submit();
     });
 </script>
-<script type="text/javascript" src="{% static 'scripts/settings.js' %}"></script>
 {% endblock %}

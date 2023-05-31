@@ -1,4 +1,4 @@
-window.onload=function(){
+window.addEventListener("load",function(){
    const printButton = document.getElementById("print-button");
    const printArea = document.getElementById("print-area").innerHTML;
    const page = document.body.innerHTML;
@@ -21,4 +21,4 @@ window.onload=function(){
       document.body.style.backgroundImage = "url(https://images.pexels.com/photos/1151243/pexels-photo-1151243.jpeg)";
    });
   
-};
+});

@@ -1,4 +1,4 @@
-window.onload=function(){
+window.addEventListener("load",function(){
     //removes the default d from the userinfo forms
     //adds placeolders
     let profileInfoInput=document.getElementsByTagName("label");
@@ -7,4 +7,4 @@ window.onload=function(){
         profileInfoInput[i].innerText = removeDefault;
         profileInfoInput[i].nextElementSibling.placeholder = removeDefault;
       }
-};
+});
